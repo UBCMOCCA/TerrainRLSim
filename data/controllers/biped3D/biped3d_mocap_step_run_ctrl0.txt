@@ -1,0 +1,32 @@
+{
+	"ClusterMotions": true,
+	"ClusterDist": 0.02,
+	"MotionFiles":
+	[
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00017.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00002.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00003.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00004.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00005.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00006.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00007.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00008.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00009.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00010.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00011.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00012.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00013.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00014.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00015.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00016.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00018.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00019.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00020.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00021.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00022.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00023.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00024.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00025.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00026.txt"
+	]
+}

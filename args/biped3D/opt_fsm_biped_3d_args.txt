@@ -1,0 +1,52 @@
+// -scenario= opt_jump
+// -output_path= output/opt_jump_result.txt
+-scenario= opt_vel_ctrl
+-output_path= output/opt_vel_biped3d_result.txt
+// -scenario= track_motion
+
+target_vel_x=2.0
+-int_output_path= output/opt_results/biped3D_opt
+
+-character_file= data/characters/biped_3D.txt
+-motion_file= data/motions/biped_3D_walk.txt
+-state_file= data/states/biped3D/biped3d_walk_state.txt
+
+-sim_mode= 3d
+-char_type= biped3D
+-char_ctrl= biped3D_cacla
+-terrain_file= data/terrain/flat3d.txt
+// -terrain_file= data/terrain/strait_path3d.txt
+
+-num_update_steps= 20
+-num_sim_substeps= 5
+-world_scale= 4
+
+-policy_solver= data/policies/biped_3D/nets/biped3d_simple_cacla_actor_solver.prototxt
+-policy_net= data/policies/biped_3D/nets/biped3d_simple_cacla_actor_net.prototxt
+// -policy_model= data/policies/biped/models/biped_imitate_model.h5
+
+-critic_solver= data/policies/biped_3D/nets/biped3d_simple_cacla_critic_solver.prototxt
+-critic_net= data/policies/biped_3D/nets/biped3d_simple_cacla_critic_net.prototxt
+// -critic_model= data/policies/biped/models/biped_imitate_model_critic.h5
+
+-enable_rand_perturbs= false
+-perturb_time_min= 2
+-perturb_time_max= 4
+-min_perturb= 50
+-max_perturb= 150
+-min_pertrub_duration= 0.1
+-max_perturb_duration= 0.4
+
+-target_ctrl_id= 0
+-target_actions= 0
+
+-scene_max_time= 30
+
+-cma_sigma= 0.2
+-cma_step_tol= 0.0001
+-cma_max_gen= 1000000
+-cma_max_iter= 1
+-cma_pop_size= 30
+
+-opt_eval_samples= 14
+-num_threads= 30

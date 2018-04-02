@@ -1,0 +1,31 @@
+-scenario= imitate_eval
+
+-character_file= data/characters/raptor_mtu_run1.txt
+-motion_file= data/motions/raptor_run1.txt
+-state_file= data/states/raptor_run_state.txt
+
+-output_path= output/int_imitate_eval.txt
+-record_reward= true
+-reward_output_path= output/int_imitate_reward.txt
+-pose_err_file= output/int_imitate_pose_err.txt
+
+-char_type= raptor
+-char_ctrl= ct_mtu_track
+-char_ctrl_ct_query_rate= 60
+-terrain_file= data/terrain/flat.txt
+
+-num_update_steps= 100
+-num_sim_substeps= 1
+-world_scale= 4
+
+-policy_solver= data/policies/raptor/nets/raptor_ct_mtu_track_actor_solver.prototxt
+-policy_net= data/policies/raptor/nets/raptor_ct_mtu_track_actor_net.prototxt
+-policy_model= data/policies/raptor/models/raptor_imitate_run1_mtu_opt_model.h5
+
+-critic_solver= data/policies/raptor/nets/raptor_ct_mtu_track_critic_solver.prototxt
+-critic_net= data/policies/raptor/nets/raptor_ct_mtu_track_critic_net.prototxt
+-critic_model= data/policies/raptor/models/raptor_imitate_run1_mtu_opt_model_critic.h5
+
+-enable_rand_state_reset= true
+
+-num_threads= 1

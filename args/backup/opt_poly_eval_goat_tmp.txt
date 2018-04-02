@@ -1,0 +1,23 @@
+-scenario= poli_eval
+
+-character_file= data/characters/goat1.txt
+-state_file= data/states/goat_state_climb1.txt
+-output_path= output/int_poli_goat_eval.txt
+-char_init_pos_x= 1.2
+
+-char_type= dog
+-char_ctrl= goat_mace
+
+-num_threads= 4
+
+//-policy_net= data/policies/dog/nets/dog_max_deploy.prototxt
+-policy_net= data/policies/dog/nets/dog_ace3_deploy.prototxt
+
+-poli_eval_max_episodes= 100
+-rand_seed= 21
+
+-terrain_file= data/terrain/cliffs_rugged.txt
+
+-policy_solver= data/policies/dog/nets/dog_ace3_solver.prototxt
+-policy_net= data/policies/dog/nets/dog_ace3_deploy.prototxt
+//-policy_model= data/policies/goat/models/goat_ace3_model.h5

@@ -1,0 +1,11 @@
+-scenario= poli_eval
+
+-character_file= data/characters/dog2.txt
+-state_file= data/states/dog_bound_state2.txt
+
+-char_type= dog
+-char_ctrl= dog
+-terrain_file= data/terrain/gaps.txt
+
+-policy_net= data/policies/dog/nets/dog_max_deploy.prototxt
+-policy_model= output/intermediate/trainer_int_model_0000206000.h5

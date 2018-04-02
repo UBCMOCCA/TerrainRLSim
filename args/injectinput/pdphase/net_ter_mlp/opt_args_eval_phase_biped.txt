@@ -1,0 +1,40 @@
+-scenario= imitate_eval
+-output_path= output/injectinput/pdphase2d/injected_1/test3.txt
+-record_reward= true
+-reward_output_path= output/int_imitate_reward.txt
+-pose_err_file= output/int_imitate_pose_err.txt
+
+-character_file= data/characters/biped.txt
+-motion_file= data/motions/biped_walk.txt
+-state_file= data/states/biped_walk_state.txt
+
+-num_threads= 8
+
+-char_type= general
+-char_ctrl= ct_pd_phase
+-char_ctrl_ct_query_rate= 30
+-char_ctrl_cycle_dur= 1
+-char_ctrl_num_ground_samples= 30
+-char_ctrl_ground_view_dist= 2
+-terrain_file= data/terrain/gaps_easy.txt
+
+-num_update_steps= 20
+-num_sim_substeps= 5
+-world_scale= 4
+
+-policy_solver= args/injectinput/pdphase/net_ter_mlp/biped_step_dphase_actor_solver.prototxt
+-policy_net= args/injectinput/pdphase/net_ter_mlp/biped_step_dphase_actor_net.prototxt
+-policy_model= output/injectinput/pdphase2d/injected_2/biped2d_pd_phase_model1_inj.h5
+//-policy_model= output/injectinput/pdphase2d/injected_1/biped2d_pd_phase_model3_transf_hard.h5
+//-policy_model= output/injectinput/pdphase2d/injected_1/biped2d_pd_phase_model4_transf_test.h5
+//-policy_model= output/injectinput/pdphase2d/injected_1/biped2d_pd_phase_model_gaps_transf.h5
+-critic_solver= args/injectinput/pdphase/net_ter_mlp/biped_step_dphase_critic_solver.prototxt
+-critic_net= args/injectinput/pdphase/net_ter_mlp/biped_step_dphase_critic_net.prototxt
+-critic_model= output/injectinput/pdphase2d/injected_2/biped2d_pd_phase_model1_inj_critic.h5
+//-critic_model= output/injectinput/pdphase2d/injected_1/biped2d_pd_phase_model3_transf_hard.h5
+//-critic_model= output/injectinput/pdphase2d/injected_1/biped2d_pd_phase_model4_transf_test_critic.h5
+//-critic_model= output/injectinput/pdphase2d/injected_1/biped2d_pd_phase_model_gaps_transf.h5
+
+-rand_seed= 21
+-poli_eval_max_episodes= 15
+-episode_max_time= 10

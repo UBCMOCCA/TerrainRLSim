@@ -1,0 +1,10 @@
+{
+"Type": "var3d_checkers",
+
+"Params":
+[
+	{
+		"Slope": 0.05
+	}
+]
+}

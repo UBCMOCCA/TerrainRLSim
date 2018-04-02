@@ -1,0 +1,50 @@
+name: "Dog2D_Actor"
+
+layer {
+  name: "input"
+  type: "WeightedMemoryData"
+  top: "input"
+  top: "label"
+  top: "weights"
+
+  weighted_memory_data_param {
+    batch_size: 32
+	channels: 1
+	height: 1
+	width: 1
+	label_size: 1
+  }
+}
+
+layer {
+  name: "output"
+  type: "InnerProduct"
+  bottom: "input"
+  top: "output"
+  param {
+    lr_mult: 1
+	decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+	decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+
+layer {
+  name: "loss"
+  type: "WeightedEuclideanLoss"
+  bottom: "output"
+  bottom: "label"
+  bottom: "weights"
+  top: "loss"
+}

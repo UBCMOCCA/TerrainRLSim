@@ -1,0 +1,22 @@
+{
+"Type": "var2d_slopes_narrow_gaps",
+
+"Params": [
+	{
+		"NarrowGapSpacingMin": 4,
+		"NarrowGapSpacingMax": 7,
+		"NarrowGapDistMin": 0.2,
+		"NarrowGapDistMax": 0.5,
+		"NarrowGapWMin": 0.05,
+		"NarrowGapWMax": 0.2,
+		"NarrowGapDepthMin": -2,
+		"NarrowGapDepthMax": -2,
+		"NarrowGapCountMin": 2,
+		"NarrowGapCountMax": 4,
+
+		"SlopeDeltaRange": 0.05,
+		"SlopeDeltaMin": -0.5,
+		"SlopeDeltaMax": 0.5
+	}
+]
+}

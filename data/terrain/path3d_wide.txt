@@ -1,0 +1,18 @@
+{
+"Type": "var3d_path",
+
+"GroundWidth": 20,
+"VertSpacingX": 0.2,
+"VertSpacingZ": 0.2,
+
+"Params": 
+[
+	{
+		"PathWidth0": 4,
+		"PathLength": 7,
+		"PathTurnLength": 7,
+		"PathHeight0": 0,
+		"PathHeight1": -1
+	}
+]
+}

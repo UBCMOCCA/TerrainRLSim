@@ -1,0 +1,50 @@
+{"MiscParams": 
+{
+"TransTime": 0.125000,
+"Cv": 0.069705,
+"BackForceX": -51.824293,
+"BackForceY": 509.781866,
+"FrontForceX": 388.742758,
+"FrontForceY": -115.449923
+},
+
+"StateParams": 
+{
+"BackStance": 
+{
+"SpineCurve": -0.031250,
+"Shoulder": -1.881921,
+"Elbow": 5.937115,
+"Hip": -0.348174,
+"Knee": -3.349074,
+"Ankle": 0.424387
+},
+"Extend": 
+{
+"SpineCurve": 0.177783,
+"Shoulder": -0.016393,
+"Elbow": 0.253687,
+"Hip": 1.433021,
+"Knee": -4.984615,
+"Ankle": 4.073225
+},
+"FrontStance": 
+{
+"SpineCurve": -0.179364,
+"Shoulder": 0.161066,
+"Elbow": -0.190562,
+"Hip": -0.760196,
+"Knee": -1.720788,
+"Ankle": 0.748511
+},
+"Gather": 
+{
+"SpineCurve": 0.020819,
+"Shoulder": -2.279692,
+"Elbow": 2.088792,
+"Hip": 0.935472,
+"Knee": -3.059239,
+"Ankle": 2.898220
+}
+}
+}

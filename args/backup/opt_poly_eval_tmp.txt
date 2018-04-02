@@ -1,0 +1,18 @@
+-scenario= poli_eval
+
+-character_file= data/characters/dog2.txt
+-state_file= data/states/dog_bound_state2.txt
+-output_path= output/int_poli_eval.txt
+
+-char_type= dog
+-char_ctrl= dog_mace
+
+//-policy_net= data/policies/dog/nets/dog_max_deploy.prototxt
+-policy_net= data/policies/dog/nets/dog_ace3_deploy.prototxt
+
+-poli_eval_max_episodes= 100
+-rand_seed= 21
+
+-terrain_file= data/terrain/slopes_mixed.txt
+
+-num_threads= 4

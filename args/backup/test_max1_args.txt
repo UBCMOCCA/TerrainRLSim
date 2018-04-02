@@ -1,0 +1,46 @@
+-scenario= poli_eval
+
+-character_file= data/characters/dog2.txt
+-motion_file= data/motions/dog_bound.txt
+-state_file= data/states/dog_bound_state2.txt
+-output_path= output/dog_model.h5
+
+-char_type= dog
+-char_ctrl= dog
+-terrain_file= data/terrain/mixed.txt
+
+-policy_solver= data/policies/dog/nets/dog_max1_solver.prototxt
+-policy_net= data/policies/dog/nets/dog_max1_deploy.prototxt
+-policy_model= data/policies/dog/models/dog_max1_mixed_model.h5
+
+-exploration_rate= 0.2
+-trainer_num_anneal_iters= 16
+-exp_base_rate= 0.01
+-exp_base_anneal_iters= 32
+
+-trainer_max_iter= 10000000
+-trainer_freeze_target_iters= 0
+-trainer_int_iter= 100
+-trainer_int_output= output/intermediate/trainer_int_model.h5
+-tuple_buffer_size= 2
+-trainer_num_init_samples= 4
+-trainer_num_steps_per_iters= 1
+-trainer_iters_per_output= 2
+-trainer_curriculum_iters= 0
+-trainer_init_input_offset_scale= true
+
+-enable_rand_perturbs= false
+-perturb_time_min= 2
+-perturb_time_max= 4
+-min_perturb= 50
+-max_perturb= 150
+-min_pertrub_duration= 0.1
+-max_perturb_duration= 0.5
+
+
+-target_ctrl_id= 1
+-recovery_time= 2
+-warmup_time= 5
+
+-target_vel_x= 3 2 1 4
+-vel_ctrl_cmd_max_time= 5

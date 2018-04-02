@@ -1,0 +1,32 @@
+-scenario= imitate_eval
+-output_path= output/injectinput/pdphase2d/test2.txt
+-record_reward= true
+-reward_output_path= output/int_imitate_reward.txt
+-pose_err_file= output/int_imitate_pose_err.txt
+
+-character_file= data/characters/biped.txt
+-motion_file= data/motions/biped_walk.txt
+-state_file= data/states/biped_walk_state.txt
+
+-num_threads= 8
+
+-char_type= general
+-char_ctrl= ct_pd_phase
+-char_ctrl_ct_query_rate= 30
+-char_ctrl_cycle_dur= 1
+-terrain_file= data/terrain/flat.txt
+
+-num_update_steps= 20
+-num_sim_substeps= 5
+-world_scale= 4
+
+-policy_solver= data/policies/biped/nets/biped_step_dphase_actor_solver.prototxt
+-policy_net= data/policies/biped/nets/biped_step_dphase_actor_net.prototxt
+-policy_model= output/injectinput/pdphase2d/blind_flat_1/biped2d_pd_phase_model1.h5
+-critic_solver= data/policies/biped/nets/biped_step_dphase_critic_solver.prototxt
+-critic_net= data/policies/biped/nets/biped_step_dphase_critic_net.prototxt
+-critic_model= output/injectinput/pdphase2d/blind_flat_1/biped2d_pd_phase_model1_critic.h5
+
+-rand_seed= 21
+-poli_eval_max_episodes= 15
+-episode_max_time= 10

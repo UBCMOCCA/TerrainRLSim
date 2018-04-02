@@ -1,0 +1,38 @@
+-scenario= train_ace
+-output_path= output/dog_ace3_model.h5
+
+-character_file= data/characters/dog2.txt
+-state_file= data/states/dog_bound_state2.txt
+
+-num_threads= 20
+
+-char_type= dog
+-char_ctrl= dog_mace
+-terrain_file= data/terrain/test_terrain.txt
+
+-policy_solver= data/policies/dog/nets/dog_ace3_solver.prototxt
+-policy_net= data/policies/dog/nets/dog_ace3_deploy.prototxt
+//-policy_model= data/policies/dog/models/dog_ace3_model.h5
+
+-trainer_num_anneal_iters= 50000
+-exp_base_anneal_iters= 50000
+-trainer_curriculum_iters= 0
+//-trainer_curriculum_iters= 75000
+
+-exp_layer= ip0
+-exp_rate= 0.2
+-exp_temp= 0.025
+-exp_base_rate= 0.002
+-init_exp_rate= 0.9
+-init_exp_temp= 20
+-init_exp_base_rate= 0.9
+
+-trainer_max_iter= 1000000000
+-trainer_freeze_target_iters= 500
+-trainer_int_iter= 2000
+-trainer_int_output= output/intermediate/trainer_int_model.h5
+-tuple_buffer_size= 32
+-trainer_num_init_samples= 50000
+-trainer_num_steps_per_iters= 1
+-trainer_iters_per_output= 200
+-trainer_init_input_offset_scale= true

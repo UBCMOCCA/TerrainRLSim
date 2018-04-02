@@ -1,0 +1,49 @@
+-scenario= imitate_eval
+
+//-character_file= data/characters/dog.txt
+//-state_file= data/states/dog_bound_state3.txt
+//-motion_file= data/motions/dog_sim_bound.txt
+
+-character_file= data/characters/raptor.txt
+-motion_file= data/motions/raptor_run1.txt
+-state_file= data/states/raptor_run_state.txt
+
+// -character_file= data/characters/biped.txt
+// -motion_file= data/motions/biped_walk.txt
+// -state_file= data/states/biped_stand_state.txt
+
+-output_path= output/int_imitate_eval.txt
+-record_reward= true
+-reward_output_path= output/int_imitate_reward.txt
+-pose_err_file= output/int_imitate_pose_err.txt
+
+-char_type= general
+-char_ctrl= ct_track
+-char_ctrl_ct_query_rate= 0
+-terrain_file= data/terrain/flat.txt
+
+-num_update_steps= 100
+-num_sim_substeps= 1
+-world_scale= 4
+
+//-policy_solver= data/policies/dog/nets/dog_ct_mtu_track_actor_solver.prototxt
+//-policy_net= data/policies/dog/nets/dog_ct_mtu_track_actor_net.prototxt
+//-critic_solver= data/policies/dog/nets/dog_ct_mtu_track_critic_solver.prototxt
+//-critic_net= data/policies/dog/nets/dog_ct_mtu_track_critic_net.prototxt
+
+//-policy_solver= data/policies/raptor/nets/raptor_ct_mtu_track_actor_solver.prototxt
+//-policy_net= data/policies/raptor/nets/raptor_ct_mtu_track_actor_net.prototxt
+//-critic_solver= data/policies/raptor/nets/raptor_ct_mtu_track_critic_solver.prototxt
+//-critic_net= data/policies/raptor/nets/raptor_ct_mtu_track_critic_net.prototxt
+
+// -policy_solver= data/policies/biped/nets/biped_ct_mtu_track_actor_solver.prototxt
+// -policy_net= data/policies/biped/nets/biped_ct_mtu_track_actor_net.prototxt
+// -critic_solver= data/policies/biped/nets/biped_ct_mtu_track_critic_solver.prototxt
+// -critic_net= data/policies/biped/nets/biped_ct_mtu_track_critic_net.prototxt
+
+-enable_rand_state_reset= true
+-rand_seed= 21
+-poli_eval_max_episodes= 32
+-episode_max_time= 10
+
+-num_threads= 4

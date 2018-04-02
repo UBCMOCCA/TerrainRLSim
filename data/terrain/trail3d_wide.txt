@@ -1,0 +1,21 @@
+{
+"Type": "trail3d",
+
+"Params": 
+[
+	{
+		"PathWidth0": 2,
+		"PathWidth1": 3,
+		"PathWidthDeltaStdev": 0.5,
+		"PathMaxTurnDelta": 0.5,
+		"PathLength": 10,
+		"PathTurnLength": 5,
+		"PathHeight0": 0,
+		"PathHeight1": -1,
+
+		"StepHeightMin": 0.1,
+		"StepHeightMax": 0.2,
+		"TrailStepProb": 0
+	}
+]
+}

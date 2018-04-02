@@ -1,0 +1,43 @@
+-scenario= opt_jump
+-output_path= output/opt_jump_result.txt
+// -scenario= opt_vel_ctrl
+// -output_path= output/opt_vel_result.txt
+// -scenario= track_motion
+
+target_vel_x=3.0
+-int_output_path= output/opt_results/opt
+
+-character_file= data/characters/biped2D.txt
+-motion_file= data/motions/biped_run.txt
+-state_file= data/states/biped2D/biped_jog_state.txt
+
+-char_type= biped2D
+-char_ctrl= biped2D
+
+-num_update_steps= 20
+-num_sim_substeps= 5
+-world_scale= 4
+
+-terrain_file= data/terrain/flat.txt
+
+-enable_rand_perturbs= false
+-perturb_time_min= 2
+-perturb_time_max= 4
+-min_perturb= 50
+-max_perturb= 150
+-min_pertrub_duration= 0.1
+-max_perturb_duration= 0.4
+
+-target_ctrl_id= 0
+-target_actions= 0
+
+-scene_max_time= 30
+
+-cma_sigma= 0.3
+-cma_step_tol= 0.0001
+-cma_max_gen= 1000000
+-cma_max_iter= 1
+-cma_pop_size= 15
+
+-opt_eval_samples= 7
+-num_threads= 15

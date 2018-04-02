@@ -1,0 +1,13 @@
+{
+"Type": "var3d_stairs",
+
+"Params":
+[
+	{
+        "StepSpacingMin" : 1,
+        "StepSpacingMax" : 2,
+        "StepHeightMin"  : 0,
+        "StepHeightMax"  : 0.12
+	}
+]
+}

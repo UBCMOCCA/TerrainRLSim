@@ -1,0 +1,14 @@
+{
+	"ClusterMotions": true,
+	"ClusterDist": 0.01,
+	"FeatureWeightHeading": 2,
+
+	"MotionFiles":
+	[
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00017.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00013.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00016.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00023.txt",
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00024.txt"
+	]
+}

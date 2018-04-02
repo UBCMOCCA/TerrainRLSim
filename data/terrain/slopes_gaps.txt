@@ -1,0 +1,18 @@
+{
+"Type": "var2d_slopes_gaps",
+
+"Params": [
+	{
+		"GapSpacingMin": 3,
+		"GapSpacingMax": 3,
+		"GapWMin": 2,
+		"GapWMax": 2,
+		"GapHMin": -2,
+		"GapHMax": -2,
+
+		"SlopeDeltaRange": 0,
+		"SlopeDeltaMin": 0,
+		"SlopeDeltaMax": 0
+	}
+]
+}

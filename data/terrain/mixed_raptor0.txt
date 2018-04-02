@@ -1,0 +1,28 @@
+{
+"Type": "var2d_mixed",
+
+"Params": [
+	{
+		"GapSpacingMin": 3,
+		"GapSpacingMax": 5,
+		"GapWMin": 0.2,
+		"GapWMax": 0.6,
+		"GapHMin": -2,
+		"GapHMax": -2,
+
+		"WallSpacingMin": 3,
+		"WallSpacingMax": 5,
+		"WallWMin": 0.2,
+		"WallWMax": 0.2,
+		"WallHMin": 0.25,
+		"WallHMax": 0.35,
+
+		"StepSpacingMin": 3,
+		"StepSpacingMax": 5,
+		"StepH0Min": 0.1,
+		"StepH0Max": 0.25,
+		"StepH1Min": -0.25,
+		"StepH1Max": -0.1
+	}
+]
+}

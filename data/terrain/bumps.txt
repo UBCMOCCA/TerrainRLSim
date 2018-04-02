@@ -1,0 +1,10 @@
+{
+"Type": "var2d_bumps",
+
+"Params": [
+	{
+		"BumpHMin": 0,
+		"BumpHMax": 0.05
+	}
+]
+}

@@ -1,0 +1,19 @@
+-scenario= poli_eval
+
+-character_file= data/characters/monoped_hopper.txt
+-state_file= data/states/monoped_hopper.txt
+-output_path= output/int_poli_hopper_eval.txt
+
+-char_type= hopper
+-char_ctrl= monoped_hopper
+
+-policy_net= data/policies/hopper/nets/hopper_max_deploy.prototxt
+-policy_solver= data/policies/hopper/nets/hopper_max_solver.prototxt
+
+-poli_eval_max_episodes= 100
+-rand_seed= 21
+
+-terrain_file= data/terrain/gaps_hopper.txt
+
+-num_update_steps= 80
+-num_threads= 1

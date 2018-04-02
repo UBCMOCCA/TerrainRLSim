@@ -1,0 +1,54 @@
+// -scenario= train_cacla
+// -scenario= track_motion
+-scenario= poli_eval
+-output_path= output/poli_eval_hopper2d_gaps.txt
+
+-character_file= data/characters/monoped_hopper0.txt
+-state_file= data/states/monoped_hopper.txt
+
+-num_update_steps= 20
+-num_sim_substeps= 5
+-world_scale= 4
+
+-char_type= hopper
+-char_ctrl= monoped_hopper_cacla
+
+-terrain_file= data/terrain/gaps_hopper.txt
+
+
+-policy_solver= data/policies/hopper/nets/cacla/hopper_cacla_actor_solver.prototxt
+-policy_net= data/policies/hopper/nets/cacla/hopper_cacla_actor_net.prototxt
+-policy_model= output/hopper_cacla_gaps_model.h5
+
+-critic_solver= data/policies/hopper/nets/cacla/hopper_cacla_critic_solver.prototxt
+-critic_net= data/policies/hopper/nets/cacla/hopper_cacla_critic_net.prototxt
+-critic_model= output/hopper_cacla_gaps_model_critic.h5
+
+
+-poli_eval_max_episodes= 25
+
+-trainer_num_anneal_iters= 50000
+-exp_base_anneal_iters= 50000
+-trainer_curriculum_iters= 0
+
+-exp_layer= ip0
+-exp_rate= 0.2
+-exp_temp= 0.25
+-exp_base_rate= 0.001
+-exp_noise= 0.2
+-init_exp_rate= 1
+-init_exp_temp= 20
+-init_exp_base_rate= 1
+-init_exp_noise= 0.2
+
+-trainer_replay_mem_size= 500000
+-trainer_max_iter= 1000000000
+-trainer_freeze_target_iters= 500
+-trainer_int_iter= 2000
+-trainer_int_output= output/intermediate/trainer_int_model.h5
+-tuple_buffer_size= 32
+-trainer_num_init_samples= 50000
+-trainer_num_steps_per_iters= 1
+-trainer_iters_per_output= 200
+-trainer_init_input_offset_scale= true
+-trainer_enable_async_mode= false

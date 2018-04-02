@@ -1,0 +1,14 @@
+{
+"Type": "var2d_steps",
+
+"Params": [
+	{
+		"StepSpacingMin": 0.6,
+		"StepSpacingMax": 1.3,
+		"StepH0Min": 0.1,
+		"StepH0Max": 0.25,
+		"StepH1Min": -0.25,
+		"StepH1Max": -0.1
+	}
+]
+}

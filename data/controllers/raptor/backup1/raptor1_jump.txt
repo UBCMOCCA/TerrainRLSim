@@ -1,0 +1,57 @@
+{"MiscParams": 
+{
+"TransTime": 0.110000,
+"Cv": 0.014075,
+"Cd": 2.104498,
+"ForceX": 0.000000,
+"ForceY": 0.000000
+},
+
+"StateParams": 
+{
+"Contact": 
+{
+"RootPitch": 1.063449,
+"SpineCurve": 0.000000,
+"StanceHip": 0.551419,
+"StanceKnee": -1.232073,
+"StanceAnkle": 0.310721,
+"SwingHip": -0.085305,
+"SwingKnee": -3.450938,
+"SwingAnkle": 4.493620
+},
+"Down": 
+{
+"RootPitch": -0.915760,
+"SpineCurve": 0.000000,
+"StanceHip": -1.396303,
+"StanceKnee": 4.222131,
+"StanceAnkle": -4.519614,
+"SwingHip": 3.780437,
+"SwingKnee": -4.603218,
+"SwingAnkle": 3.511338
+},
+"Passing": 
+{
+"RootPitch": 0.000000,
+"SpineCurve": 0.000000,
+"StanceHip": -0.495906,
+"StanceKnee": -2.756716,
+"StanceAnkle": 1.970711,
+"SwingHip": 1.826086,
+"SwingKnee": -2.110098,
+"SwingAnkle": 0.055993
+},
+"Up": 
+{
+"RootPitch": 0.000000,
+"SpineCurve": 0.000000,
+"StanceHip": -1.336170,
+"StanceKnee": -2.770310,
+"StanceAnkle": 2.433761,
+"SwingHip": 0.450977,
+"SwingKnee": -1.061101,
+"SwingAnkle": 0.786784
+}
+}
+}

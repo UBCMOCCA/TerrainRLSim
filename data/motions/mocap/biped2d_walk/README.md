@@ -1,0 +1,3 @@
+These mocap files are all the same...
+
+They have been fixed to be only a single step.

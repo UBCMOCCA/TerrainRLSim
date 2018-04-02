@@ -1,0 +1,97 @@
+{"MiscParams": 
+{
+"TransTime": 0.082500,
+"Cv": 0.251474,
+"Cd": 2.099796,
+"ForceX": 0.000000,
+"ForceY": 0.000000
+},
+
+"StateParams": 
+{
+"Contact": 
+{
+"RootPitchW": 0.99882,
+"RootPitchX": 0.000000,
+"RootPitchY": 0.000000,
+"RootPitchZ": -0.04861,
+"StanceHipSagital": -0.993935,
+"StanceHipCoronal": 0.000000,
+"StanceKneeZ": 0.273527,
+"StanceAnkleW": 0.99387,
+"StanceAnkleX": 0.000000,
+"StanceAnkleY": 0.000000,
+"StanceAnkleZ": 0.11051,
+"SwingHipSagital": 1.100288,
+"SwingHipCoronal": 0.000000,
+"SwingKneeZ": -3.076833,
+"SwingAnkleW": 0.99595,
+"SwingAnkleX": 0.000000,
+"SwingAnkleY": 0.000000,
+"SwingAnkleZ": 0.08995
+},
+"Down": 
+{
+"RootPitchW": 0.99609,
+"RootPitchX": 0.000000,
+"RootPitchY": 0.000000,
+"RootPitchZ": -0.08837,
+"StanceHipSagital": 0.310372,
+"StanceHipCoronal": 0.000000,
+"StanceKneeZ": -1.642646,
+"StanceAnkleW": 0.97939,
+"StanceAnkleX": 0.000000,
+"StanceAnkleY": 0.000000,
+"StanceAnkleZ": -0.20199,
+"SwingHipSagital": 1.240827,
+"SwingHipCoronal": 0.000000,
+"SwingKneeZ": -1.773369,
+"SwingAnkleW": 0.96787,
+"SwingAnkleX": 0.000000,
+"SwingAnkleY": 0.000000,
+"SwingAnkleZ": -0.25144
+},
+"Passing": 
+{
+"RootPitchW": 0.99637,
+"RootPitchX": 0.000000,
+"RootPitchY": 0.000000,
+"RootPitchZ": -0.08516,
+"StanceHipSagital": -0.063421,
+"StanceHipCoronal": 0.000000,
+"StanceKneeZ": -2.091676,
+"StanceAnkleW": 0.75887,
+"StanceAnkleX": 0.000000,
+"StanceAnkleY": 0.000000,
+"StanceAnkleZ": -0.65125,
+"SwingHipSagital": -1.242994,
+"SwingHipCoronal": 0.000000,
+"SwingKneeZ": -0.262842,
+"SwingAnkleW": 0.97442,
+"SwingAnkleX": 0.000000,
+"SwingAnkleY": 0.000000,
+"SwingAnkleZ": 0.22472
+},
+"Up": 
+{
+"RootPitchW": 0.99637,
+"RootPitchX": 0.000000,
+"RootPitchY": 0.000000,
+"RootPitchZ": -0.08516,
+"StanceHipSagital": -0.366870,
+"StanceHipCoronal": 0.000000,
+"StanceKneeZ": -1.494344,
+"StanceAnkleW": 0.92209,
+"StanceAnkleX": 0.000000,
+"StanceAnkleY": 0.000000,
+"StanceAnkleZ": 0.38698,
+"SwingHipSagital": -1.408623,
+"SwingHipCoronal": 0.000000,
+"SwingKneeZ": 0.655703,
+"SwingAnkleW": 0.95011,
+"SwingAnkleX": 0.000000,
+"SwingAnkleY": 0.000000,
+"SwingAnkleZ": 0.31192
+}
+}
+}

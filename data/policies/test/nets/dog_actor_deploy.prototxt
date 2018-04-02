@@ -1,0 +1,62 @@
+name: "Dog2D_Actor"
+
+input: "input"
+input_dim:1
+input_dim:1
+input_dim:1
+input_dim:283
+
+layer {
+  name: "ip2"
+  type: "InnerProduct"
+  bottom: "input"
+  top: "ip2"
+  param {
+    lr_mult: 1
+	decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+	decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 128
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+
+layer {
+  name: "relu4"
+  type: "ReLU"
+  bottom: "ip2"
+  top: "relu4"
+}
+
+layer {
+  name: "output"
+  type: "InnerProduct"
+  bottom: "relu4"
+  top: "output"
+  param {
+    lr_mult: 1
+	decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+	decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 29
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}

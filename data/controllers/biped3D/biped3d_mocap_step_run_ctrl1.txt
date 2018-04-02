@@ -1,0 +1,8 @@
+{
+	"ClusterMotions": true,
+	"ClusterDist": 0.02,
+	"MotionFiles":
+	[
+		"data/motions/mocap/biped3d_run/Nus_Subject0017_Run_motion_retargeted_00017.txt"
+	]
+}

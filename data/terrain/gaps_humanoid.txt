@@ -1,0 +1,14 @@
+{
+"Type": "var2d_gaps",
+
+"Params": [
+	{
+		"GapSpacingMin": 2.0,
+		"GapSpacingMax": 2.5,
+		"GapWMin": 0.25,
+		"GapWMax": 0.3,
+		"GapHMin": -0.85,
+		"GapHMax": -0.9
+	}
+]
+}

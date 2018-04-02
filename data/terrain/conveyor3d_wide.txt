@@ -1,0 +1,18 @@
+{
+"Type": "conveyor3d",
+
+"Params": 
+[
+	{
+		"ObstacleWidth0": 5,
+		"ObstacleWidth1": 5,
+		"ObstacleSpeed0": 0.6,
+		"ObstacleSpeed1": 0.6,
+		"ObstacleSpeedLerpPow": 3,
+		"ConveyorStripLength": 15,
+		"ConveyorNumStrips": 1,
+		"ConveyorNumSlices": 3,
+		"ConveyorSpacing": 3
+	}
+]
+}

@@ -1,0 +1,24 @@
+-scenario= poli_eval
+
+-output_path= output/int_poli_hopper_ace_eval.txt
+
+-character_file= data/characters/monoped_hopper.txt
+-state_file= data/states/monoped_hopper.txt
+
+-num_update_steps= 80
+
+-char_type= hopper
+-char_ctrl= monoped_hopper_mace
+
+// -terrain_file= data/terrain/slopes_mixed.txt
+// -terrain_file= data/terrain/gaps_hopper.txt
+-terrain_file= data/terrain/mixed_hopper.txt
+// -terrain_file= data/terrain/gaps.txt
+
+-policy_net= data/policies/hopper/nets/hopper_ace_deploy.prototxt
+-policy_solver= data/policies/hopper/nets/hopper_ace_solver.prototxt
+//-policy_model= data/policies/hopper/models/hopper_gaps_model.h5
+-num_threads= 1
+
+-poli_eval_max_episodes= 100
+-rand_seed= 21

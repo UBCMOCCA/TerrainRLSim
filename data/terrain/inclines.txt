@@ -1,0 +1,11 @@
+{
+"Type": "var2d_slopes",
+
+"Params": [
+	{
+		"SlopeDeltaRange": 0.1,
+		"SlopeDeltaMin": 0.15,
+		"SlopeDeltaMax": 0.2
+	}
+]
+}

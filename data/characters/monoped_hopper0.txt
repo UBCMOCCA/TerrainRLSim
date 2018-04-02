@@ -1,0 +1,190 @@
+{
+	"Skeleton": 
+	{
+		"Joints": 
+		[
+			{
+				"Name": "root",
+				"Type": "planar",
+				"Parent": -1,
+				"AttachX": 0,
+				"AttachY": 0.0,
+				"AttachZ": 0,		
+				"LimLow0": 1,
+				"LimHigh0": 0,
+				"TorqueLim": 0,
+				"DiffWeight": 1
+			},
+			{
+				"Name": "spine0",
+				"Type": "revolute",
+				"Parent": 0,
+				"AttachX": -0.0,
+				"AttachY": -0.0,
+				"AttachZ": 0.0,		
+				"LimLow0": -1.57,
+				"LimHigh0": 1.57,
+				"TorqueLim": 2500.0,
+				"DiffWeight": 0.5
+			},
+			{
+				"Name": "spine1",
+				"Type": "prismatic",
+				"Parent": 1,
+				"AttachX": 0,
+				"AttachY": -0.2,
+				"AttachZ": -0.0,	
+				"AttachThetaZ": -1.57079632679,
+				"LimLow0": -0.20,
+				"LimHigh0": 0.20,
+				"TorqueLim": 10.0,
+				"ForceLim": 180.0,
+				"DiffWeight": 0.5
+			}
+		]
+	},
+
+	"BodyDefs": 
+	[
+			{
+				"Name": "root",
+				"Shape": "box",
+				"Mass": 8.0,
+				"ColGroup": 1,
+				"EnableFallContact": 1,
+				"AttachX": 0,
+				"AttachY": 0.0,
+				"AttachZ": 0,
+				"Param0": 0.7,
+				"Param1": 0.2,
+				"Param2": 0.2,
+				"ColorR": 0.4706,
+				"ColorG": 0.549,
+				"ColorB": 0.6863,
+				"ColorA": 1
+			},
+			{
+				"Name": "spine0",
+				"Shape": "box",
+				"Mass": 0.2,
+				"ColGroup": 2,
+				"AttachX": 0.0,
+				"AttachY": -0.2,
+				"AttachZ": 0,
+				"Param0": 0.08,
+				"Param1": 0.4,
+				"Param2": 0.21,
+				"ColorR": 0.6392,
+				"ColorG": 0.6941,
+				"ColorB": 0.7372,
+				"ColorA": 1
+			},
+			{
+				"Name": "spine1",
+				"Shape": "capsule",
+				"Mass": 0.2,
+				"ColGroup": 3,
+				"AttachX": 0.3,
+				"AttachY": 0,
+				"AttachZ": 0,
+				"AttachThetaZ": -1.57079632679,	
+				"Param0": 0.03,
+				"Param1": 0.6,
+				"Param2": 0.22,
+				"ColorR": 0.6392,
+				"ColorG": 0.6941,
+				"ColorB": 0.7372,
+				"ColorA": 1
+			}
+		],
+
+	"PDControllers": 
+	[
+			{
+				"Name": "root",
+				"Kp": 0,
+				"Kd": 0,
+				"TorqueLim": 0,
+				"UseWorldCoord": 1
+			},
+			{
+				"Name": "spine0",
+				"Kp": 200.0,
+				"Kd": 20.0,
+				"TargetTheta0": 0.0,
+				"UseWorldCoord": 1
+			},
+			{
+				"Name": "spine1",
+				"Kp": 1000.0,
+				"Kd": 20.0,
+				"TargetTheta0": 0.0,
+				"UseWorldCoord": 0
+			}
+		],
+
+		"Controllers":
+		{
+			"Files":
+			[
+				"data/controllers/monoped_hopper/run.txt",
+				"data/controllers/monoped_hopper/big_hop.txt"
+			],
+
+			"Actions":
+			[
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 1,
+					"Blend": 0.0,
+					"Cyclic": false
+				},
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 1,
+					"Blend": 0.125,
+					"Cyclic": false
+				},
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 1,
+					"Blend": 0.25,
+					"Cyclic": false
+				},
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 1,
+					"Blend": 0.375,
+					"Cyclic": false
+				},
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 1,
+					"Blend": 0.5,
+					"Cyclic": false
+				},
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 1,
+					"Blend": 0.67,
+					"Cyclic": false		
+				},
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 1,
+					"Blend": 0.84,
+					"Cyclic": false
+				}
+				,
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 1,
+					"Blend": 1.0,
+					"Cyclic": false
+				}
+				
+			],
+
+			"DefaultAction": 0
+		}
+}

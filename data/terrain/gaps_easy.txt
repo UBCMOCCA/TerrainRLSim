@@ -1,0 +1,18 @@
+{
+"Type": "var2d_narrow_gaps",
+
+"Params": [
+	{
+		"NarrowGapSpacingMin": 3,
+		"NarrowGapSpacingMax": 5,
+		"NarrowGapDistMin": 0.3,
+		"NarrowGapDistMax": 0.8,
+		"NarrowGapWMin": 0.1,
+		"NarrowGapWMax": 0.25,
+		"NarrowGapDepthMin": -1.0,
+		"NarrowGapDepthMax": -1.0,
+		"NarrowGapCountMin": 1,
+		"NarrowGapCountMax": 5
+	}
+]
+}

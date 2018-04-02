@@ -1,0 +1,151 @@
+{
+	"Skeleton": 
+	{
+		"Joints": 
+		[
+			{
+				"Name": "root",
+				"Type": "fixed",
+				"Parent": -1,
+				"AttachX": 0,
+				"AttachY": 0,
+				"AttachZ": 0,	
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"LimLow0": 1,
+				"LimHigh0": 0,
+				"TorqueLim": 0,
+				"IsEndEffector": 0,
+				"DiffWeight": 1
+
+			},
+
+			{
+				"Name": "right_hip",
+				"Type": "spherical",
+				"Parent": 0,
+				"AttachX": 0,
+				"AttachY": 0,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": -1.5707963,
+				"LimLow0": 1,
+				"LimLow1": 1,
+				"LimLow2": 1,
+				"LimHigh0": 0,
+				"LimHigh1": 0,
+				"LimHigh2": 0,
+				"TorqueLim": 300,
+				"IsEndEffector": 0,
+				"DiffWeight": 0.5
+			}
+		]
+	},
+
+	"BodyDefs": 
+	[
+			{
+				"Name": "root",
+				"Shape": "box",
+				"Mass": 25.0,
+				"ColGroup": 1,
+				"EnableFallContact": 1,
+				"AttachX": 0,
+				"AttachY": 0,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.45,
+				"Param1": 0.11,
+				"Param2": 0.278,
+				"ColorR": 0.4706,
+				"ColorG": 0.549,
+				"ColorB": 0.6863,
+				"ColorA": 1
+			},
+			{
+				"Name": "link1",
+				"Shape": "box",
+				"Mass": 2.0,
+				"ColGroup": 1,
+				"EnableFallContact": 0,
+				"AttachX": 0.0,
+				"AttachY": -0.2,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.4,
+				"Param1": 0.28,
+				"Param2": 0.0846,
+				"ColorR": 0.6392,
+				"ColorG": 0.6941,
+				"ColorB": 0.7372,
+				"ColorA": 1
+			}
+		],
+
+		"DrawShapeDefs": 
+		[
+			{
+				"Name": "root",
+				"Shape": "box",
+				"ParentJoint": 0,
+				"AttachX": 0,
+				"AttachY": 0,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.45,
+				"Param1": 0.11,
+				"Param2": 0.278,
+				"ColorR": 0.2253,
+				"ColorG": 0.2845,
+				"ColorB": 0.50315,
+				"ColorA": 1
+			},
+			{
+				"Name": "link1",
+				"Shape": "box",
+				"ParentJoint": 1,
+				"AttachX": 0,
+				"AttachY": -0.2,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.0846,
+				"Param1": 0.4,
+				"Param2": 0.08,
+				"ColorR": 0.4396,
+				"ColorG": 0.53705,
+				"ColorB": 0.5386,
+				"ColorA": 1
+			}
+		],
+
+		"PDControllers": 
+		[
+			{
+				"Name": "root",
+				"Kp": 0,
+				"Kd": 0,
+				"TargetTheta0": 0,
+				"UseWorldCoord": 0
+			},
+			{
+				"Name": "link1",
+				"Kp": 100,
+				"Kd": 10,
+				"TargetTheta0": 0.96593,
+				"TargetTheta1": 0,
+				"TargetTheta2": 0,
+				"TargetTheta3": -0.25882,
+				"UseWorldCoord": 1
+			}
+		]
+}

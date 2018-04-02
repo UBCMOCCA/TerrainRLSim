@@ -1,0 +1,10 @@
+{
+"Type": "var3d_ramp",
+
+"Params":
+[
+	{
+		"Slope": 0.06
+	}
+]
+}

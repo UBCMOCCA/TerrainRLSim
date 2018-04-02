@@ -1,0 +1,46 @@
+-scenario= loco_eval
+-output_path= output/biped_loco_model1.h5
+
+-character_file= data/characters/biped.txt
+-motion_file= data/motions/biped_walk.txt
+-state_file= data/states/biped_walk_state.txt
+
+-num_threads= 3
+
+-char_type= general
+-char_ctrl= ct_pd_phase
+-char_ctrl_ct_query_rate= 30
+-char_ctrl_cycle_dur= 1
+-terrain_file= data/terrain/flat.txt
+
+-num_update_steps= 20
+-num_sim_substeps= 5
+-world_scale= 4
+
+-target_vel_x= 1
+
+-policy_solver= data/policies/biped/nets/biped_step_dphase_actor_solver.prototxt
+-policy_net= data/policies/biped/nets/biped_step_dphase_actor_net.prototxt
+//-policy_model= data/policies/biped/models/biped_loco_model.h5
+-policy_model= output/slopes2D/flat2D/biped_loco_model.h5
+
+-critic_solver= data/policies/biped/nets/biped_step_dphase_critic_solver.prototxt
+-critic_net= data/policies/biped/nets/biped_step_dphase_critic_net.prototxt
+//-critic_model= data/policies/biped/models/biped_loco_model_critic.h5
+-critic_model= output/slopes2D/flat2D/biped_loco_model_critic.h5
+
+-enable_rand_state_reset= true
+-enable_rand_time_limit= true
+-episode_time_lim_type= uniform
+-init_episode_time_lim_min= 200
+-init_episode_time_lim_max= 200
+-episode_time_lim_min= 200
+-episode_time_lim_max= 200
+
+-enable_rand_perturbs= false
+-perturb_time_min= 1
+-perturb_time_max= 2
+-min_perturb= 50
+-max_perturb= 150
+-min_pertrub_duration= 0.2
+-max_perturb_duration= 0.4

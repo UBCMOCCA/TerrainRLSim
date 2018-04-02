@@ -1,0 +1,393 @@
+name: "Dog2D_Critic"
+
+layer { 
+  name: 'input' 
+  type: 'Input' 
+  top: "input"
+  top: "label"
+  top: "weights"
+  input_param { 
+	shape: { dim: 32 dim: 1 dim: 1 dim: 134 } 
+    shape: { dim: 32 dim: 1 dim: 1 dim: 1 } 
+	shape: { dim: 32 dim: 1 dim: 1 dim: 1 } 
+  } 
+
+  include: { phase: TRAIN }
+}
+
+layer { 
+  name: 'input' 
+  type: 'Input' 
+  top: 'input' 
+  input_param { 
+    shape: { dim: 1 dim: 1 dim: 1 dim: 134 } 
+  } 
+
+  include: { phase: TEST }
+}
+
+layer {
+	name: "slicen1"
+	type: "Slice"
+	bottom: "input"
+	top: "data_terr"
+	top: "data_rest"
+	slice_param {
+		axis: 3
+		slice_point: 100 
+	}
+}
+
+layer {
+  name: "terr_conv0"
+  type: "Convolution"
+  bottom: "data_terr"
+  top: "terr_conv0"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 16
+    kernel_h: 1
+	kernel_w: 8
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+
+layer {
+  name: "terr_relu0"
+  type: "ReLU"
+  bottom: "terr_conv0"
+  top: "terr_relu0"
+}
+
+layer {
+  name: "terr_conv1"
+  type: "Convolution"
+  bottom: "terr_relu0"
+  top: "terr_conv1"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 32
+    kernel_h: 1
+	kernel_w: 4
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+
+layer {
+  name: "terr_relu1"
+  type: "ReLU"
+  bottom: "terr_conv1"
+  top: "terr_relu1"
+}
+
+layer {
+  name: "terr_conv2"
+  type: "Convolution"
+  bottom: "terr_relu1"
+  top: "terr_conv2"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 32
+    kernel_h: 1
+	kernel_w: 4
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+
+layer {
+  name: "terr_relu2"
+  type: "ReLU"
+  bottom: "terr_conv2"
+  top: "terr_relu2"
+}
+
+layer {
+  name: "terr_ip0"
+  type: "InnerProduct"
+  bottom: "terr_relu2"
+  top: "terr_ip0"
+  param {
+    lr_mult: 1
+	decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+	decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 64
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+
+layer {
+  name: "terr_relu3"
+  type: "ReLU"
+  bottom: "terr_ip0"
+  top: "terr_relu3"
+}
+
+layer {
+	name: "slice0"
+	type: "Slice"
+	bottom: "data_rest"
+	top: "data_char"
+	top: "data_phase0"
+	top: "data_phase1"
+	top: "data_phase2"
+	top: "data_phase3"
+	slice_param {
+		axis: 3
+		slice_point: 30
+		slice_point: 31
+		slice_point: 32
+		slice_point: 33
+	}
+}
+
+layer {
+	name: "tile_phase0"
+	type: "Tile"
+	bottom: "data_phase0"
+	top: "tile_phase0"
+	tile_param {
+		axis: 3
+		tiles: 30
+	}
+}
+
+layer {
+	name: "tile_phase1"
+	type: "Tile"
+	bottom: "data_phase1"
+	top: "tile_phase1"
+	tile_param {
+		axis: 3
+		tiles: 30
+	}
+}
+
+layer {
+	name: "tile_phase2"
+	type: "Tile"
+	bottom: "data_phase2"
+	top: "tile_phase2"
+	tile_param {
+		axis: 3
+		tiles: 30
+	}
+}
+
+layer {
+	name: "tile_phase3"
+	type: "Tile"
+	bottom: "data_phase3"
+	top: "tile_phase3"
+	tile_param {
+		axis: 3
+		tiles: 30
+	}
+}
+
+layer {
+  name: "phase0_prod"
+  type: "Eltwise"
+  bottom: "tile_phase0"
+  bottom: "data_char"
+  top: "phase0_prod"
+  eltwise_param { operation: PROD }
+}
+
+layer {
+  name: "phase1_prod"
+  type: "Eltwise"
+  bottom: "tile_phase1"
+  bottom: "data_char"
+  top: "phase1_prod"
+  eltwise_param { operation: PROD }
+}
+
+layer {
+  name: "phase2_prod"
+  type: "Eltwise"
+  bottom: "tile_phase2"
+  bottom: "data_char"
+  top: "phase2_prod"
+  eltwise_param { operation: PROD }
+}
+
+layer {
+  name: "phase3_prod"
+  type: "Eltwise"
+  bottom: "tile_phase3"
+  bottom: "data_char"
+  top: "phase3_prod"
+  eltwise_param { operation: PROD }
+}
+
+
+layer {
+	name: "bilin_state"
+	type: "Concat"
+	bottom: "phase0_prod"
+	bottom: "phase1_prod"
+	bottom: "phase2_prod"
+	bottom: "phase3_prod"
+	top: "bilin_state"
+	concat_param {
+		axis: 3
+	}
+}
+
+layer {
+	name: "char_flatten0"
+	type: "Flatten"
+	bottom: "bilin_state"
+	top: "char_flatten0"
+}
+
+layer {
+	name: "concat0"
+	type: "Concat"
+	bottom: "char_flatten0"
+	bottom: "terr_relu3"
+	top: "concat0"
+	concat_param {
+		axis: 1
+	}
+}
+
+layer {
+  name: "ip0"
+  type: "InnerProduct"
+  bottom: "concat0"
+  top: "ip0"
+  param {
+    lr_mult: 1
+	decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+	decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 512
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+
+layer {
+  name: "relu0"
+  type: "ReLU"
+  bottom: "ip0"
+  top: "relu0"
+}
+
+layer {
+  name: "ip1"
+  type: "InnerProduct"
+  bottom: "relu0"
+  top: "ip1"
+  param {
+    lr_mult: 1
+	decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+	decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 256
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+
+layer {
+  name: "relu1"
+  type: "ReLU"
+  bottom: "ip1"
+  top: "relu1"
+}
+
+layer {
+  name: "output"
+  type: "InnerProduct"
+  bottom: "relu1"
+  top: "output"
+  param {
+    lr_mult: 1
+	decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+	decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+
+layer {
+  name: "loss"
+  type: "WeightedEuclideanLoss"
+  bottom: "output"
+  bottom: "label"
+  bottom: "weights"
+  top: "loss"
+
+  include: { phase: TRAIN }
+}

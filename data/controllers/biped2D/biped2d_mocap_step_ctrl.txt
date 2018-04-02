@@ -1,0 +1,12 @@
+{
+	"ClusterMotions": true,
+	"ClusterDist": 0.01,
+	"MotionFiles":
+	[
+		"data/motions/mocap/biped2d_walk/biped2D_full_walk0.txt",
+		"data/motions/mocap/biped2d_walk/biped2D_full_walk0.txt",
+		"data/motions/mocap/biped2d_walk/biped2D_full_walk0.txt",
+		"data/motions/mocap/biped2d_walk/biped2D_full_walk0.txt",
+		"data/motions/mocap/biped2d_walk/biped2D_full_walk0.txt"
+	]
+}

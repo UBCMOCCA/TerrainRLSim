@@ -1,0 +1,382 @@
+{
+"comment__": "These environments come from the PLAiD work",
+"PD_Biped2D_Flat_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/biped2dfull_flat_with_terrain_features.txt",
+	"time_limit": 256
+},
+"PD_Biped2D_Incline_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/biped2dfull_incline_with_terrain_features.txt",
+	"time_limit": 256
+},
+"PD_Biped2D_Steps_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/biped2d_full_steps.txt",
+	"time_limit": 256
+},
+"PD_Biped2D_Slopes_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/biped2d_full_slopes_with_terrain_features.txt",
+	"time_limit": 256
+},
+"PD_Biped2D_Gaps_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/biped2d_full_gaps_with_terrain_features.txt",
+	"time_limit": 256
+},
+"PD_Biped2D_Flat-v0": 
+{
+	"config_file": "./args/genBiped2D/opt_args_imitate_biped_full_phase.txt",
+	"time_limit": 256
+},
+"PD_Biped2D_Incline-v0": 
+{
+	"config_file": "./args/genBiped2D/biped2d_full_inclines.txt",
+	"time_limit": 256
+},
+
+"comment__": "These environments are from the DeepLoco work",
+"PD_Biped3D_HLC_LargeBlocks-v0": 
+{
+	"config_file": "./args/genbiped3D/biped3d_HLC_LargeBlocks.json",
+	"time_limit": 256
+},        
+"PD_Biped3D_LLC_General_Step-v0": 
+{
+	"config_file": "./args/genbiped3D/biped3d_LLC_waypoint_general_step_controller.txt",
+	"time_limit": 256
+},        
+"PD_Biped3D_LLC_Symetric_Step-v0": 
+{
+	"config_file": "./args/genbiped3D/biped3d_LLC_waypoint_sysemtric_step_controller.txt",
+	"time_limit": 256
+},        
+"PD_Biped3D_HLC_DynamicsObstacles-v0": 
+{
+	"config_file": "./args/genbiped3D/biped3d_HLC_DynamicObstacles.json",
+	"time_limit": 256
+},        
+"PD_Biped3D_HLC_Soccer-v0": 
+{
+	"config_file": "./args/genbiped3D/biped3d_HLC_Soccer.json",
+	"time_limit": 256
+},        
+"PD_Biped3D_HLC_Forest-v0": 
+{
+	"config_file": "./args/genbiped3D/biped3d_HLC_Forest.json",
+	"time_limit": 256
+},        
+"PD_Biped3D_HLC_Conveyors-v0": 
+{
+	"config_file": "./args/genbiped3D/biped3d_HLC_Conveyors.json",
+	"time_limit": 256
+},        
+"PD_Biped3D_HLC_Conveyors_Wide-v0": 
+{
+	"config_file": "./args/genbiped3D/biped3d_HLC_Conveyors_Wide.json",
+	"time_limit": 256
+},        
+"PD_Biped3D_LLC_Run_FootStep-v0": 
+{
+	"config_file": "./args/genbiped3D/biped3d_LLC_Run_FootStep_controller.txt",
+	"time_limit": 256
+},
+"PD_Biped3D_Terrain_Trail_Hard-v0": 
+{
+	"config_file": "./args/genbiped3D/imitate_target_terr_biped3d_trail.txt",
+	"time_limit": 256
+},
+"PD_Biped3D_Terrain_Forest_Hard-v0": 
+{
+	"config_file": "./args/genbiped3D/imitate_target_terr_biped3d_forest.txt",
+	"time_limit": 256
+},  
+"PD_Biped3D_Terrain_Blocks_Hard-v0": 
+{
+	"config_file": "./args/genbiped3D/imitate_target_terr_biped3d_blocks.txt",
+	"time_limit": 256
+},
+"PD_Biped3D_Terrain_Dyanmics_Obs_Hard-v0": 
+{
+	"config_file": "./args/genbiped3D/imitate_target_terr_biped3d_dynamics_obs.txt",
+	"time_limit": 256
+},
+"comment__": "imitaion learning envs from DepLoco",
+"PD_Biped3D_Imitate-Track-v0": 
+{
+	"config_file": "./args/genbiped3D/imitation/imitate_biped3d_track_state.txt",
+	"time_limit": 256
+},
+"PD_Biped3D_Imitate-v0": 
+{
+	"config_file": "./args/genbiped3D/imitation/imitate_biped3d_phase.txt",
+	"time_limit": 256
+},
+"PD_Biped3D_Imitate-Hills-v0": 
+{
+	"config_file": "./args/genbiped3D/imitation/imitate_biped3d_phase_hills3d.txt",
+	"time_limit": 256
+}, 
+"PD_Biped3D_Imitate-Ramp-v0": 
+{
+	"config_file": "./args/genbiped3D/imitation/imitate_biped3d_phase_ramp3d.txt",
+	"time_limit": 256
+}, 
+"PD_Biped3D_Imitate-Stairs-v0": 
+{
+	"config_file": "./args/genbiped3D/imitation/imitate_biped3d_phase_stairs3d.txt",
+	"time_limit": 256
+}, 
+"PD_Biped3D_Imitate-Steps-v0": 
+{
+	"config_file": "./args/genbiped3D/imitation/imitate_biped3d_phase_steps3d.txt",
+	"time_limit": 256
+},         
+
+"comment": "imitation envs from action space paper",
+"Torque_Biped2D_LLC_Imitate_Flat-v0": 
+{
+	"config_file": "./args/imitation/torque/biped2d_llc_imitate_torque_flat_eval.txt",
+	"time_limit": 256
+},
+"Torque_Dog2D_LLC_Imitate_Flat-v0": 
+{
+	"config_file": "./args/imitation/torque/dog2d_llc_imitate_torque_flat_eval.txt",
+	"time_limit": 256
+},
+"Torque_Raptor2D_LLC_Imitate_Flat-v0": 
+{
+	"config_file": "./args/imitation/torque/raptor2d_llc_imitate_torque_flat_eval.txt",
+	"time_limit": 256
+},
+        
+"MTU_Biped2D_LLC_Imitate_Flat-v0": 
+{
+	"config_file": "./args/imitation/mtu/biped2d_llc_imitate_mtu_flat_eval.txt",
+	"time_limit": 256
+},
+"MTU_Dog2D_LLC_Imitate_Flat-v0": 
+{
+	"config_file": "./args/imitation/mtu/dog2d_llc_imitate_mtu_flat_eval.txt",
+	"time_limit": 256
+},
+"MTU_Raptor2D_LLC_Imitate_Flat-v0": 
+{
+	"config_file": "./args/imitation/mtu/raptor2d_llc_imitate_mtu_flat_eval.txt",
+	"time_limit": 256
+},        
+
+"PD_Dog2D_LLC_Imitate_Flat-v0": 
+{
+	"config_file": "./args/imitation/pd/dog2d_imitate_eval_flat.txt",
+	"time_limit": 256
+},
+"PD_Biped2D_LLC_Imitate_Flat-v0": 
+{
+	"config_file": "./args/imitation/pd/biped2d_imitate_eval_flat.txt",
+	"time_limit": 256
+},
+"PD_Raptor2D_LLC_Imitate_Flat-v0": 
+{
+	"config_file": "./args/imitation/pd/raptor2d_imitate_eval_flat.txt",
+	"time_limit": 256
+},
+
+"comment__": "These environments come from the terrainRL work",
+"FSM_Biped2D_Terrain_Gaps-v0": 
+{
+	"config_file": "./args/terrainFSM/biped2d/biped2d_gaps.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Biped2D_Terrain_Cliffs-v0": 
+{
+	"config_file": "./args/terrainFSM/biped2d/biped2d_cliffs.txt",
+	"time_limit": 256,
+	"control_return": true
+},    
+"FSM_Biped2D_Terrain_Mixed-v0": 
+{
+	"config_file": "./args/terrainFSM/biped2d/biped2d_mixed.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Biped2D_Terrain_Slopes_Mixed-v0": 
+{
+	"config_file": "./args/terrainFSM/biped2d/biped2d_slopes_mixed.txt",
+	"time_limit": 256,
+	"control_return": true
+},    
+"FSM_Biped2D_Terrain_Slopes-v0": 
+{
+	"config_file": "./args/terrainFSM/biped2d/biped2d_slopes.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Biped2D_Terrain_Stairs_Rugged-v0": 
+{
+	"config_file": "./args/terrainFSM/biped2d/biped2d_stairs_rugged.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Biped2D_Terrain_Walls-v0": 
+{
+	"config_file": "./args/terrainFSM/biped2d/biped2d_walls.txt",
+	"time_limit": 256,
+	"control_return": true
+},
+"FSM_Biped2D_Terrain_Steps-v0": 
+{
+	"config_file": "./args/terrainFSM/biped2d/biped2d_steps.txt",
+	"time_limit": 256,
+	"control_return": true
+},
+
+"FSM_Dog2D_Terrain_Gaps-v0": 
+{
+	"config_file": "./args/terrainFSM/dog2d/gaps.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Dog2D_Terrain_Cliffs-v0": 
+{
+	"config_file": "./args/terrainFSM/dog2d/cliffs.txt",
+	"time_limit": 256,
+	"control_return": true
+},    
+"FSM_Dog2D_Terrain_Mixed-v0": 
+{
+	"config_file": "./args/terrainFSM/dog2d/mixed.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Dog2D_Terrain_Slopes_Mixed-v0": 
+{
+	"config_file": "./args/terrainFSM/dog2d/slopes_mixed.txt",
+	"time_limit": 256,
+	"control_return": true
+},    
+"FSM_Dog2D_Terrain_Slopes-v0": 
+{
+	"config_file": "./args/terrainFSM/dog2d/slopes.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Dog2D_Terrain_Stairs_Rugged-v0": 
+{
+	"config_file": "./args/terrainFSM/dog2d/stairs_rugged.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Dog2D_Terrain_Walls-v0": 
+{
+	"config_file": "./args/terrainFSM/dog2d/walls.txt",
+	"time_limit": 256,
+	"control_return": true
+},
+"FSM_Dog2D_Terrain_Steps-v0": 
+{
+	"config_file": "./args/terrainFSM/dog2d/steps.txt",
+	"time_limit": 256,
+	"control_return": true
+},
+
+"FSM_Raptor2D_Terrain_Gaps-v0": 
+{
+	"config_file": "./args/terrainFSM/raptor2d/gaps.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Raptor2D_Terrain_Cliffs-v0": 
+{
+	"config_file": "./args/terrainFSM/raptor2d/cliffs.txt",
+	"time_limit": 256,
+	"control_return": true
+},    
+"FSM_Raptor2D_Terrain_Mixed-v0": 
+{
+	"config_file": "./args/terrainFSM/raptor2d/mixed.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Raptor2D_Terrain_Slopes_Mixed-v0": 
+{
+	"config_file": "./args/terrainFSM/raptor2d/slopes_mixed.txt",
+	"time_limit": 256,
+	"control_return": true
+},    
+"FSM_Raptor2D_Terrain_Slopes-v0": 
+{
+	"config_file": "./args/terrainFSM/raptor2d/slopes.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Raptor2D_Terrain_Stairs_Rugged-v0": 
+{
+	"config_file": "./args/terrainFSM/raptor2d/stairs_rugged.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Raptor2D_Terrain_Walls-v0": 
+{
+	"config_file": "./args/terrainFSM/raptor2d/walls.txt",
+	"time_limit": 256,
+	"control_return": true
+},
+"FSM_Raptor2D_Terrain_Steps-v0": 
+{
+	"config_file": "./args/terrainFSM/raptor2d/steps.txt",
+	"time_limit": 256,
+	"control_return": true
+},
+
+"FSM_Hopper2D_Terrain_Gaps-v0": 
+{
+	"config_file": "./args/terrainFSM/hopper2d/gaps.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Hopper2D_Terrain_Cliffs-v0": 
+{
+	"config_file": "./args/terrainFSM/hopper2d/cliffs.txt",
+	"time_limit": 256,
+	"control_return": true
+},    
+"FSM_Hopper2D_Terrain_Mixed-v0": 
+{
+	"config_file": "./args/terrainFSM/hopper2d/mixed.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Hopper2D_Terrain_Slopes_Mixed-v0": 
+{
+	"config_file": "./args/terrainFSM/hopper2d/slopes_mixed.txt",
+	"time_limit": 256,
+	"control_return": true
+},    
+"FSM_Hopper2D_Terrain_Slopes-v0": 
+{
+	"config_file": "./args/terrainFSM/hopper2d/slopes.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Hopper2D_Terrain_Stairs_Rugged-v0": 
+{
+	"config_file": "./args/terrainFSM/hopper2d/stairs_rugged.txt",
+	"time_limit": 256,
+	"control_return": true
+},        
+"FSM_Hopper2D_Terrain_Walls-v0": 
+{
+	"config_file": "./args/terrainFSM/hopper2d/walls.txt",
+	"time_limit": 256,
+	"control_return": true
+},
+"FSM_Hopper2D_Terrain_Steps-v0": 
+{
+	"config_file": "./args/terrainFSM/hopper2d/steps.txt",
+	"time_limit": 256,
+	"control_return": true
+}
+}

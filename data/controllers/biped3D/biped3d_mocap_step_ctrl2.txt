@@ -1,0 +1,8 @@
+{
+	"ClusterMotions": true,
+	"ClusterDist": 0.01,
+	"MotionFiles":
+	[
+		"data/motions/biped3d_mocap_walk_step.txt"
+	]
+}

@@ -1,0 +1,53 @@
+{"MiscParams": 
+{
+"TransTime": 0.082500,
+"Cv": 0.316504,
+"Cd": 1.963316,
+"ForceX": 0.000000,
+"ForceY": 0.000000
+},
+
+"StateParams": 
+{
+"Contact": 
+{
+"RootPitch": -0.325309,
+"StanceHip": -1.802222,
+"StanceKnee": 1.668542,
+"StanceAnkle": 2.453011,
+"SwingHip": 2.139391,
+"SwingKnee": -3.636978,
+"SwingAnkle": -0.855670
+},
+"Down": 
+{
+"RootPitch": -0.350402,
+"StanceHip": -1.342939,
+"StanceKnee": 0.337384,
+"StanceAnkle": -3.272340,
+"SwingHip": 2.048047,
+"SwingKnee": -0.938193,
+"SwingAnkle": -1.799840
+},
+"Passing": 
+{
+"RootPitch": -0.170533,
+"StanceHip": 0.384958,
+"StanceKnee": -2.357088,
+"StanceAnkle": 0.076791,
+"SwingHip": -1.513792,
+"SwingKnee": -1.855033,
+"SwingAnkle": 0.340609
+},
+"Up": 
+{
+"RootPitch": -0.170533,
+"StanceHip": -0.400898,
+"StanceKnee": -0.903512,
+"StanceAnkle": 0.144128,
+"SwingHip": 0.524855,
+"SwingKnee": -1.534278,
+"SwingAnkle": 1.856180
+}
+}
+}

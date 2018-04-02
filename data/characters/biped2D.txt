@@ -1,0 +1,514 @@
+{
+	"Skeleton": 
+	{
+		"Joints": 
+		[
+			{
+				"Name": "root",
+				"Type": "planar",
+				"Parent": -1,
+				"AttachX": 0,
+				"AttachY": 0,
+				"AttachZ": 0,	
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"LimLow0": 1,
+				"LimHigh0": 0,
+				"TorqueLim": 0,
+				"IsEndEffector": 0,
+				"DiffWeight": 1
+
+			},
+
+			{
+				"Name": "right_hip",
+				"Type": "revolute",
+				"Parent": 0,
+				"AttachX": 0,
+				"AttachY": 0,
+				"AttachZ": 0.1,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"LimLow0": -0.37,
+				"LimHigh0": 2.87,
+				"TorqueLim": 200,
+				"IsEndEffector": 0,
+				"DiffWeight": 0.3
+			},
+
+			{
+				"Name": "right_knee",
+				"Type": "revolute",
+				"Parent": 1,
+				"AttachX": 0,
+				"AttachY": -0.352,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"LimLow0": -3.0,
+				"LimHigh0": 0,
+				"TorqueLim": 200,
+				"IsEndEffector": 0,
+				"DiffWeight": 0.3
+			},
+
+			{
+				"Name": "right_ankle",
+				"Type": "revolute",
+				"Parent": 2,
+				"AttachX": 0,
+				"AttachY": -0.391,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"LimLow0": -0.57,
+				"LimHigh0": 1.0,
+				"TorqueLim": 200,
+				"IsEndEffector": 1,
+				"DiffWeight": 0.2
+			},
+
+			{
+				"Name": "left_hip",
+				"Type": "revolute",
+				"Parent": 0,
+				"AttachX": 0,
+				"AttachY": 0,
+				"AttachZ": -0.1,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"LimLow0": -0.37,
+				"LimHigh0": 2.87,
+				"TorqueLim": 200,
+				"IsEndEffector": 0,
+				"DiffWeight": 0.3
+			},
+
+			{
+				"Name": "left_knee",
+				"Type": "revolute",
+				"Parent": 4,
+				"AttachX": 0,
+				"AttachY": -0.352,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"LimLow0": -3.0,
+				"LimHigh0": 0,
+				"TorqueLim": 200,
+				"IsEndEffector": 0,
+				"DiffWeight": 0.3
+			},
+
+			{
+				"Name": "left_ankle",
+				"Type": "revolute",
+				"Parent": 5,
+				"AttachX": 0,
+				"AttachY": -0.391,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"LimLow0": -0.57,
+				"LimHigh0": 1.0,
+				"TorqueLim": 200,
+				"IsEndEffector": 1,
+				"DiffWeight": 0.2
+			}
+		]
+	},
+
+	"BodyDefs": 
+	[
+			{
+				"Name": "root",
+				"Shape": "box",
+				"Mass": 25.0,
+				"ColGroup": 1,
+				"EnableFallContact": 1,
+				"AttachX": 0,
+				"AttachY": 0.19,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.11,
+				"Param1": 0.45,
+				"Param2": 0.278,
+				"ColorR": 0.4706,
+				"ColorG": 0.549,
+				"ColorB": 0.6863,
+				"ColorA": 1
+			},
+			{
+				"Name": "right_hip",
+				"Shape": "box",
+				"Mass": 5.0,
+				"ColGroup": 2,
+				"AttachX": 0,
+				"AttachY": -0.1745,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.0846,
+				"Param1": 0.4,
+				"Param2": 0.08,
+				"ColorR": 0.6392,
+				"ColorG": 0.6941,
+				"ColorB": 0.7372,
+				"ColorA": 1
+			},
+			{
+				"Name": "right_knee",
+				"Shape": "box",
+				"Mass": 2.5,
+				"ColGroup": 2,
+				"AttachX": 0,
+				"AttachY": -0.183,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.065,
+				"Param1": 0.416,
+				"Param2": 0.06,
+				"ColorR": 0.6392,
+				"ColorG": 0.6941,
+				"ColorB": 0.7372,
+				"ColorA": 1
+			},
+			{
+				"Name": "right_ankle",
+				"Shape": "box",
+				"Mass": 0.5,
+				"ColGroup": 2,
+				"AttachX": 0.0518,
+				"AttachY": -0.0224,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.177,
+				"Param1": 0.05,
+				"Param2": 0.08,
+				"ColorR": 0.6392,
+				"ColorG": 0.6941,
+				"ColorB": 0.7372,
+				"ColorA": 1
+			},
+			{
+				"Name": "left_hip",
+				"Shape": "box",
+				"Mass": 5.0,
+				"ColGroup": 2,
+				"AttachX": 0,
+				"AttachY": -0.1745,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.0846,
+				"Param1": 0.4,
+				"Param2": 0.08,
+				"ColorR": 0.3529,
+				"ColorG": 0.41176,
+				"ColorB": 0.47059,
+				"ColorA": 1
+			},
+			{
+				"Name": "left_knee",
+				"Shape": "box",
+				"Mass": 2.5,
+				"ColGroup": 2,
+				"AttachX": 0,
+				"AttachY": -0.183,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.065,
+				"Param1": 0.416,
+				"Param2": 0.06,
+				"ColorR": 0.3529,
+				"ColorG": 0.41176,
+				"ColorB": 0.47059,
+				"ColorA": 1
+			},
+			{
+				"Name": "left_ankle",
+				"Shape": "box",
+				"Mass": 0.5,
+				"ColGroup": 2,
+				"AttachX": 0.0518,
+				"AttachY": -0.0224,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.177,
+				"Param1": 0.05,
+				"Param2": 0.08,
+				"ColorR": 0.3529,
+				"ColorG": 0.41176,
+				"ColorB": 0.47059,
+				"ColorA": 1
+			}
+		],
+
+		"DrawShapeDefs": 
+		[
+			{
+				"Name": "root",
+				"Shape": "box",
+				"ParentJoint": 0,
+				"AttachX": 0,
+				"AttachY": 0.19,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.11,
+				"Param1": 0.45,
+				"Param2": 0.278,
+				"ColorR": 0.2253,
+				"ColorG": 0.2845,
+				"ColorB": 0.50315,
+				"ColorA": 1
+			},
+			{
+				"Name": "right_hip",
+				"Shape": "box",
+				"ParentJoint": 1,
+				"AttachX": 0,
+				"AttachY": -0.1745,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.0846,
+				"Param1": 0.4,
+				"Param2": 0.08,
+				"ColorR": 0.4396,
+				"ColorG": 0.53705,
+				"ColorB": 0.5386,
+				"ColorA": 1
+			},
+			{
+				"Name": "right_knee",
+				"Shape": "box",
+				"ParentJoint": 2,
+				"AttachX": 0,
+				"AttachY": -0.183,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.065,
+				"Param1": 0.416,
+				"Param2": 0.06,
+				"ColorR": 0.4096,
+				"ColorG": 0.50705,
+				"ColorB": 0.5086,
+				"ColorA": 1
+			},
+			{
+				"Name": "right_ankle",
+				"Shape": "box",
+				"ParentJoint": 3,
+				"AttachX": 0.0518,
+				"AttachY": -0.0224,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.177,
+				"Param1": 0.05,
+				"Param2": 0.08,
+				"ColorR": 0.3896,
+				"ColorG": 0.48705,
+				"ColorB": 0.4886,
+				"ColorA": 1
+			},
+			{
+				"Name": "left_hip",
+				"Shape": "box",
+				"ParentJoint": 4,
+				"AttachX": 0,
+				"AttachY": -0.1745,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.0846,
+				"Param1": 0.4,
+				"Param2": 0.08,
+				"ColorR": 0.35168,
+				"ColorG": 0.42964,
+				"ColorB": 0.44088,
+				"ColorA": 1
+			},
+			{
+				"Name": "left_knee",
+				"Shape": "box",
+				"ParentJoint": 5,
+				"AttachX": 0,
+				"AttachY": -0.183,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.065,
+				"Param1": 0.416,
+				"Param2": 0.06,
+				"ColorR": 0.32768,
+				"ColorG": 0.40564,
+				"ColorB": 0.41688,
+				"ColorA": 1
+			},
+			{
+				"Name": "left_ankle",
+				"Shape": "box",
+				"ParentJoint": 6,
+				"AttachX": 0.0518,
+				"AttachY": -0.0224,
+				"AttachZ": 0,
+				"AttachThetaX": 0,
+				"AttachThetaY": 0,
+				"AttachThetaZ": 0,
+				"Param0": 0.177,
+				"Param1": 0.05,
+				"Param2": 0.08,
+				"ColorR": 0.31168,
+				"ColorG": 0.38964,
+				"ColorB": 0.40088,
+				"ColorA": 1
+			}
+		],
+
+		"PDControllers": 
+		[
+			{
+				"Name": "root",
+				"Kp": 0,
+				"Kd": 0,
+				"TargetTheta0": 0,
+				"UseWorldCoord": 1
+			},
+			{
+				"Name": "right_hip",
+				"Kp": 200,
+				"Kd": 20,
+				"TargetTheta0": 0,
+				"UseWorldCoord": 1
+			},
+			{
+				"Name": "right_knee",
+				"Kp": 200,
+				"Kd": 20,
+				"TargetTheta0": 0,
+				"UseWorldCoord": 0
+			},
+			{
+				"Name": "right_ankle",
+				"Kp": 150,
+				"Kd": 15,
+				"TargetTheta0": 0,
+				"UseWorldCoord": 0
+			},
+			{
+				"Name": "left_hip",
+				"Kp": 200,
+				"Kd": 20,
+				"TargetTheta0": 0,
+				"UseWorldCoord": 1
+			},
+			{
+				"Name": "left_knee",
+				"Kp": 200,
+				"Kd": 20,
+				"TargetTheta0": 0,
+				"UseWorldCoord": 0
+			},
+			{
+				"Name": "left_ankle",
+				"Kp": 150,
+				"Kd": 15,
+				"TargetTheta0": 0,
+				"UseWorldCoord": 0
+			}
+		],
+		
+		"Controllers":
+		{
+			"Files":
+			[
+				"data/controllers/biped2D/biped_walk.txt",
+				"data/controllers/biped2D/biped_jump.txt",
+				"data/controllers/biped2D/biped_land.txt"
+			],
+
+			"Actions":
+			[
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 2,
+					"Blend": 0,
+					"Cyclic": true
+				},
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 2,
+					"Blend": 0.33,
+					"Cyclic": true
+				},
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 2,
+					"Blend": 0.66,
+					"Cyclic": true
+				},
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 2,
+					"Blend": 1,
+					"Cyclic": true
+				},
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 1,
+					"Blend": 0.25,
+					"Cyclic": false
+				},
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 1,
+					"Blend": 0.5,
+					"Cyclic": false
+				},
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 1,
+					"Blend": 0.75,
+					"Cyclic": false
+				},
+				{
+					"ParamIdx0": 0,
+					"ParamIdx1": 1,
+					"Blend": 1,
+					"Cyclic": false
+				}
+			],
+
+			"DefaultAction": 0,
+			"EnableGravityCompensation": false,
+			"EnableVirtualForces": false
+		}
+}

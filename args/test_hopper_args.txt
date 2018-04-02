@@ -1,0 +1,41 @@
+-scenario= track_motion
+-output_path= output/hopper_model.h5
+
+-character_file= data/characters/monoped_hopper0.txt
+-state_file= data/states/monoped_hopper.txt
+
+-num_threads= 1
+-num_update_steps= 80
+
+-char_type= hopper
+-char_ctrl= monoped_hopper
+
+// -terrain_file= data/terrain/flat.txt
+-terrain_file= data/terrain/mixed_hopper.txt
+
+-policy_net= data/policies/hopper/nets/hopper_max_net.prototxt
+-policy_solver= data/policies/hopper/nets/hopper_max_solver.prototxt
+//-policy_model= data/policies/hopper/models/hopper_gaps_model.h5
+
+-trainer_num_anneal_iters= 50000
+-exp_base_anneal_iters= 50000
+-trainer_curriculum_iters= 0
+
+-exp_rate= 0.2
+-exp_temp= 0.1
+-exp_base_rate= 0.01
+-init_exp_rate= 1
+-init_exp_temp= 1
+-init_exp_base_rate= 1
+
+-trainer_max_iter= 1000000000
+-trainer_freeze_target_iters= 0
+-trainer_int_iter= 2000
+-trainer_int_output= output/intermediate/trainer_int_model.h5
+-tuple_buffer_size= 32
+-trainer_num_init_samples= 50000
+-trainer_num_steps_per_iters= 1
+-trainer_iters_per_output= 20
+-trainer_init_input_offset_scale= true
+
+

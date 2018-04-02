@@ -1,0 +1,31 @@
+name: "Dog2D_Actor"
+
+input: "input"
+input_dim:1
+input_dim:1
+input_dim:1
+input_dim:1
+
+layer {
+  name: "output"
+  type: "InnerProduct"
+  bottom: "input"
+  top: "ip0"
+  param {
+    lr_mult: 1
+	decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+	decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
