@@ -30,16 +30,7 @@ if __name__ == '__main__':
             print ("Done: ", done)
             if ( done ):
                 break
-            """
-            states = []
-            for i in range(sim.getNumAgents()):
-                ### get all states and check that they are different
-                state = np.array(sim.getStateForAgent(i))
-                print ("Agent: ", i, " state: ", state.shape)
-                states.append(state)
-                
-                sim.updateActionForAgent(i, actions[i])
-                """
+            
             # print("Observation: ", observation)
             print("Reward: ", reward)
             print("action: ", actions)
@@ -47,10 +38,6 @@ if __name__ == '__main__':
             states = np.array(observation)
             print("states shape ", states[0].shape)
             print ("std length: ", len(np.std(states, axis=0)) )
-            # print ("std for states: ", np.std(states, axis=0))
-            #### LLC states. If there is an LLC
-            # llc_state = env.getLLCState()
-            # print ("LLC state:", llc_state.shape)
             
             ## Get and vis terrain data
             """
@@ -60,9 +47,6 @@ if __name__ == '__main__':
                 plt.show()
             """
             
-            # print ("Agent state: ", state)
-            # if (done):
-            #     env.reset()
-        
+            
     env.finish()
     print (env)
