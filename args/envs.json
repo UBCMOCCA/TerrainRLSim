@@ -25,6 +25,11 @@
 	"config_file": "./args/genBiped2D/biped2d_full_gaps_with_terrain_features.txt",
 	"time_limit": 256
 },
+"PD_Biped2D_Walls_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/biped2d_full_walls.txt",
+	"time_limit": 256
+},
 "PD_Biped2D_Flat-v0": 
 {
 	"config_file": "./args/genBiped2D/opt_args_imitate_biped_full_phase.txt",
@@ -35,6 +40,74 @@
 	"config_file": "./args/genBiped2D/biped2d_full_inclines.txt",
 	"time_limit": 256
 },
+"PD_Biped2D_Slopes_Mixed_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/biped2d_full_slopes_mixed_with_terrain_features.txt",
+	"time_limit": 256
+},
+
+"PD_Dog2D_Incline_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/dog/incline_with_terrain_features.txt",
+	"time_limit": 256
+},
+"PD_Dog2D_Steps_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/dog/steps.txt",
+	"time_limit": 256
+},
+"PD_Dog2D_Slopes_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/dog/slopes_with_terrain_features.txt",
+	"time_limit": 256
+},
+"PD_Dog2D_Gaps_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/dog/gaps_with_terrain_features.txt",
+	"time_limit": 256
+},
+"PD_Dog2D_Slopes_Mixed_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/dog/slopes_mixed_with_terrain_features.txt",
+	"time_limit": 256
+},
+"PD_Dog2D_Walls_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/dog/walls.txt",
+	"time_limit": 256
+},
+
+"PD_Raptor2D_Incline_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/raptor/incline_with_terrain_features.txt",
+	"time_limit": 256
+},
+"PD_Raptor2D_Steps_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/raptor/steps.txt",
+	"time_limit": 256
+},
+"PD_Raptor2D_Slopes_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/raptor/slopes_with_terrain_features.txt",
+	"time_limit": 256
+},
+"PD_Raptor2D_Gaps_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/raptor/gaps_with_terrain_features.txt",
+	"time_limit": 256
+},
+"PD_Raptor2D_Slopes_Mixed_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/raptor/slopes_mixed_with_terrain_features.txt",
+	"time_limit": 256
+},
+"PD_Raptor2D_Walls_Terrain-v0": 
+{
+	"config_file": "./args/genBiped2D/raptor/walls.txt",
+	"time_limit": 256
+},
+
 
 "comment__": "These environments are from the DeepLoco work",
 "PD_Biped3D_HLC_LargeBlocks-v0": 
@@ -132,7 +205,12 @@
 {
 	"config_file": "./args/genbiped3D/imitation/imitate_biped3d_phase_steps3d.txt",
 	"time_limit": 256
-},         
+},        
+"PD_Biped3D_FULL_Imitate-Steps-v0": 
+{
+	"config_file": "./args/genbiped3D/with_arms/llc_eval_args.txt",
+	"time_limit": 256
+},
 
 "comment": "imitation envs from action space paper",
 "Torque_Biped2D_LLC_Imitate_Flat-v0": 

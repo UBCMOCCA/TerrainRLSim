@@ -10,10 +10,12 @@ if __name__ == '__main__':
     envs_list = terrainRLSim.getEnvsList()
     print ("# of envs: ", len(envs_list))
     print ("Envs: ", str(envs_list))
-    env = terrainRLSim.getEnv(env_name="PD_Biped3D_HLC_LargeBlocks-v0", render=True)
+
+    env = terrainRLSim.getEnv(env_name="PD_Biped3D_FULL_Imitate-Steps-v0", render=True)
     
     env.reset()
     actionSpace = env.getActionSpace()
+    env.setRandomSeed(1234)
     
     actions = []
     action = ((actionSpace.getMaximum() - actionSpace.getMinimum()) * np.random.uniform(size=actionSpace.getMinimum().shape[0])  ) + actionSpace.getMinimum()
@@ -21,6 +23,10 @@ if __name__ == '__main__':
     print("Actions: ", actions)
     
     print("observation_space: ", env.observation_space.getMaximum())
+    
+    print("Actions space max: ", len(env.action_space.getMaximum()))
+    print("Actions space min: ", env.action_space.getMinimum())
+    print("Actions space max: ", env.action_space.getMaximum())
     
     for e in range(10):
         env.reset()
@@ -42,7 +48,7 @@ if __name__ == '__main__':
                 """
             # print("Observation: ", observation)
             print("Reward: ", reward)
-            print("action: ", actions)
+            # print("action: ", actions)
                 
             states = np.array(observation)
             print("states shape ", states[0].shape)

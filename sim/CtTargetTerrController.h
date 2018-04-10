@@ -10,6 +10,7 @@ public:
 	virtual ~cCtTargetTerrController();
 
 	virtual int GetNumGroundSamples() const;
+	tVector CalcGroundSamplePos(int s) const;
 	
 protected:
 

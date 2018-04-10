@@ -36,7 +36,15 @@ int cCtPDPhaseController::GetNumGroundSamples() const
     return cTerrainRLCharController::GetNumGroundSamples();
 }
 
-tVector cCtPDPhaseController::CalcGroundSamplePos(int s) const
+/*
+ *
+ * tVector cCtPDPhaseController::CalcGroundSamplePos(int s) const
 {
     return cCtController::CalcGroundSamplePos(s);
+}
+ */
+
+tVector cCtPDPhaseController::CalcGroundSamplePos(int s) const
+{
+    return cTerrainRLCharController::CalcGroundSamplePos(s);
 }

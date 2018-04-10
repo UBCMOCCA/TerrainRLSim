@@ -21,3 +21,8 @@ int cCtTargetTerrController::GetGroundSampleRes() const
 {
 	return gGroundSampleRes;
 }
+
+tVector cCtTargetTerrController::CalcGroundSamplePos(int s) const
+{
+    return cCtController::CalcGroundSamplePos(s);
+}
