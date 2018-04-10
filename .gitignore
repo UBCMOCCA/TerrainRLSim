@@ -1,3 +1,7 @@
 data/policies/biped3d
 data/policies/biped3d_full/
 simAdapter/__pycache__/
+../external/
+external/
+gmake/
+lib/
