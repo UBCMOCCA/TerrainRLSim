@@ -174,4 +174,4 @@ Follow instructions for building on Linux (Ubuntu)
    ```setenv TERRAINRL_PATH /path/to/terrainRL``` 
    Depending on your shell
  1.  Run ```pip3 install --user -v -e $TERRAINRL_PATH```
- 
+ 1. See [terrainRLTestMultiChar.py](https://github.com/UBCMOCCA/TerrainRLSim/blob/master/simAdapter/terrainRLTestMultiChar.py) For an example of how to use the simulator.
