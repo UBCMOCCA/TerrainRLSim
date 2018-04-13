@@ -5,9 +5,9 @@ This project is designed to learn good navigation skills for simulated character
 
 # Setup
 
-This section covers some of the steps to setup and compile the code. The software depends on many libraries that need to be carefully prepared and placed for the building and linking to work properly. Download (clone) the code using the *--recusive* option:
+This section covers some of the steps to setup and compile the code. The software depends on many libraries that need to be carefully prepared and placed for the building and linking to work properly. 
 ```
-git clone --recursive https://github.com/UBCMOCCA/TerrainRL.git
+git clone https://github.com/UBCMOCCA/TerrainRL.git
 ```
 
 ## Linux (Ubuntu 16.04)
@@ -90,26 +90,26 @@ export PATH=[PREMAKE_DIR]:$PATH
 
 This setup has been tested on Windows 7 and 10 with visual studio 2013.
 
-  1. Download the library.zip file that contains almost all of the relevant pre compiled external libraries and source code.
-  2. Unpack this library in the same directory the project is located in. For example, DeepLoco/../.
+  1. Download the library.zip file that contains almost all of the relevant pre-compiled external libraries and source code.
+  2. Unpack this library in the same directory the project is located in. For example, TerrainRL/../.
   3. You might need to install opengl/glu/GL headers. We have been using freeglut for this project. glew might already be included in library.zip.
   4. You will need to copy some dll files from dynamic_lib.zip to the directory the project is compiled to. For example, optimizer/x64/Debug/. These files are needed by the framework during runtime.
-  5. Might need to create a folder in DeepLoco called "output", This is where temprary and current policies will be dumped.
+  5. Might need to create a folder in TerrainRL called "output", This is where temporary and current policies will be dumped.
 
 ## Running The System
 
-After the system has been build there are two executable files that server different purposes. The **DeepLoco** program is for visually simulating the a controller and **DeepLoco_Optimize** is for optimizing the parameters of some controller.
+After the system has been build there are two executable files that server different purposes. The **TerrainRL** program is for visually simulating the a controller and **TerrainRL_Optimize** is for optimizing the parameters of some controller.
 
 Examples:  
 	To simulate a controller/character  
-	./DeepLoco -arg_file= args/test_args.txt
+	./TerrainRL -arg_file= args/test_args.txt
 	To simulate a controller/character with a specific policy  
-	./DeepLoco_Optimizer -arg_file= args/opt_int_poli_hopper_eval.txt -policy_model= output/intermediate/trainer_int_model_0000160000.h5  
+	./TerrainRL_Optimizer -arg_file= args/opt_int_poli_hopper_eval.txt -policy_model= output/intermediate/trainer_int_model_0000160000.h5  
 	To Train a controller  
-	./DeepLoco_Optimizer -arg_file= args/opt_args_train.txt  
-	./DeepLoco_Optimizer -arg_file= args/opt_args_train_hopper.txt  
+	./TerrainRL_Optimizer -arg_file= args/opt_args_train.txt  
+	./TerrainRL_Optimizer -arg_file= args/opt_args_train_hopper.txt  
 	To Optimize a controllers parameters  
-	./DeepLoco_Optimizer -arg_file= args/opt_args_jump.txt  
+	./TerrainRL_Optimizer -arg_file= args/opt_args_jump.txt  
 
 
 ## Key Bindings
@@ -174,4 +174,4 @@ Follow instructions for building on Linux (Ubuntu)
    ```setenv TERRAINRL_PATH /path/to/terrainRL``` 
    Depending on your shell
  1.  Run ```pip3 install --user -v -e $TERRAINRL_PATH```
- 1. See [terrainRLTestMultiChar.py](https://github.com/UBCMOCCA/TerrainRLSim/blob/master/simAdapter/terrainRLTestMultiChar.py) For an example of how to use the simulator.
+ 
