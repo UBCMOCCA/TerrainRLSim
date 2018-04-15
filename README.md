@@ -91,13 +91,12 @@ This setup has been tested on Windows 7 and 10 with visual studio 2013.
 After the system has been build there are two executable files that server different purposes. The **TerrainRL** program is for visually simulating the a controller and **TerrainRL_Optimize** is for optimizing the parameters of some controller.
 
 Examples:
-```
+
 	# To simulate a controller/character  
 	./TerrainRL -arg_file= args/biped3D/test_biped_3d_args.txt
 	# To Train a controller
 	./TerrainRL_Optimizer -arg_file= args/biped3D/opt_train_biped_3d_cacla.txt
 	./TerrainRL_Optimizer -arg_file= args/genBiped2D/opt_args_imitate_biped_full_phase.txt
-```
 
 ## Key Bindings
 
