@@ -7,7 +7,7 @@ This project is designed to learn good navigation skills for simulated character
 
 This section covers some of the steps to setup and compile the code. The software depends on many libraries that need to be carefully prepared and placed for the building and linking to work properly. 
 ```
-git clone https://github.com/UBCMOCCA/TerrainRL.git
+git clone https://github.com/UBCMOCCA/TerrainRLSim.git
 ```
 
 ## Linux (Ubuntu 16.04)
@@ -31,20 +31,9 @@ If `glxinfo` is not installed on your system, install the `mesa-utils` package.
 OpenGL should come as part of the drivers for your graphics hardware (whether part of the motherboard or dedicated graphics card). If you are missing a compatible version of OpenGL, consider updating your graphics drivers; if you have a GPU, ensure that the system is actually using it.
 
 
-### Download premake4
-Download premake4 from [here](https://sourceforge.net/projects/premake/files/Premake/4.4/premake-4.4-beta5-linux.tar.gz/download). Extract the premake4 binary into a directory of your choosing (preferably not your local Downloads directory).
-
-Add premake to your `PATH` variable in `.bashrc`:
-```
-# Add premake to path
-export PATH=[PREMAKE_DIR]:$PATH
-```
-...where [PREMAKE_DIR] should be the directory containing the premake4 binary.
-
-
 ### Build Instructions
 
-1. Download the most recent compressed external file from the [newest release](https://github.com/xbpeng/TerrainRL/releases). 
+1. Download the most recent compressed external file from the [newest release](https://github.com/xbpeng/DeepTerrainRL/releases). 
 1. Extract it and move into the TerrainRL directory. The top directory of the TerrainRL repository should now contain a directory called `external`, in addition to all the other directories that were there before.
 1. *If you are using an OS other and Ubuntu 16.04 64-bit* build the source code for caffe that came in the `external` directory.
 	```
@@ -67,6 +56,7 @@ export PATH=[PREMAKE_DIR]:$PATH
 1. Generate the python code wrappers (optional, if you are not planning on simulating things from python)
 	```
 	cd simAdapter/
+	sudo apt-get install swig3.0 python3-dev python3-pip -y
 	./gen_swig.sh
 	cd ../
 	```
@@ -100,17 +90,13 @@ This setup has been tested on Windows 7 and 10 with visual studio 2013.
 
 After the system has been build there are two executable files that server different purposes. The **TerrainRL** program is for visually simulating the a controller and **TerrainRL_Optimize** is for optimizing the parameters of some controller.
 
-Examples:  
-	To simulate a controller/character  
-	./TerrainRL -arg_file= args/test_args.txt
-	To simulate a controller/character with a specific policy  
-	./TerrainRL_Optimizer -arg_file= args/opt_int_poli_hopper_eval.txt -policy_model= output/intermediate/trainer_int_model_0000160000.h5  
-	To Train a controller  
-	./TerrainRL_Optimizer -arg_file= args/opt_args_train.txt  
-	./TerrainRL_Optimizer -arg_file= args/opt_args_train_hopper.txt  
-	To Optimize a controllers parameters  
-	./TerrainRL_Optimizer -arg_file= args/opt_args_jump.txt  
+Examples:
 
+	# To simulate a controller/character  
+	./TerrainRL -arg_file= args/biped3D/test_biped_3d_args.txt
+	# To Train a controller
+	./TerrainRL_Optimizer -arg_file= args/biped3D/opt_train_biped_3d_cacla.txt
+	./TerrainRL_Optimizer -arg_file= args/genBiped2D/opt_args_imitate_biped_full_phase.txt
 
 ## Key Bindings
 

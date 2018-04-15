@@ -2,6 +2,7 @@
 import terrainRLSim
 import numpy as np
 import matplotlib.pyplot as plt
+import json
 
 if __name__ == '__main__':
 
@@ -9,7 +10,7 @@ if __name__ == '__main__':
     # env = getEnv(env_name="PD_Biped3D_MutliChar_LargeBlocks-v0", render=True)
     envs_list = terrainRLSim.getEnvsList()
     print ("# of envs: ", len(envs_list))
-    print ("Envs: ", str(envs_list))
+    print ("Envs:\n", json.dumps(envs_list, sort_keys=True, indent=4).replace('}','').replace(',','').replace('"','').replace('{',''))
 
     env = terrainRLSim.getEnv(env_name="PD_Biped3D_FULL_Imitate-Steps-v0", render=True)
     

@@ -5,3 +5,7 @@ simAdapter/__pycache__/
 external/
 gmake/
 lib/
+x64/
+output/
+terrainRLAdapter.egg-info
+*.pyc

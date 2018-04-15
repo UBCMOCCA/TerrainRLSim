@@ -131,6 +131,11 @@ setup(
         'install': MyInstall,
         'egg_info': MyEgg
         },
-    package_data = { 'args': need_files_args }
+    package_data = { 'args': need_files_args },
+    install_requires = [
+        'numpy==1.14.2',
+        'matplotlib==2.2.2',
+        'dill==0.2.7.1',
+    ],
     # ext_modules=[extension_mod]
     )
