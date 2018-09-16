@@ -1,29 +1,27 @@
 #pragma once
 
-#include "scenarios/ScenarioPoliEval.h"
 #include "scenarios/ScenarioExpMimic.h"
+#include "scenarios/ScenarioPoliEval.h"
 
-class cScenarioMimicEval : virtual public cScenarioPoliEval, virtual public cScenarioExpMimic
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+class cScenarioMimicEval : virtual public cScenarioPoliEval, virtual public cScenarioExpMimic {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	cScenarioMimicEval();
-	virtual ~cScenarioMimicEval();
+    cScenarioMimicEval();
+    virtual ~cScenarioMimicEval();
 
-	virtual void ResetRecord();
-	virtual void GetTauErrResult(double& out_err, int& out_count) const;
+    virtual void ResetRecord();
+    virtual void GetTauErrResult(double &out_err, int &out_count) const;
 
-	virtual std::string GetName() const;
+    virtual std::string GetName() const;
 
-protected:
+  protected:
+    double mTauErr;
+    int mTauErrCount;
 
-	double mTauErr;
-	int mTauErrCount;
+    virtual void PostSubstepUpdateMisc(double time_step);
+    virtual void UpdateTauErr();
 
-	virtual void PostSubstepUpdateMisc(double time_step);
-	virtual void UpdateTauErr();
-
-	virtual bool EnableRandInitAction() const;
-	virtual void InitMisc();
+    virtual bool EnableRandInitAction() const;
+    virtual void InitMisc();
 };

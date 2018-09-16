@@ -2,17 +2,15 @@
 
 #include "scenarios/ScenarioExpCacla.h"
 
-class cScenarioExpDPG : virtual public cScenarioExpCacla
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+class cScenarioExpDPG : virtual public cScenarioExpCacla {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	cScenarioExpDPG();
-	virtual ~cScenarioExpDPG();
+    cScenarioExpDPG();
+    virtual ~cScenarioExpDPG();
 
-	virtual std::string GetName() const;
+    virtual std::string GetName() const;
 
-protected:
-
-	virtual bool EnableRandInitAction() const;
+  protected:
+    virtual bool EnableRandInitAction() const;
 };

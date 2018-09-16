@@ -1,4 +1,4 @@
-{"MiscParams": 
+{"MiscParams":
 {
 "TransTime": 0.110000,
 "Cv": 0.050000,
@@ -7,9 +7,9 @@
 "ForceY": 474.666917
 },
 
-"StateParams": 
+"StateParams":
 {
-"Contact": 
+"Contact":
 {
 "RootPitch": -0.337833,
 "StanceHip": 0.720765,
@@ -19,7 +19,7 @@
 "SwingKnee": -3.195242,
 "SwingAnkle": 3.504917
 },
-"Down": 
+"Down":
 {
 "RootPitch": -0.041141,
 "StanceHip": 0.361047,
@@ -29,7 +29,7 @@
 "SwingKnee": -3.723582,
 "SwingAnkle": 3.034408
 },
-"Passing": 
+"Passing":
 {
 "RootPitch": -0.304045,
 "StanceHip": -0.887001,
@@ -39,7 +39,7 @@
 "SwingKnee": 0.303583,
 "SwingAnkle": 0.794081
 },
-"Up": 
+"Up":
 {
 "RootPitch": -0.587537,
 "StanceHip": -0.748955,

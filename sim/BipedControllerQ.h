@@ -8,16 +8,15 @@
 #ifndef BIPEDCONTROLLERQ_H_
 #define BIPEDCONTROLLERQ_H_
 
-#include "sim/BipedController.h"
 #include "sim/BaseControllerQ.h"
+#include "sim/BipedController.h"
 
-class cBipedControllerQ : public virtual cBipedController, public virtual cBaseControllerQ
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+class cBipedControllerQ : public virtual cBipedController, public virtual cBaseControllerQ {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	cBipedControllerQ();
-	virtual ~cBipedControllerQ();
+    cBipedControllerQ();
+    virtual ~cBipedControllerQ();
 };
 
 #endif /* BIPEDCONTROLLERQ_H_ */

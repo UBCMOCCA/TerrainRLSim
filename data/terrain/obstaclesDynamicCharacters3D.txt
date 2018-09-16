@@ -1,7 +1,7 @@
 {
 "Type": "obstaclesDynamicCharacters3D",
 
-"Params": 
+"Params":
 [
 	{
 		"ObstacleDensity": 0.015,

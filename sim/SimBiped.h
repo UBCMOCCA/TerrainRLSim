@@ -5,43 +5,38 @@
  *      Author: gberseth
  */
 
-
 #ifndef SIMBIPED_H_
 #define SIMBIPED_H_
 #include "sim/SimCharSoftFall.h"
 
-class cSimBiped : public cSimCharSoftFall
-{
-public:
+class cSimBiped : public cSimCharSoftFall {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    enum eJoint {
+        eJointRoot,
+        eJointSpine0,
+        eJointSpine1,
+        eJointSpine2,
+        eJointSpine3,
+        eJointHead,
+        eJointRightHip,
+        eJointRightKnee,
+        eJointRightAnkle,
+        eJointLeftHip,
+        eJointLeftKnee,
+        eJointLeftAnkle,
+        eJointMax,
+        eJointInvalid
+    };
 
-	enum eJoint
-	{
-		eJointRoot,
-		eJointSpine0,
-		eJointSpine1,
-		eJointSpine2,
-		eJointSpine3,
-		eJointHead,
-		eJointRightHip,
-		eJointRightKnee,
-		eJointRightAnkle,
-		eJointLeftHip,
-		eJointLeftKnee,
-		eJointLeftAnkle,
-		eJointMax,
-		eJointInvalid
-	};
+    cSimBiped();
+    virtual ~cSimBiped();
 
-	cSimBiped();
-	virtual ~cSimBiped();
+    virtual bool HasStumbled() const;
 
-	virtual bool HasStumbled() const;
-
-protected:
-
-	virtual bool FailFallMisc() const;
+  protected:
+    virtual bool FailFallMisc() const;
 };
 
 #endif /* SIMBIPED_H_ */

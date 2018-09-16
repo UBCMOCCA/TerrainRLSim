@@ -6,14 +6,14 @@ uniform		vec4		gHosekRadiance;
 uniform		vec4		gSunParam[2];
 
 
-float PrezeHosekLuminance( float cos_theta, float cos_gamma, 
-						  float A, float B, float C, float D, 
+float PrezeHosekLuminance( float cos_theta, float cos_gamma,
+						  float A, float B, float C, float D,
 						  float E, float F, float G, float H, float I )
 {
 	float gamma = acos( cos_gamma );
 	float expM = exp(E * gamma);
     float rayM = cos(gamma)*cos(gamma);
-    float mieM = (1.0 + cos(gamma)*cos(gamma)) 
+    float mieM = (1.0 + cos(gamma)*cos(gamma))
 					/ pow( abs( 1.0 + I * I - 2.0* I * cos( gamma )), 1.5);
     float zenith = sqrt( cos_theta );
 
@@ -42,18 +42,18 @@ vec3 PreethamSky( vec3 dir, vec3 sun_dir )
 	float cos_theta = max(dir.y, 0); // mode is not defined for cos_theta < 0.f
 	float cos_gamma = min( 1.f, dot( dir, sun_dir ));
 
-	float X = gHosekRadiance.x * PrezeHosekLuminance( cos_theta, cos_gamma, 
-									gHosekCoefs[0].x, gHosekCoefs[0].y, gHosekCoefs[0].z, gHosekCoefs[0].w, 
+	float X = gHosekRadiance.x * PrezeHosekLuminance( cos_theta, cos_gamma,
+									gHosekCoefs[0].x, gHosekCoefs[0].y, gHosekCoefs[0].z, gHosekCoefs[0].w,
 									gHosekCoefs[1].x, gHosekCoefs[1].y, gHosekCoefs[1].z, gHosekCoefs[1].w,
 									gHosekCoefs[6].x );
 
-	float Y = gHosekRadiance.y * PrezeHosekLuminance( cos_theta, cos_gamma, 
-									gHosekCoefs[2].x, gHosekCoefs[2].y, gHosekCoefs[2].z, gHosekCoefs[2].w, 
+	float Y = gHosekRadiance.y * PrezeHosekLuminance( cos_theta, cos_gamma,
+									gHosekCoefs[2].x, gHosekCoefs[2].y, gHosekCoefs[2].z, gHosekCoefs[2].w,
 									gHosekCoefs[3].x, gHosekCoefs[3].y, gHosekCoefs[3].z, gHosekCoefs[3].w,
 									gHosekCoefs[6].y );
 
-	float Z = gHosekRadiance.z * PrezeHosekLuminance( cos_theta, cos_gamma, 
-									gHosekCoefs[4].x, gHosekCoefs[4].y, gHosekCoefs[4].z, gHosekCoefs[4].w, 
+	float Z = gHosekRadiance.z * PrezeHosekLuminance( cos_theta, cos_gamma,
+									gHosekCoefs[4].x, gHosekCoefs[4].y, gHosekCoefs[4].z, gHosekCoefs[4].w,
 									gHosekCoefs[5].x, gHosekCoefs[5].y, gHosekCoefs[5].z, gHosekCoefs[5].w,
 									gHosekCoefs[6].z );
 

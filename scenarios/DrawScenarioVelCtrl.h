@@ -3,16 +3,15 @@
 
 #include "DrawScenarioTrackMotion.h"
 
-class cDrawScenarioVelCtrl : public cDrawScenarioTrackMotion
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+class cDrawScenarioVelCtrl : public cDrawScenarioTrackMotion {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	cDrawScenarioVelCtrl(cCamera& cam);
-	virtual ~cDrawScenarioVelCtrl();
+    cDrawScenarioVelCtrl(cCamera &cam);
+    virtual ~cDrawScenarioVelCtrl();
 
-	virtual void Update(double time_elapsed);
+    virtual void Update(double time_elapsed);
 
-protected:
-	virtual void BuildScene(std::shared_ptr<cScenarioSimChar>& out_scene) const;
+  protected:
+    virtual void BuildScene(std::shared_ptr<cScenarioSimChar> &out_scene) const;
 };

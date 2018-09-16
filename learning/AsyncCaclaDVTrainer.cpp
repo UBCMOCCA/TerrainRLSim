@@ -9,16 +9,13 @@
 #include "CaclaDVTrainer.h"
 
 cAsyncCaclaDVTrainer::cAsyncCaclaDVTrainer() : cAsyncCaclaTrainer() {
-	// TODO Auto-generated constructor stub
-
+    // TODO Auto-generated constructor stub
 }
 
 cAsyncCaclaDVTrainer::~cAsyncCaclaDVTrainer() {
-	// TODO Auto-generated destructor stub
+    // TODO Auto-generated destructor stub
 }
 
-void cAsyncCaclaDVTrainer::BuildTrainer(std::shared_ptr<cNeuralNetTrainer>& out_trainer) const
-{
-	out_trainer = std::shared_ptr<cNeuralNetTrainer>(new cCaclaDVTrainer());
+void cAsyncCaclaDVTrainer::BuildTrainer(std::shared_ptr<cNeuralNetTrainer> &out_trainer) const {
+    out_trainer = std::shared_ptr<cNeuralNetTrainer>(new cCaclaDVTrainer());
 }
-

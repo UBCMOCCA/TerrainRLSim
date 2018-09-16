@@ -24,7 +24,7 @@ float CalcLuminance(vec3 color)
     return max( dot(color, vec3(0.299f, 0.587f, 0.114f)), 0.0001f);
 }
 
-void main(void) 
+void main(void)
 {
 	// get the sun's screenspace position and clamp it to the edges of the screen
 	// to reduce aliasing from low sampling frequency
@@ -58,7 +58,7 @@ void main(void)
 	{
 		vec2 cur_coord = tex_coord + i * delta_coord;
 		vec4 sample = texture2D( gBufferTex, cur_coord );
-     
+
 		float occlusion = (sample.w > 0) ? 1.f : 0.f;
 
 		colour += ( sample.xyz * light_color * illumination_decay ) * ( 1.f - occlusion );

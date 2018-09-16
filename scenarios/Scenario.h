@@ -1,36 +1,35 @@
 #pragma once
 
-#include <string>
+#include "util/ArgParser.h"
 #include <functional>
 #include <memory>
-#include "util/ArgParser.h"
+#include <string>
 
-class cScenario
-{
-public:
-	typedef std::function<void()> tCallbackFunc;
-	typedef std::function<void(double)> tTimeCallbackFunc;
+class cScenario {
+  public:
+    typedef std::function<void()> tCallbackFunc;
+    typedef std::function<void(double)> tTimeCallbackFunc;
 
-	virtual ~cScenario();
+    virtual ~cScenario();
 
-	virtual void Init();
-	virtual void ParseArgs(const std::shared_ptr<cArgParser>& parser);
-	virtual void Reset();
-	virtual void Clear();
-	virtual void Run();
-	virtual void Shutdown();
+    virtual void Init();
+    virtual void ParseArgs(const std::shared_ptr<cArgParser> &parser);
+    virtual void Reset();
+    virtual void Clear();
+    virtual void Run();
+    virtual void Shutdown();
 
-	virtual bool IsDone() const;
-	virtual void Update(double time_elapsed);
-	virtual void SetResetCallback(tCallbackFunc func);
+    virtual bool IsDone() const;
+    virtual void Update(double time_elapsed);
+    virtual void SetResetCallback(tCallbackFunc func);
 
-	virtual std::string GetName() const;
-	virtual void setRelativeFilePath(std::string path);
-	virtual std::string getRelativeFilePath();
+    virtual std::string GetName() const;
+    virtual void setRelativeFilePath(std::string path);
+    virtual std::string getRelativeFilePath();
 
-protected:
-	tCallbackFunc mResetCallback;
-	std::string _relativeFilePath;
+  protected:
+    tCallbackFunc mResetCallback;
+    std::string _relativeFilePath;
 
-	cScenario();
+    cScenario();
 };

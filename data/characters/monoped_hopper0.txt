@@ -1,7 +1,7 @@
 {
-	"Skeleton": 
+	"Skeleton":
 	{
-		"Joints": 
+		"Joints":
 		[
 			{
 				"Name": "root",
@@ -9,7 +9,7 @@
 				"Parent": -1,
 				"AttachX": 0,
 				"AttachY": 0.0,
-				"AttachZ": 0,		
+				"AttachZ": 0,
 				"LimLow0": 1,
 				"LimHigh0": 0,
 				"TorqueLim": 0,
@@ -21,7 +21,7 @@
 				"Parent": 0,
 				"AttachX": -0.0,
 				"AttachY": -0.0,
-				"AttachZ": 0.0,		
+				"AttachZ": 0.0,
 				"LimLow0": -1.57,
 				"LimHigh0": 1.57,
 				"TorqueLim": 2500.0,
@@ -33,7 +33,7 @@
 				"Parent": 1,
 				"AttachX": 0,
 				"AttachY": -0.2,
-				"AttachZ": -0.0,	
+				"AttachZ": -0.0,
 				"AttachThetaZ": -1.57079632679,
 				"LimLow0": -0.20,
 				"LimHigh0": 0.20,
@@ -44,7 +44,7 @@
 		]
 	},
 
-	"BodyDefs": 
+	"BodyDefs":
 	[
 			{
 				"Name": "root",
@@ -87,7 +87,7 @@
 				"AttachX": 0.3,
 				"AttachY": 0,
 				"AttachZ": 0,
-				"AttachThetaZ": -1.57079632679,	
+				"AttachThetaZ": -1.57079632679,
 				"Param0": 0.03,
 				"Param1": 0.6,
 				"Param2": 0.22,
@@ -98,7 +98,7 @@
 			}
 		],
 
-	"PDControllers": 
+	"PDControllers":
 	[
 			{
 				"Name": "root",
@@ -167,7 +167,7 @@
 					"ParamIdx0": 0,
 					"ParamIdx1": 1,
 					"Blend": 0.67,
-					"Cyclic": false		
+					"Cyclic": false
 				},
 				{
 					"ParamIdx0": 0,
@@ -182,7 +182,7 @@
 					"Blend": 1.0,
 					"Cyclic": false
 				}
-				
+
 			],
 
 			"DefaultAction": 0

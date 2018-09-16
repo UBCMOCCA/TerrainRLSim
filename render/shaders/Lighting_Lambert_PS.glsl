@@ -36,14 +36,14 @@ float CalcSpecular(
 	vec3 v = view_direction;
 	vec3 l = light_direction;
 	vec3 h = normalize(view_direction + light_direction);
-	
+
 	float n_dot_h = dot(n, h);
 	float spec = clamp(n_dot_h, 0, 1);
 	spec = pow(spec, 10);
 	return 0.0;
 }
 
-vec3 CalculateBRDF( vec3 normal, vec3 light_dir, 
+vec3 CalculateBRDF( vec3 normal, vec3 light_dir,
 						vec3 light_colour, vec3 view_dir, float roughness,
 						vec3 albedo )
 {
@@ -147,12 +147,12 @@ void main()
 		vec4 tex_col = texture2D(gTexture, TexCoord);
 		albedo.rgb = albedo.rgb * tex_col.rgb;
 	}
-	
+
 	float shadow_coef = CalculateShadow(ViewPos, norm);
 	vec3 light_colour = gLightColour;
 	//light_colour = vec3(0.5, 0.5, 0.5);
 	light_colour *= shadow_coef;
-	vec3 light_result = CalculateBRDF(norm, gLightDir, 
+	vec3 light_result = CalculateBRDF(norm, gLightDir,
 										light_colour, view_dir, roughness,
 										albedo);
 

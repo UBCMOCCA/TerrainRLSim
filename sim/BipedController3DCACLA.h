@@ -11,18 +11,18 @@
 #include "sim/BaseControllerCacla.h"
 #include "sim/BipedController3D.h"
 
-class cBipedController3DCACLA : public cBipedController3D, public virtual cBaseControllerCacla{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+class cBipedController3DCACLA : public cBipedController3D, public virtual cBaseControllerCacla {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	cBipedController3DCACLA();
-	virtual ~cBipedController3DCACLA();
+    cBipedController3DCACLA();
+    virtual ~cBipedController3DCACLA();
 
-	virtual void Init(cSimCharacter* character, const tVector& gravity, const std::string& param_file);
+    virtual void Init(cSimCharacter *character, const tVector &gravity, const std::string &param_file);
 
-protected:
-	virtual void UpdateAction();
-	virtual bool IsCurrActionCyclic() const;
+  protected:
+    virtual void UpdateAction();
+    virtual bool IsCurrActionCyclic() const;
 };
 
 #endif /* SIM_BIPEDCONTROLLER3DCACLA_H_ */

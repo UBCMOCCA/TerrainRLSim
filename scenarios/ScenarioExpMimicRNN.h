@@ -2,17 +2,15 @@
 
 #include "scenarios/ScenarioExpMimic.h"
 
-class cScenarioExpMimicRNN : virtual public cScenarioExpMimic
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+class cScenarioExpMimicRNN : virtual public cScenarioExpMimic {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	cScenarioExpMimicRNN();
-	virtual ~cScenarioExpMimicRNN();
+    cScenarioExpMimicRNN();
+    virtual ~cScenarioExpMimicRNN();
 
-	virtual std::string GetName() const;
+    virtual std::string GetName() const;
 
-protected:
-
-	virtual int GetNumWarmupCycles() const;
+  protected:
+    virtual int GetNumWarmupCycles() const;
 };

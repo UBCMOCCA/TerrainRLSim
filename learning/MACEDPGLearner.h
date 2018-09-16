@@ -2,17 +2,16 @@
 
 #include "ACLearner.h"
 
-struct cMACEDPGLearner : public cACLearner
-{
-public:
-	cMACEDPGLearner(const std::shared_ptr<cNeuralNetTrainer>& trainer);
-	virtual ~cMACEDPGLearner();
+struct cMACEDPGLearner : public cACLearner {
+  public:
+    cMACEDPGLearner(const std::shared_ptr<cNeuralNetTrainer> &trainer);
+    virtual ~cMACEDPGLearner();
 
-	virtual void SetTemp(double temp);
-	virtual double GetTemp() const;
+    virtual void SetTemp(double temp);
+    virtual double GetTemp() const;
 
-protected:
-	double mTemp;
+  protected:
+    double mTemp;
 
-	virtual void UpdateTrainer();
+    virtual void UpdateTrainer();
 };

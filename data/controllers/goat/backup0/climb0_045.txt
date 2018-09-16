@@ -1,4 +1,4 @@
-{"MiscParams": 
+{"MiscParams":
 {
 "TransTime": 0.125000,
 "Cv": -0.000979,
@@ -8,9 +8,9 @@
 "FrontForceY": 329.278174
 },
 
-"StateParams": 
+"StateParams":
 {
-"BackStance": 
+"BackStance":
 {
 "SpineCurve": 0.312373,
 "Shoulder": -2.807750,
@@ -19,7 +19,7 @@
 "Knee": 0.639449,
 "Ankle": 2.271665
 },
-"Extend": 
+"Extend":
 {
 "SpineCurve": 0.069098,
 "Shoulder": 0.165840,
@@ -28,7 +28,7 @@
 "Knee": -2.277032,
 "Ankle": 2.447724
 },
-"FrontStance": 
+"FrontStance":
 {
 "SpineCurve": -0.437886,
 "Shoulder": 0.217852,
@@ -37,7 +37,7 @@
 "Knee": -2.711616,
 "Ankle": 2.368112
 },
-"Gather": 
+"Gather":
 {
 "SpineCurve": -0.189314,
 "Shoulder": -1.171933,

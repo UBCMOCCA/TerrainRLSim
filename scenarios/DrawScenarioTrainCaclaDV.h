@@ -11,15 +11,14 @@
 #include "DrawScenarioTrainCacla.h"
 
 class cDrawScenarioTrainCaclaDV : public cDrawScenarioTrainCacla {
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	cDrawScenarioTrainCaclaDV(cCamera& cam);
-	virtual ~cDrawScenarioTrainCaclaDV();
+    cDrawScenarioTrainCaclaDV(cCamera &cam);
+    virtual ~cDrawScenarioTrainCaclaDV();
 
-protected:
-
-	void BuildTrainScene(std::shared_ptr<cScenarioTrain>& out_scene) const;
+  protected:
+    void BuildTrainScene(std::shared_ptr<cScenarioTrain> &out_scene) const;
 };
 
 #endif /* SCENARIOS_DRAWSCENARIOTRAINCACLADV_H_ */

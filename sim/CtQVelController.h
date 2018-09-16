@@ -1,17 +1,16 @@
 #pragma once
 
-#include "sim/CtVelController.h"
 #include "sim/CtQController.h"
+#include "sim/CtVelController.h"
 
-class cCtQVelController : public virtual cCtVelController, public virtual cCtQController
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-	
-	cCtQVelController();
-	virtual ~cCtQVelController();
+class cCtQVelController : public virtual cCtVelController, public virtual cCtQController {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	virtual void Init(cSimCharacter* character, const tVector& gravity, const std::string& param_file);
-	
-protected:
+    cCtQVelController();
+    virtual ~cCtQVelController();
+
+    virtual void Init(cSimCharacter *character, const tVector &gravity, const std::string &param_file);
+
+  protected:
 };

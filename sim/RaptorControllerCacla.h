@@ -3,17 +3,16 @@
 #include "sim/BaseControllerCacla.h"
 #include "sim/RaptorController.h"
 
-class cRaptorControllerCacla : public virtual cRaptorController, public virtual cBaseControllerCacla
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-	
-	cRaptorControllerCacla();
-	virtual ~cRaptorControllerCacla();
+class cRaptorControllerCacla : public virtual cRaptorController, public virtual cBaseControllerCacla {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	virtual void Init(cSimCharacter* character, const tVector& gravity, const std::string& param_file);
+    cRaptorControllerCacla();
+    virtual ~cRaptorControllerCacla();
 
-protected:
-	virtual void UpdateAction();
-	virtual bool IsCurrActionCyclic() const;
+    virtual void Init(cSimCharacter *character, const tVector &gravity, const std::string &param_file);
+
+  protected:
+    virtual void UpdateAction();
+    virtual bool IsCurrActionCyclic() const;
 };

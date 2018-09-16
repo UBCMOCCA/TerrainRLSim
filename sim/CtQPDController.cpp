@@ -1,17 +1,10 @@
 #include "CtQPDController.h"
 
-cCtQPDController::cCtQPDController() : cCtController(),
-										cCtPDController(),
-										cCtQController()
-{
-}
+cCtQPDController::cCtQPDController() : cCtController(), cCtPDController(), cCtQController() {}
 
-cCtQPDController::~cCtQPDController()
-{
-}
+cCtQPDController::~cCtQPDController() {}
 
-void cCtQPDController::Init(cSimCharacter* character, const tVector& gravity, const std::string& param_file)
-{
-	cCtQController::Init(character);
-	cCtPDController::Init(character, gravity, param_file);
+void cCtQPDController::Init(cSimCharacter *character, const tVector &gravity, const std::string &param_file) {
+    cCtQController::Init(character);
+    cCtPDController::Init(character, gravity, param_file);
 }

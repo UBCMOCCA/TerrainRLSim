@@ -1,16 +1,10 @@
 #include "CtQTrackController.h"
 
-cCtQTrackController::cCtQTrackController() : cCtQController(),
-											cCtTrackController()
-{
-}
+cCtQTrackController::cCtQTrackController() : cCtQController(), cCtTrackController() {}
 
-cCtQTrackController::~cCtQTrackController()
-{
-}
+cCtQTrackController::~cCtQTrackController() {}
 
-void cCtQTrackController::Init(cSimCharacter* character)
-{
-	cCtQController::Init(character);
-	cCtTrackController::Init(character);
+void cCtQTrackController::Init(cSimCharacter *character) {
+    cCtQController::Init(character);
+    cCtTrackController::Init(character);
 }

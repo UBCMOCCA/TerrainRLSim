@@ -3,17 +3,15 @@
 #include "anim/MocapStepController.h"
 
 class cMotionFieldStepController : public cMocapStepController {
-public:
-	
-	cMotionFieldStepController();
-	virtual ~cMotionFieldStepController();
+  public:
+    cMotionFieldStepController();
+    virtual ~cMotionFieldStepController();
 
-	virtual void Init(cKinCharacter* character, const std::string& param_file);
+    virtual void Init(cKinCharacter *character, const std::string &param_file);
 
-private:
+  private:
+    virtual void BuildMotionField();
+    virtual int CalcMotionFeatureIdx(int m, double phase) const;
 
-	virtual void BuildMotionField();
-	virtual int CalcMotionFeatureIdx(int m, double phase) const;
-
-	virtual const tMotionFeatures& GetPhaseMotionFeature(double phase, int motion_id) const;
+    virtual const tMotionFeatures &GetPhaseMotionFeature(double phase, int motion_id) const;
 };

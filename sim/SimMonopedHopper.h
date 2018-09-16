@@ -10,28 +10,19 @@
 
 #include "sim/SimCharSoftFall.h"
 
-class cSimMonopedHopper : public cSimCharSoftFall
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+class cSimMonopedHopper : public cSimCharSoftFall {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	enum eJoint
-	{
-		eJointRoot,
-		eJointHip,
-		eJointKnee,
-		eJointMax,
-		eJointInvalid
-	};
+    enum eJoint { eJointRoot, eJointHip, eJointKnee, eJointMax, eJointInvalid };
 
-	cSimMonopedHopper();
-	virtual ~cSimMonopedHopper();
+    cSimMonopedHopper();
+    virtual ~cSimMonopedHopper();
 
-	virtual bool HasStumbled() const;
+    virtual bool HasStumbled() const;
 
-protected:
-	
-	virtual bool FailFallMisc() const;
+  protected:
+    virtual bool FailFallMisc() const;
 };
 
 #endif /* SIMMONOPEDHOPPER_H_ */

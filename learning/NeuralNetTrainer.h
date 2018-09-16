@@ -1,243 +1,235 @@
 #pragma once
-#include <memory>
-#include <mutex>
-#include "learning/TrainerInterface.h"
+#include "learning/ExpBuffer.h"
 #include "learning/ExpTuple.h"
 #include "learning/NeuralNet.h"
 #include "learning/NeuralNetLearner.h"
-#include "learning/ExpBuffer.h"
 #include "learning/ParamServer.h"
+#include "learning/TrainerInterface.h"
+#include <memory>
+#include <mutex>
 
 //#define DISABLE_EXP_REPLAY
 
-class cNeuralNetTrainer : public cTrainerInterface, 
-						public std::enable_shared_from_this<cNeuralNetTrainer>
-{
-public:
-	enum eStage
-	{
-		eStageInit,
-		eStageTrain,
-		eStageMax
-	};
+class cNeuralNetTrainer : public cTrainerInterface, public std::enable_shared_from_this<cNeuralNetTrainer> {
+  public:
+    enum eStage { eStageInit, eStageTrain, eStageMax };
 
-	static double CalcDiscountNorm(double discount);
-	
-	cNeuralNetTrainer();
-	virtual ~cNeuralNetTrainer();
+    static double CalcDiscountNorm(double discount);
 
-	virtual void Init(const tParams& params);
-	virtual void Clear();
-	virtual void LoadModel(const std::string& model_file);
-	virtual void LoadScale(const std::string& scale_file);
-	virtual void Reset();
-	virtual void EndTraining();
+    cNeuralNetTrainer();
+    virtual ~cNeuralNetTrainer();
 
-	virtual int AddTuple(const tExpTuple& tuple, int prev_id, int learner_id);
-	virtual int AddTuples(const std::vector<tExpTuple>& tuples, int prev_id, int learner_id);
-	virtual int IncBufferHead(int head) const;
+    virtual void Init(const tParams &params);
+    virtual void Clear();
+    virtual void LoadModel(const std::string &model_file);
+    virtual void LoadScale(const std::string &scale_file);
+    virtual void Reset();
+    virtual void EndTraining();
 
-	virtual void Train();
+    virtual int AddTuple(const tExpTuple &tuple, int prev_id, int learner_id);
+    virtual int AddTuples(const std::vector<tExpTuple> &tuples, int prev_id, int learner_id);
+    virtual int IncBufferHead(int head) const;
 
-	virtual const std::unique_ptr<cNeuralNet>& GetNet() const;
-	virtual double GetDiscount() const;
-	virtual double GetAvgReward() const;
-	virtual int GetIter() const;
-	virtual double NormalizeReward(double r) const;
+    virtual void Train();
 
-	virtual void SetNumInitSamples(int num);
-	virtual void SetInputOffsetScaleType(const std::vector<cNeuralNet::eOffsetScaleType>& scale_types);
-	virtual void SetInputOffsetScale(const Eigen::VectorXd& offset, const Eigen::VectorXd& scale);
-	virtual void SetOutputOffsetScale(const Eigen::VectorXd& offset, const Eigen::VectorXd& scale);
-	virtual void GetInputOffsetScale(Eigen::VectorXd& out_offset, Eigen::VectorXd& out_scale) const;
-	virtual void GetOutputOffsetScale(Eigen::VectorXd& out_offset, Eigen::VectorXd& out_scale) const;
+    virtual const std::unique_ptr<cNeuralNet> &GetNet() const;
+    virtual double GetDiscount() const;
+    virtual double GetAvgReward() const;
+    virtual int GetIter() const;
+    virtual double NormalizeReward(double r) const;
 
-	virtual int GetNumInitSamples() const;
-	virtual const std::string& GetNetFile() const;
-	virtual const std::string& GetSolverFile() const;
+    virtual void SetNumInitSamples(int num);
+    virtual void SetInputOffsetScaleType(const std::vector<cNeuralNet::eOffsetScaleType> &scale_types);
+    virtual void SetInputOffsetScale(const Eigen::VectorXd &offset, const Eigen::VectorXd &scale);
+    virtual void SetOutputOffsetScale(const Eigen::VectorXd &offset, const Eigen::VectorXd &scale);
+    virtual void GetInputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
+    virtual void GetOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
 
-	virtual eStage GetStage() const;
-	virtual int GetStateSize() const;
-	virtual int GetActionSize() const;
-	virtual int GetInputSize() const;
-	virtual int GetOutputSize() const;
-	virtual int GetBatchSize() const;
-	virtual int GetNumTuplesPerBatch() const;
-	virtual void ResetExpBuffer();
+    virtual int GetNumInitSamples() const;
+    virtual const std::string &GetNetFile() const;
+    virtual const std::string &GetSolverFile() const;
 
-	virtual int GetNumTuples() const;
-	virtual void OutputModel(const std::string& filename) const;
+    virtual eStage GetStage() const;
+    virtual int GetStateSize() const;
+    virtual int GetActionSize() const;
+    virtual int GetInputSize() const;
+    virtual int GetOutputSize() const;
+    virtual int GetBatchSize() const;
+    virtual int GetNumTuplesPerBatch() const;
+    virtual void ResetExpBuffer();
 
-	virtual bool HasInitModel() const;
-	virtual void EvalNet(const tExpTuple& tuple, Eigen::VectorXd& out_y);
+    virtual int GetNumTuples() const;
+    virtual void OutputModel(const std::string &filename) const;
 
-	virtual void RequestLearner(std::shared_ptr<cNeuralNetLearner>& out_learner);
-	virtual int RegisterLearner(cNeuralNetLearner* learner);
-	virtual void UnregisterLearner(cNeuralNetLearner* learner);
-	virtual void SetIntOutputCallback(tCallbackFunc func);
-	virtual void OutputIntermediate();
-	virtual void OutputIntermediateModel(const std::string& filename) const;
+    virtual bool HasInitModel() const;
+    virtual void EvalNet(const tExpTuple &tuple, Eigen::VectorXd &out_y);
 
-	virtual bool EnableAsyncMode() const;
-	virtual void Lock();
-	virtual void Unlock();
+    virtual void RequestLearner(std::shared_ptr<cNeuralNetLearner> &out_learner);
+    virtual int RegisterLearner(cNeuralNetLearner *learner);
+    virtual void UnregisterLearner(cNeuralNetLearner *learner);
+    virtual void SetIntOutputCallback(tCallbackFunc func);
+    virtual void OutputIntermediate();
+    virtual void OutputIntermediateModel(const std::string &filename) const;
 
-	virtual void SetParamServer(cParamServer* server);
-	virtual void SyncNets();
+    virtual bool EnableAsyncMode() const;
+    virtual void Lock();
+    virtual void Unlock();
 
-	virtual bool IsDone() const;
+    virtual void SetParamServer(cParamServer *server);
+    virtual void SyncNets();
 
-protected:
-	struct tDataRecord
-	{
-		Eigen::VectorXd mMin;
-		Eigen::VectorXd mMax;
-		Eigen::VectorXd mMean;
-		Eigen::VectorXd mMeanSquares;
-		int mCount;
+    virtual bool IsDone() const;
 
-		void Init(int size);
-		void Update(const Eigen::VectorXd data);
-		void CalcVar(Eigen::VectorXd& out_var) const;
-		void CalcOffsetScale(const std::vector<cNeuralNet::eOffsetScaleType>& scale_types, double max_scale,
-							Eigen::VectorXd& out_offset, Eigen::VectorXd& out_scale) const;
-		int GetSize() const;
-	};
+  protected:
+    struct tDataRecord {
+        Eigen::VectorXd mMin;
+        Eigen::VectorXd mMax;
+        Eigen::VectorXd mMean;
+        Eigen::VectorXd mMeanSquares;
+        int mCount;
 
-	eStage mStage;
-	tParams mParams;
-	int mIter;
-	bool mDone;
-	std::unique_ptr<cExpBuffer> mExpBuffer;
+        void Init(int size);
+        void Update(const Eigen::VectorXd data);
+        void CalcVar(Eigen::VectorXd &out_var) const;
+        void CalcOffsetScale(const std::vector<cNeuralNet::eOffsetScaleType> &scale_types, double max_scale,
+                             Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
+        int GetSize() const;
+    };
 
-	std::vector<cNeuralNet::eOffsetScaleType> mInputOffsetScaleTypes;
-	tDataRecord mDataRecordX;
+    eStage mStage;
+    tParams mParams;
+    int mIter;
+    bool mDone;
+    std::unique_ptr<cExpBuffer> mExpBuffer;
 
-	cNeuralNet::tProblem mProb;
-	std::vector<std::unique_ptr<cNeuralNet>> mNetPool;
-	int mCurrActiveNet;
-	std::vector<int> mBatchBuffer;
-	double mAvgReward;
+    std::vector<cNeuralNet::eOffsetScaleType> mInputOffsetScaleTypes;
+    tDataRecord mDataRecordX;
 
-	std::mutex mLock;
-	std::vector<cNeuralNetLearner*> mLearners;
+    cNeuralNet::tProblem mProb;
+    std::vector<std::unique_ptr<cNeuralNet>> mNetPool;
+    int mCurrActiveNet;
+    std::vector<int> mBatchBuffer;
+    double mAvgReward;
 
-	cParamServer* mParamServer;
-	tCallbackFunc mIntOutputCallback;
+    std::mutex mLock;
+    std::vector<cNeuralNetLearner *> mLearners;
 
-	const std::unique_ptr<cNeuralNet>& GetCurrNet() const;
+    cParamServer *mParamServer;
+    tCallbackFunc mIntOutputCallback;
 
-	virtual void BuildExpBuffer(std::unique_ptr<cExpBuffer>& out_exp_buffer) const;
-	virtual void InitExpBuffer(int buffer_size);
-	virtual void SetupExpBufferParams(int buffer_size, cExpBuffer::tParams& out_params) const;
+    const std::unique_ptr<cNeuralNet> &GetCurrNet() const;
 
-	virtual void InitInputOffsetScaleTypes();
-	virtual void InitBatchBuffer();
-	virtual void InitProblem(cNeuralNet::tProblem& out_prob) const;
-	virtual void InitDataRecord();
-	virtual int GetPlaybackMemSize() const;
-	virtual void ResetParams();
+    virtual void BuildExpBuffer(std::unique_ptr<cExpBuffer> &out_exp_buffer) const;
+    virtual void InitExpBuffer(int buffer_size);
+    virtual void SetupExpBufferParams(int buffer_size, cExpBuffer::tParams &out_params) const;
 
-	virtual int GetProblemXSize() const;
-	virtual int GetProblemYSize() const;
+    virtual void InitInputOffsetScaleTypes();
+    virtual void InitBatchBuffer();
+    virtual void InitProblem(cNeuralNet::tProblem &out_prob) const;
+    virtual void InitDataRecord();
+    virtual int GetPlaybackMemSize() const;
+    virtual void ResetParams();
 
-	virtual void Pretrain();
-	virtual bool Step();
-	virtual bool BuildProblem(int net_id, cNeuralNet::tProblem& out_prob);
-	virtual void BuildProblemX(int net_id, const std::vector<int>& tuple_ids, cNeuralNet::tProblem& out_prob);
-	virtual void BuildProblemY(int net_id, const std::vector<int>& tuple_ids, const Eigen::MatrixXd& X, cNeuralNet::tProblem& out_prob);
-	// virtual void BuildProblemStateAndAction(int net_id, const std::vector<int>& tuple_ids, cNeuralNet::tProblem& out_prob);
-	// virtual void BuildProblemNextState(int net_id, const std::vector<int>& tuple_ids,
-		// const Eigen::MatrixXd& X, cNeuralNet::tProblem& out_prob);
-	virtual void UpdateMisc(const std::vector<int>& tuple_ids);
-	virtual void UpdateDataRecord(const tExpTuple& tuple);
+    virtual int GetProblemXSize() const;
+    virtual int GetProblemYSize() const;
 
-	virtual void BuildTupleX(const tExpTuple& tuple, Eigen::VectorXd& out_x);
-	virtual void BuildTupleY(int net_id, const tExpTuple& tuple, Eigen::VectorXd& out_y);
-	virtual void BuildTupleNextState(int net_id, const tExpTuple& tuple, Eigen::VectorXd& out_y);
-	virtual void FetchMinibatch(int size, std::vector<int>& out_batch);
+    virtual void Pretrain();
+    virtual bool Step();
+    virtual bool BuildProblem(int net_id, cNeuralNet::tProblem &out_prob);
+    virtual void BuildProblemX(int net_id, const std::vector<int> &tuple_ids, cNeuralNet::tProblem &out_prob);
+    virtual void BuildProblemY(int net_id, const std::vector<int> &tuple_ids, const Eigen::MatrixXd &X,
+                               cNeuralNet::tProblem &out_prob);
+    // virtual void BuildProblemStateAndAction(int net_id, const std::vector<int>& tuple_ids, cNeuralNet::tProblem&
+    // out_prob); virtual void BuildProblemNextState(int net_id, const std::vector<int>& tuple_ids, const
+    // Eigen::MatrixXd& X, cNeuralNet::tProblem& out_prob);
+    virtual void UpdateMisc(const std::vector<int> &tuple_ids);
+    virtual void UpdateDataRecord(const tExpTuple &tuple);
 
-	virtual int GetTargetNetID(int net_id) const;
-	virtual void UpdateCurrActiveNetID();
-	virtual const std::unique_ptr<cNeuralNet>& GetTargetNet(int net_id) const;
-	virtual void UpdateNet(int net_id, const cNeuralNet::tProblem& prob);
+    virtual void BuildTupleX(const tExpTuple &tuple, Eigen::VectorXd &out_x);
+    virtual void BuildTupleY(int net_id, const tExpTuple &tuple, Eigen::VectorXd &out_y);
+    virtual void BuildTupleNextState(int net_id, const tExpTuple &tuple, Eigen::VectorXd &out_y);
+    virtual void FetchMinibatch(int size, std::vector<int> &out_batch);
 
-	virtual tExpTuple GetTuple(int t) const;
+    virtual int GetTargetNetID(int net_id) const;
+    virtual void UpdateCurrActiveNetID();
+    virtual const std::unique_ptr<cNeuralNet> &GetTargetNet(int net_id) const;
+    virtual void UpdateNet(int net_id, const cNeuralNet::tProblem &prob);
 
-	virtual const Eigen::VectorXd& GetInputOffset() const;
-	virtual const Eigen::VectorXd& GetInputScale() const;
-	virtual void UpdateOffsetScale();
-	virtual void UpdateStage();
-	virtual void InitStage();
-	virtual void ApplySteps(int num_steps);
-	virtual void IncIter();
+    virtual tExpTuple GetTuple(int t) const;
 
-	virtual int GetNetPoolSize() const;
-	virtual void BuildNets();
-	virtual void BuildNetPool(const std::string& net_file, const std::string& solver_file, int pool_size);
-	virtual int GetPoolSize() const;
-	virtual void LoadModels();
+    virtual const Eigen::VectorXd &GetInputOffset() const;
+    virtual const Eigen::VectorXd &GetInputScale() const;
+    virtual void UpdateOffsetScale();
+    virtual void UpdateStage();
+    virtual void InitStage();
+    virtual void ApplySteps(int num_steps);
+    virtual void IncIter();
 
-	virtual bool EnableIntOutput() const;
+    virtual int GetNetPoolSize() const;
+    virtual void BuildNets();
+    virtual void BuildNetPool(const std::string &net_file, const std::string &solver_file, int pool_size);
+    virtual int GetPoolSize() const;
+    virtual void LoadModels();
 
-	virtual int GetNumLearners() const;
-	virtual void ResetLearners();
-	virtual void ResetSolvers();
+    virtual bool EnableIntOutput() const;
 
-	virtual void UpdateParamServerInputOffsetScale(const Eigen::VectorXd& offset, const Eigen::VectorXd& scale);
-	virtual void SyncNet(int net_id);
+    virtual int GetNumLearners() const;
+    virtual void ResetLearners();
+    virtual void ResetSolvers();
 
-	virtual void OutputTuple(const tExpTuple& tuple, const std::string& out_file) const;
+    virtual void UpdateParamServerInputOffsetScale(const Eigen::VectorXd &offset, const Eigen::VectorXd &scale);
+    virtual void SyncNet(int net_id);
+
+    virtual void OutputTuple(const tExpTuple &tuple, const std::string &out_file) const;
 
 #if defined(OUTPUT_TRAINER_LOG)
-public:
-	struct tLog
-	{
-		int mBuildTupleXSamples;
-		double mBuildTupleXTime;
-		int mBuildTupleYSamples;
-		double mBuildTupleYTime;
-		int mUpdateNetSamples;
-		double mUpdateNetTime;
-		int mStepSamples;
-		double mStepTime;
+  public:
+    struct tLog {
+        int mBuildTupleXSamples;
+        double mBuildTupleXTime;
+        int mBuildTupleYSamples;
+        double mBuildTupleYTime;
+        int mUpdateNetSamples;
+        double mUpdateNetTime;
+        int mStepSamples;
+        double mStepTime;
 
-		int mBuildActorTupleXSamples;
-		double mBuildActorTupleXTime;
-		int mBuildActorTupleYSamples;
-		double mBuildActorTupleYTime;
-		int mUpdateActorNetSamples;
-		double mUpdateActorNetTime;
-		int mStepActorSamples;
-		double mStepActorTime;
+        int mBuildActorTupleXSamples;
+        double mBuildActorTupleXTime;
+        int mBuildActorTupleYSamples;
+        double mBuildActorTupleYTime;
+        int mUpdateActorNetSamples;
+        double mUpdateActorNetTime;
+        int mStepActorSamples;
+        double mStepActorTime;
 
-		int mAsyncForwardBackSamples;
-		double mAsyncForwardBackTime;
-		int mAsyncUpdateNetSamples;
-		double mAsyncUpdateNetTime;
+        int mAsyncForwardBackSamples;
+        double mAsyncForwardBackTime;
+        int mAsyncUpdateNetSamples;
+        double mAsyncUpdateNetTime;
 
-		int mLockWaitSamples;
-		double mLockWaitTime;
+        int mLockWaitSamples;
+        double mLockWaitTime;
 
-		double mTotalExpTime;
-		double mTotalTime;
+        double mTotalExpTime;
+        double mTotalTime;
 
-		int mIters;
-		double mAvgIterTime;
+        int mIters;
+        double mAvgIterTime;
 
-		tLog();
-		void Write(FILE* f) const;
-	};
+        tLog();
+        void Write(FILE *f) const;
+    };
 
-	const tLog& GetLog() const;
+    const tLog &GetLog() const;
 
-protected:
-	std::mutex mLogLock;
-	tLog mLog;
-	std::clock_t mStartTime;
+  protected:
+    std::mutex mLogLock;
+    tLog mLog;
+    std::clock_t mStartTime;
 
-	void InitLog();
-	void EndLog();
-	void WriteLog(const std::string& log_file) const;
+    void InitLog();
+    void EndLog();
+    void WriteLog(const std::string &log_file) const;
 #endif // OUTPUT_TRAINER_LOG
 };

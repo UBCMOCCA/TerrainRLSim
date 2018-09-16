@@ -1,28 +1,19 @@
 #include "ScenarioImitateStepEval.h"
 #include "scenarios/ScenarioExpImitateStep.h"
 
-cScenarioImitateStepEval::cScenarioImitateStepEval() :
-	cScenarioExpImitateStep(),
-	cScenarioImitateTargetEval()
-{
-	EnableTargetPos(false);
-	EnableRandTargetPos(false);
+cScenarioImitateStepEval::cScenarioImitateStepEval() : cScenarioExpImitateStep(), cScenarioImitateTargetEval() {
+    EnableTargetPos(false);
+    EnableRandTargetPos(false);
 }
 
-cScenarioImitateStepEval::~cScenarioImitateStepEval()
-{
-}
+cScenarioImitateStepEval::~cScenarioImitateStepEval() {}
 
-std::string cScenarioImitateStepEval::GetName() const
-{
-	return "Imitate Step Evaluation";
-}
+std::string cScenarioImitateStepEval::GetName() const { return "Imitate Step Evaluation"; }
 
-bool cScenarioImitateStepEval::HasFallen() const
-{
-	bool fallen = cScenarioImitateTargetEval::HasFallen();
+bool cScenarioImitateStepEval::HasFallen() const {
+    bool fallen = cScenarioImitateTargetEval::HasFallen();
 #if defined(ENABLE_KIN_CONTROLLER_TEST)
-	fallen = false;
+    fallen = false;
 #endif
-	return fallen;
+    return fallen;
 }

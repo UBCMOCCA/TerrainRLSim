@@ -11,21 +11,21 @@
 #include "ACLearner.h"
 
 class cACDLearner : public cACLearner {
-public:
-	cACDLearner(const std::shared_ptr<cNeuralNetTrainer>& trainer);
-	virtual ~cACDLearner();
+  public:
+    cACDLearner(const std::shared_ptr<cNeuralNetTrainer> &trainer);
+    virtual ~cACDLearner();
 
-	virtual void OutputForwardDynamics(const std::string& filename) const;
-	virtual void SyncNet();
-	virtual bool HasForwardDynamicsNet() const;
-	virtual void LoadForwardDynamicsNet(const std::string& net_file);
-	virtual void LoadForwardDynamicsSolver(const std::string& solver_file);
-	virtual void SetForwardDynamicsNet(cNeuralNet* net);
-	virtual const cNeuralNet* GetForwardDynamicsNet() const;
-	virtual void Init();
+    virtual void OutputForwardDynamics(const std::string &filename) const;
+    virtual void SyncNet();
+    virtual bool HasForwardDynamicsNet() const;
+    virtual void LoadForwardDynamicsNet(const std::string &net_file);
+    virtual void LoadForwardDynamicsSolver(const std::string &solver_file);
+    virtual void SetForwardDynamicsNet(cNeuralNet *net);
+    virtual const cNeuralNet *GetForwardDynamicsNet() const;
+    virtual void Init();
 
-protected:
-	cNeuralNet* mForwardDynamicsNet;
+  protected:
+    cNeuralNet *mForwardDynamicsNet;
 };
 
 #endif /* LEARNING_ACDLEARNER_H_ */

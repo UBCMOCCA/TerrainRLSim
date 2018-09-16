@@ -1,18 +1,16 @@
 #pragma once
 #include "sim/CtPDPhaseTargetController.h"
 
-class cCtTargetTerrController : public virtual cCtPDPhaseTargetController
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-	
-	cCtTargetTerrController();
-	virtual ~cCtTargetTerrController();
+class cCtTargetTerrController : public virtual cCtPDPhaseTargetController {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	virtual int GetNumGroundSamples() const;
-	tVector CalcGroundSamplePos(int s) const;
-	
-protected:
+    cCtTargetTerrController();
+    virtual ~cCtTargetTerrController();
 
-	virtual int GetGroundSampleRes() const;
+    virtual int GetNumGroundSamples() const;
+    tVector CalcGroundSamplePos(int s) const;
+
+  protected:
+    virtual int GetGroundSampleRes() const;
 };

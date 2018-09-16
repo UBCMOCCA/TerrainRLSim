@@ -1,17 +1,16 @@
 #pragma once
 
-#include "scenarios/ScenarioHikeEval.h"
 #include "scenarios/ScenarioExpSoccer.h"
+#include "scenarios/ScenarioHikeEval.h"
 
-class cScenarioSoccerEval : virtual public cScenarioHikeEval, virtual public cScenarioExpSoccer
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+class cScenarioSoccerEval : virtual public cScenarioHikeEval, virtual public cScenarioExpSoccer {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	cScenarioSoccerEval();
-	virtual ~cScenarioSoccerEval();
+    cScenarioSoccerEval();
+    virtual ~cScenarioSoccerEval();
 
-	virtual std::string GetName() const;
+    virtual std::string GetName() const;
 
-protected:
+  protected:
 };

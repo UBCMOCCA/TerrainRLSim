@@ -23,7 +23,7 @@
 		"StepH0Max": 0.4,
 		"StepH1Min": -0.4,
 		"StepH1Max": -0.1,
-		
+
 		"BumpHMin": 0,
 		"BumpHMax": 0.03,
 

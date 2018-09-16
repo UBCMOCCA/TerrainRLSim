@@ -11,15 +11,15 @@
 #include "learning/CaclaTrainer.h"
 
 class cCaclaDVTrainer : public cCaclaTrainer {
-public:
-	cCaclaDVTrainer();
-	virtual ~cCaclaDVTrainer();
+  public:
+    cCaclaDVTrainer();
+    virtual ~cCaclaDVTrainer();
 
-protected:
-	virtual int GetTargetNetID(int net_id) const;
-	virtual void UpdateCritic();
-	virtual void BuildProblemY(int net_id, const std::vector<int>& tuple_ids, const Eigen::MatrixXd& X, cNeuralNet::tProblem& out_prob);
-
+  protected:
+    virtual int GetTargetNetID(int net_id) const;
+    virtual void UpdateCritic();
+    virtual void BuildProblemY(int net_id, const std::vector<int> &tuple_ids, const Eigen::MatrixXd &X,
+                               cNeuralNet::tProblem &out_prob);
 };
 
 #endif /* LEARNING_CACLADVTRAINER_H_ */

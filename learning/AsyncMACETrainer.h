@@ -2,20 +2,18 @@
 
 #include "learning/AsyncTrainer.h"
 
-class cAsyncMACETrainer : public cAsyncTrainer
-{
-public:
+class cAsyncMACETrainer : public cAsyncTrainer {
+  public:
+    cAsyncMACETrainer();
+    virtual ~cAsyncMACETrainer();
 
-	cAsyncMACETrainer();
-	virtual ~cAsyncMACETrainer();
+    virtual void SetNumActionFrags(int num);
+    virtual void SetActionFragSize(int size);
 
-	virtual void SetNumActionFrags(int num);
-	virtual void SetActionFragSize(int size);
+  protected:
+    int mNumActionFrags;
+    int mActionFragSize;
 
-protected:
-	int mNumActionFrags;
-	int mActionFragSize;
-	
-	virtual void BuildTrainer(std::shared_ptr<cNeuralNetTrainer>& out_trainer) const;
-	virtual void SetupTrainer(std::shared_ptr<cNeuralNetTrainer>& out_trainer);
+    virtual void BuildTrainer(std::shared_ptr<cNeuralNetTrainer> &out_trainer) const;
+    virtual void SetupTrainer(std::shared_ptr<cNeuralNetTrainer> &out_trainer);
 };

@@ -5,7 +5,7 @@
 "VertSpacingX": 0.2,
 "VertSpacingZ": 0.2,
 
-"Params": 
+"Params":
 [
 	{
 		"PathWidth0": 4,

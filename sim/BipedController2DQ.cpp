@@ -8,11 +8,9 @@
 #include "BipedController2DQ.h"
 
 cBipedController2DQ::cBipedController2DQ() {
-	// TODO Auto-generated constructor stub
-
+    // TODO Auto-generated constructor stub
 }
 
 cBipedController2DQ::~cBipedController2DQ() {
-	// TODO Auto-generated destructor stub
+    // TODO Auto-generated destructor stub
 }
-

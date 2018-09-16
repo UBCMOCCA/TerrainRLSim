@@ -1,418 +1,327 @@
 #include "AsyncACTrainer.h"
 #include "ACTrainer.h"
 
-cAsyncACTrainer::cAsyncACTrainer()
-{
+cAsyncACTrainer::cAsyncACTrainer() {}
+
+cAsyncACTrainer::~cAsyncACTrainer() {}
+
+int cAsyncACTrainer::GetIter() const { return GetCriticIter(); }
+
+int cAsyncACTrainer::GetCriticIter() const {
+    int iter = 0;
+    if (mTrainers.size() > 0) {
+        auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[0]);
+        iter = trainer->GetCriticIter();
+    }
+    return iter;
 }
 
-cAsyncACTrainer::~cAsyncACTrainer()
-{
+int cAsyncACTrainer::GetActorIter() const {
+    int iter = 0;
+    if (mTrainers.size() > 0) {
+        auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[0]);
+        iter = trainer->GetActorIter();
+    }
+    return iter;
 }
 
-int cAsyncACTrainer::GetIter() const
-{
-	return GetCriticIter();
+void cAsyncACTrainer::LoadModel(const std::string &model_file) { LoadCriticModel(model_file); }
+
+void cAsyncACTrainer::LoadCriticModel(const std::string &model_file) {
+    int critic_start = 0;
+    int critic_end = 0;
+    GetCriticIDs(critic_start, critic_end);
+
+    for (int i = critic_start; i < critic_end; ++i) {
+        mPool[i].mNet->LoadModel(model_file);
+    }
+
+    for (int i = 0; i < GetNumTrainers(); ++i) {
+        auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
+        trainer->LoadCriticModel(model_file);
+    }
 }
 
-int cAsyncACTrainer::GetCriticIter() const
-{
-	int iter = 0;
-	if (mTrainers.size() > 0)
-	{
-		auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[0]);
-		iter = trainer->GetCriticIter();
-	}
-	return iter;
+void cAsyncACTrainer::LoadActorModel(const std::string &model_file) {
+    int actor_start = 0;
+    int actor_end = 0;
+    GetActorIDs(actor_start, actor_end);
+
+    for (int i = actor_start; i < actor_end; ++i) {
+        mPool[i].mNet->LoadModel(model_file);
+    }
+
+    for (int i = 0; i < GetNumTrainers(); ++i) {
+        auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
+        trainer->LoadActorModel(model_file);
+    }
 }
 
-int cAsyncACTrainer::GetActorIter() const
-{
-	int iter = 0;
-	if (mTrainers.size() > 0)
-	{
-		auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[0]);
-		iter = trainer->GetActorIter();
-	}
-	return iter;
+void cAsyncACTrainer::LoadScale(const std::string &scale_file) { LoadCriticScale(scale_file); }
+
+void cAsyncACTrainer::LoadCriticScale(const std::string &scale_file) {
+    int critic_start = 0;
+    int critic_end = 0;
+    GetCriticIDs(critic_start, critic_end);
+
+    for (int i = critic_start; i < critic_end; ++i) {
+        mPool[i].mNet->LoadScale(scale_file);
+        mPool[i].mScaleUpdateCount = 0;
+    }
+
+    for (int i = 0; i < GetNumTrainers(); ++i) {
+        auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
+        trainer->LoadCriticScale(scale_file);
+    }
 }
 
-void cAsyncACTrainer::LoadModel(const std::string& model_file)
-{
-	LoadCriticModel(model_file);
+void cAsyncACTrainer::LoadActorScale(const std::string &scale_file) {
+    int actor_start = 0;
+    int actor_end = 0;
+    GetActorIDs(actor_start, actor_end);
+
+    for (int i = actor_start; i < actor_end; ++i) {
+        mPool[i].mNet->LoadScale(scale_file);
+        mPool[i].mScaleUpdateCount = 0;
+    }
+
+    for (int i = 0; i < GetNumTrainers(); ++i) {
+        auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
+        trainer->LoadActorScale(scale_file);
+    }
 }
 
-void cAsyncACTrainer::LoadCriticModel(const std::string& model_file)
-{
-	int critic_start = 0;
-	int critic_end = 0;
-	GetCriticIDs(critic_start, critic_end);
+bool cAsyncACTrainer::HasInitModel() const { return HasCriticInitModel() && HasActorInitModel(); }
 
-	for (int i = critic_start; i < critic_end; ++i)
-	{
-		mPool[i].mNet->LoadModel(model_file);
-	}
+bool cAsyncACTrainer::HasCriticInitModel() const {
+    bool has_model = false;
 
-	for (int i = 0; i < GetNumTrainers(); ++i)
-	{
-		auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
-		trainer->LoadCriticModel(model_file);
-	}
+    int critic_start = 0;
+    int critic_end = 0;
+    GetCriticIDs(critic_start, critic_end);
+
+    if (critic_end > critic_start) {
+        has_model = mPool[critic_start].mNet->HasValidModel();
+    }
+
+    return has_model;
 }
 
-void cAsyncACTrainer::LoadActorModel(const std::string& model_file)
-{
-	int actor_start = 0;
-	int actor_end = 0;
-	GetActorIDs(actor_start, actor_end);
+bool cAsyncACTrainer::HasActorInitModel() const {
+    bool has_model = false;
 
-	for (int i = actor_start; i < actor_end; ++i)
-	{
-		mPool[i].mNet->LoadModel(model_file);
-	}
+    int actor_start = 0;
+    int actor_end = 0;
+    GetActorIDs(actor_start, actor_end);
 
-	for (int i = 0; i < GetNumTrainers(); ++i)
-	{
-		auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
-		trainer->LoadActorModel(model_file);
-	}
+    if (actor_end > actor_start) {
+        has_model = mPool[actor_start].mNet->HasValidModel();
+    }
+
+    return has_model;
 }
 
-void cAsyncACTrainer::LoadScale(const std::string& scale_file)
-{
-	LoadCriticScale(scale_file);
+int cAsyncACTrainer::GetInputSize() const { return GetCriticInputSize(); }
+
+int cAsyncACTrainer::GetOutputSize() const { return GetCriticOutputSize(); }
+
+int cAsyncACTrainer::GetCriticInputSize() const {
+    int input_size = 0;
+    int critic_start = 0;
+    int critic_end = 0;
+    GetCriticIDs(critic_start, critic_end);
+
+    if (critic_start < critic_end) {
+        auto &entry = mPool[critic_start];
+        auto &net = entry.mNet;
+        input_size = net->GetInputSize();
+    }
+    return input_size;
 }
 
-void cAsyncACTrainer::LoadCriticScale(const std::string& scale_file)
-{
-	int critic_start = 0;
-	int critic_end = 0;
-	GetCriticIDs(critic_start, critic_end);
+int cAsyncACTrainer::GetCriticOutputSize() const {
+    int output_size = 0;
+    int critic_start = 0;
+    int critic_end = 0;
+    GetCriticIDs(critic_start, critic_end);
 
-	for (int i = critic_start; i < critic_end; ++i)
-	{
-		mPool[i].mNet->LoadScale(scale_file);
-		mPool[i].mScaleUpdateCount = 0;
-	}
-
-	for (int i = 0; i < GetNumTrainers(); ++i)
-	{
-		auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
-		trainer->LoadCriticScale(scale_file);
-	}
+    if (critic_start < critic_end) {
+        auto &entry = mPool[critic_start];
+        auto &net = entry.mNet;
+        output_size = net->GetOutputSize();
+    }
+    return output_size;
 }
 
-void cAsyncACTrainer::LoadActorScale(const std::string& scale_file)
-{
-	int actor_start = 0;
-	int actor_end = 0;
-	GetActorIDs(actor_start, actor_end);
+int cAsyncACTrainer::GetActorInputSize() const {
+    int input_size = 0;
+    int actor_start = 0;
+    int actor_end = 0;
+    GetActorIDs(actor_start, actor_end);
 
-	for (int i = actor_start; i < actor_end; ++i)
-	{
-		mPool[i].mNet->LoadScale(scale_file);
-		mPool[i].mScaleUpdateCount = 0;
-	}
-
-	for (int i = 0; i < GetNumTrainers(); ++i)
-	{
-		auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
-		trainer->LoadActorScale(scale_file);
-	}
+    if (actor_start < actor_end) {
+        auto &entry = mPool[actor_start];
+        auto &net = entry.mNet;
+        input_size = net->GetInputSize();
+    }
+    return input_size;
 }
 
-bool cAsyncACTrainer::HasInitModel() const
-{
-	return HasCriticInitModel() && HasActorInitModel();
+int cAsyncACTrainer::GetActorOutputSize() const {
+    int output_size = 0;
+    int actor_start = 0;
+    int actor_end = 0;
+    GetActorIDs(actor_start, actor_end);
+
+    if (actor_start < actor_end) {
+        auto &entry = mPool[actor_start];
+        auto &net = entry.mNet;
+        output_size = net->GetOutputSize();
+    }
+    return output_size;
 }
 
-bool cAsyncACTrainer::HasCriticInitModel() const
-{
-	bool has_model = false;
-
-	int critic_start = 0;
-	int critic_end = 0;
-	GetCriticIDs(critic_start, critic_end);
-
-	if (critic_end > critic_start)
-	{
-		has_model = mPool[critic_start].mNet->HasValidModel();
-	}
-
-	return has_model;
+void cAsyncACTrainer::SetCriticInputOffsetScaleType(const std::vector<cNeuralNet::eOffsetScaleType> &scale_types) {
+    for (int i = 0; i < GetNumTrainers(); ++i) {
+        mTrainers[i]->SetCriticInputOffsetScaleType(scale_types);
+    }
 }
 
-bool cAsyncACTrainer::HasActorInitModel() const
-{
-	bool has_model = false;
-
-	int actor_start = 0;
-	int actor_end = 0;
-	GetActorIDs(actor_start, actor_end);
-
-	if (actor_end > actor_start)
-	{
-		has_model = mPool[actor_start].mNet->HasValidModel();
-	}
-
-	return has_model;
+void cAsyncACTrainer::SetActorInputOffsetScaleType(const std::vector<cNeuralNet::eOffsetScaleType> &scale_types) {
+    for (int i = 0; i < GetNumTrainers(); ++i) {
+        mTrainers[i]->SetActorInputOffsetScaleType(scale_types);
+    }
 }
 
-
-int cAsyncACTrainer::GetInputSize() const
-{
-	return GetCriticInputSize();
+void cAsyncACTrainer::SetInputOffsetScale(const Eigen::VectorXd &offset, const Eigen::VectorXd &scale) {
+    SetCriticInputOffsetScale(offset, scale);
 }
 
-int cAsyncACTrainer::GetOutputSize() const
-{
-	return GetCriticOutputSize();
+void cAsyncACTrainer::SetOutputOffsetScale(const Eigen::VectorXd &offset, const Eigen::VectorXd &scale) {
+    SetCriticOutputOffsetScale(offset, scale);
 }
 
-int cAsyncACTrainer::GetCriticInputSize() const
-{
-	int input_size = 0;
-	int critic_start = 0;
-	int critic_end = 0;
-	GetCriticIDs(critic_start, critic_end);
+void cAsyncACTrainer::SetCriticInputOffsetScale(const Eigen::VectorXd &offset, const Eigen::VectorXd &scale) {
+    int critic_start = 0;
+    int critic_end = 0;
+    GetCriticIDs(critic_start, critic_end);
 
-	if (critic_start < critic_end)
-	{
-		auto& entry = mPool[critic_start];
-		auto& net = entry.mNet;
-		input_size = net->GetInputSize();
-	}
-	return input_size;
+    for (int i = critic_start; i < critic_end; ++i) {
+        mPool[i].mNet->SetInputOffsetScale(offset, scale);
+        mPool[i].mScaleUpdateCount = 0;
+    }
+
+    for (int i = 0; i < GetNumTrainers(); ++i) {
+        auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
+        trainer->SetCriticInputOffsetScale(offset, scale);
+    }
 }
 
-int cAsyncACTrainer::GetCriticOutputSize() const
-{
-	int output_size = 0;
-	int critic_start = 0;
-	int critic_end = 0;
-	GetCriticIDs(critic_start, critic_end);
+void cAsyncACTrainer::SetCriticOutputOffsetScale(const Eigen::VectorXd &offset, const Eigen::VectorXd &scale) {
+    int critic_start = 0;
+    int critic_end = 0;
+    GetCriticIDs(critic_start, critic_end);
 
-	if (critic_start < critic_end)
-	{
-		auto& entry = mPool[critic_start];
-		auto& net = entry.mNet;
-		output_size = net->GetOutputSize();
-	}
-	return output_size;
+    for (int i = critic_start; i < critic_end; ++i) {
+        mPool[i].mNet->SetOutputOffsetScale(offset, scale);
+    }
+
+    for (int i = 0; i < GetNumTrainers(); ++i) {
+        auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
+        trainer->SetCriticOutputOffsetScale(offset, scale);
+    }
 }
 
-int cAsyncACTrainer::GetActorInputSize() const
-{
-	int input_size = 0;
-	int actor_start = 0;
-	int actor_end = 0;
-	GetActorIDs(actor_start, actor_end);
+void cAsyncACTrainer::SetActorInputOffsetScale(const Eigen::VectorXd &offset, const Eigen::VectorXd &scale) {
+    int actor_start = 0;
+    int actor_end = 0;
+    GetActorIDs(actor_start, actor_end);
 
-	if (actor_start < actor_end)
-	{
-		auto& entry = mPool[actor_start];
-		auto& net = entry.mNet;
-		input_size = net->GetInputSize();
-	}
-	return input_size;
+    for (int i = actor_start; i < actor_end; ++i) {
+        mPool[i].mNet->SetInputOffsetScale(offset, scale);
+        mPool[i].mScaleUpdateCount = 0;
+    }
+
+    for (int i = 0; i < GetNumTrainers(); ++i) {
+        auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
+        trainer->SetActorInputOffsetScale(offset, scale);
+    }
 }
 
-int cAsyncACTrainer::GetActorOutputSize() const
-{
-	int output_size = 0;
-	int actor_start = 0;
-	int actor_end = 0;
-	GetActorIDs(actor_start, actor_end);
+void cAsyncACTrainer::SetActorOutputOffsetScale(const Eigen::VectorXd &offset, const Eigen::VectorXd &scale) {
+    int actor_start = 0;
+    int actor_end = 0;
+    GetActorIDs(actor_start, actor_end);
 
-	if (actor_start < actor_end)
-	{
-		auto& entry = mPool[actor_start];
-		auto& net = entry.mNet;
-		output_size = net->GetOutputSize();
-	}
-	return output_size;
+    for (int i = actor_start; i < actor_end; ++i) {
+        mPool[i].mNet->SetOutputOffsetScale(offset, scale);
+    }
+
+    for (int i = 0; i < GetNumTrainers(); ++i) {
+        auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
+        trainer->SetActorOutputOffsetScale(offset, scale);
+    }
 }
 
-void cAsyncACTrainer::SetCriticInputOffsetScaleType(const std::vector<cNeuralNet::eOffsetScaleType>& scale_types)
-{
-	for (int i = 0; i < GetNumTrainers(); ++i)
-	{
-		mTrainers[i]->SetCriticInputOffsetScaleType(scale_types);
-	}
+void cAsyncACTrainer::GetCriticIDs(int &out_start, int &out_end) const {
+    out_start = 0;
+    out_end = mParams.mPoolSize;
+    assert(out_end - out_start == GetNumCritics());
 }
 
-void cAsyncACTrainer::SetActorInputOffsetScaleType(const std::vector<cNeuralNet::eOffsetScaleType>& scale_types)
-{
-	for (int i = 0; i < GetNumTrainers(); ++i)
-	{
-		mTrainers[i]->SetActorInputOffsetScaleType(scale_types);
-	}
+void cAsyncACTrainer::GetActorIDs(int &out_start, int &out_end) const {
+    out_start = mParams.mPoolSize;
+    out_end = static_cast<int>(mPool.size());
+    assert(out_end - out_start == GetNumActors());
 }
 
-void cAsyncACTrainer::SetInputOffsetScale(const Eigen::VectorXd& offset, const Eigen::VectorXd& scale)
-{
-	SetCriticInputOffsetScale(offset, scale);
+void cAsyncACTrainer::ResetCriticWeights() {
+    for (int i = 0; i < GetNumTrainers(); ++i) {
+        auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
+        trainer->ResetCriticWeights();
+    }
 }
 
-void cAsyncACTrainer::SetOutputOffsetScale(const Eigen::VectorXd& offset, const Eigen::VectorXd& scale)
-{
-	SetCriticOutputOffsetScale(offset, scale);
+int cAsyncACTrainer::GetNetPoolSize() const { return GetNumCritics() + GetNumActors(); }
+
+void cAsyncACTrainer::SetupNet(int id) {
+    if (IsCritic(id)) {
+        SetupCriticNet(id);
+    } else if (IsActor(id)) {
+        SetupActorNet(id);
+    }
 }
 
-void cAsyncACTrainer::SetCriticInputOffsetScale(const Eigen::VectorXd& offset, const Eigen::VectorXd& scale)
-{
-	int critic_start = 0;
-	int critic_end = 0;
-	GetCriticIDs(critic_start, critic_end);
-
-	for (int i = critic_start; i < critic_end; ++i)
-	{
-		mPool[i].mNet->SetInputOffsetScale(offset, scale);
-		mPool[i].mScaleUpdateCount = 0;
-	}
-
-	for (int i = 0; i < GetNumTrainers(); ++i)
-	{
-		auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
-		trainer->SetCriticInputOffsetScale(offset, scale);
-	}
+void cAsyncACTrainer::SetupCriticNet(int id) {
+    auto &net = mPool[id].mNet;
+    // net->LoadNet(mParams.mNetFile);
+    net->LoadSolver(mParams.mCriticSolverFile, true);
 }
 
-void cAsyncACTrainer::SetCriticOutputOffsetScale(const Eigen::VectorXd& offset, const Eigen::VectorXd& scale)
-{
-	int critic_start = 0;
-	int critic_end = 0;
-	GetCriticIDs(critic_start, critic_end);
-
-	for (int i = critic_start; i < critic_end; ++i)
-	{
-		mPool[i].mNet->SetOutputOffsetScale(offset, scale);
-	}
-
-	for (int i = 0; i < GetNumTrainers(); ++i)
-	{
-		auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
-		trainer->SetCriticOutputOffsetScale(offset, scale);
-	}
+void cAsyncACTrainer::SetupActorNet(int id) {
+    auto &net = mPool[id].mNet;
+    // net->LoadNet(mActorNetFile);
+    net->LoadSolver(mParams.mSolverFile, true);
 }
 
-void cAsyncACTrainer::SetActorInputOffsetScale(const Eigen::VectorXd& offset, const Eigen::VectorXd& scale)
-{
-	int actor_start = 0;
-	int actor_end = 0;
-	GetActorIDs(actor_start, actor_end);
-
-	for (int i = actor_start; i < actor_end; ++i)
-	{
-		mPool[i].mNet->SetInputOffsetScale(offset, scale);
-		mPool[i].mScaleUpdateCount = 0;
-	}
-
-	for (int i = 0; i < GetNumTrainers(); ++i)
-	{
-		auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
-		trainer->SetActorInputOffsetScale(offset, scale);
-	}
+void cAsyncACTrainer::SetupTrainer(std::shared_ptr<cNeuralNetTrainer> &out_trainer) {
+    cAsyncTrainer::SetupTrainer(out_trainer);
 }
 
-void cAsyncACTrainer::SetActorOutputOffsetScale(const Eigen::VectorXd& offset, const Eigen::VectorXd& scale)
-{
-	int actor_start = 0;
-	int actor_end = 0;
-	GetActorIDs(actor_start, actor_end);
-
-	for (int i = actor_start; i < actor_end; ++i)
-	{
-		mPool[i].mNet->SetOutputOffsetScale(offset, scale);
-	}
-
-	for (int i = 0; i < GetNumTrainers(); ++i)
-	{
-		auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
-		trainer->SetActorOutputOffsetScale(offset, scale);
-	}
+int cAsyncACTrainer::IsCritic(int id) const {
+    int start = 0;
+    int end = 0;
+    GetCriticIDs(start, end);
+    return id >= start && id < end;
 }
 
-void cAsyncACTrainer::GetCriticIDs(int& out_start, int& out_end) const
-{
-	out_start = 0;
-	out_end = mParams.mPoolSize;
-	assert(out_end - out_start == GetNumCritics());
+int cAsyncACTrainer::IsActor(int id) const {
+    int start = 0;
+    int end = 0;
+    GetActorIDs(start, end);
+    return id >= start && id < end;
 }
 
-void cAsyncACTrainer::GetActorIDs(int& out_start, int& out_end) const
-{
-	out_start = mParams.mPoolSize;
-	out_end = static_cast<int>(mPool.size());
-	assert(out_end - out_start == GetNumActors());
-}
+int cAsyncACTrainer::GetNumCritics() const { return mParams.mPoolSize; }
 
-void cAsyncACTrainer::ResetCriticWeights()
-{
-	for (int i = 0; i < GetNumTrainers(); ++i)
-	{
-		auto trainer = std::static_pointer_cast<cACTrainer>(mTrainers[i]);
-		trainer->ResetCriticWeights();
-	}
-}
-
-int cAsyncACTrainer::GetNetPoolSize() const
-{
-	return GetNumCritics() + GetNumActors();
-}
-
-void cAsyncACTrainer::SetupNet(int id)
-{
-	if (IsCritic(id))
-	{
-		SetupCriticNet(id);
-	}
-	else if (IsActor(id))
-	{
-		SetupActorNet(id);
-	}
-}
-
-void cAsyncACTrainer::SetupCriticNet(int id)
-{
-	auto& net = mPool[id].mNet;
-	//net->LoadNet(mParams.mNetFile);
-	net->LoadSolver(mParams.mCriticSolverFile, true);
-}
-
-void cAsyncACTrainer::SetupActorNet(int id)
-{
-	auto& net = mPool[id].mNet;
-	//net->LoadNet(mActorNetFile);
-	net->LoadSolver(mParams.mSolverFile, true);
-}
-
-void cAsyncACTrainer::SetupTrainer(std::shared_ptr<cNeuralNetTrainer>& out_trainer)
-{
-	cAsyncTrainer::SetupTrainer(out_trainer);
-}
-
-int cAsyncACTrainer::IsCritic(int id) const
-{
-	int start = 0;
-	int end = 0;
-	GetCriticIDs(start, end);
-	return id >= start && id < end;
-}
-
-int cAsyncACTrainer::IsActor(int id) const
-{
-	int start = 0;
-	int end = 0;
-	GetActorIDs(start, end);
-	return id >= start && id < end;
-}
-
-int cAsyncACTrainer::GetNumCritics() const
-{
-	return mParams.mPoolSize;
-}
-
-int cAsyncACTrainer::GetNumActors() const
-{
-	return 1;
-}
+int cAsyncACTrainer::GetNumActors() const { return 1; }

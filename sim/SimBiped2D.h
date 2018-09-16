@@ -10,34 +10,29 @@
 
 #include "sim/SimCharSoftFall.h"
 
-class cSimBiped2D : public cSimCharSoftFall
-{
-	public:
+class cSimBiped2D : public cSimCharSoftFall {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    enum eJoint {
+        eJointRoot,
+        eJointRightHip,
+        eJointRightKnee,
+        eJointRightAnkle,
+        eJointLeftHip,
+        eJointLeftKnee,
+        eJointLeftAnkle,
+        eJointMax,
+        eJointInvalid
+    };
 
-	enum eJoint
-	{
-		eJointRoot,
-		eJointRightHip,
-		eJointRightKnee,
-		eJointRightAnkle,
-		eJointLeftHip,
-		eJointLeftKnee,
-		eJointLeftAnkle,
-		eJointMax,
-		eJointInvalid
-	};
+    cSimBiped2D();
+    virtual ~cSimBiped2D();
 
-	cSimBiped2D();
-	virtual ~cSimBiped2D();
+    virtual bool HasStumbled() const;
 
-	virtual bool HasStumbled() const;
-
-protected:
-	
-	virtual bool FailFallMisc() const;
-
+  protected:
+    virtual bool FailFallMisc() const;
 };
 
 #endif /* SIM_SIMBIPED2D_H_ */

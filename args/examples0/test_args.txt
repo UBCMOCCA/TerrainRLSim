@@ -50,7 +50,7 @@
 //-policy_solver= data/policies/raptor/nets/raptor_mace3_solver.prototxt
 //-policy_net= data/policies/raptor/nets/raptor_mace3_net.prototxt
 //-policy_model= data/policies/raptor/models/raptor_mace3_model.h5
- 
+
 //-policy_solver= data/policies/dog/nets/dog_actor_solver.prototxt
 //-policy_net= data/policies/dog/nets/dog_actor_net.prototxt
 //-policy_model= data/policies/dog/models/dog_dpg_model.h5

@@ -2,14 +2,11 @@
 
 #include "learning/AsyncTrainer.h"
 
-class cAsyncRNNTrainer : public cAsyncTrainer
-{
-public:
+class cAsyncRNNTrainer : public cAsyncTrainer {
+  public:
+    cAsyncRNNTrainer();
+    virtual ~cAsyncRNNTrainer();
 
-	cAsyncRNNTrainer();
-	virtual ~cAsyncRNNTrainer();
-
-protected:
-	
-	virtual void BuildTrainer(std::shared_ptr<cNeuralNetTrainer>& out_trainer) const;
+  protected:
+    virtual void BuildTrainer(std::shared_ptr<cNeuralNetTrainer> &out_trainer) const;
 };

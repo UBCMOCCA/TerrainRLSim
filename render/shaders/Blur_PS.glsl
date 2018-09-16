@@ -5,7 +5,7 @@ uniform		float		gWeights[8];
 uniform		vec4		gOffset;
 varying		vec2		tex_coord;
 
-void main(void) 
+void main(void)
 {
 	vec4 result = vec4( 0.f, 0.f, 0.f, 0.f );
 	for( int i = 0; i < 8; ++i )

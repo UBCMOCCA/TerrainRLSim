@@ -27,14 +27,14 @@ num_files = len(model_files)
 f_steps = 5
 
 for f in range(0, num_files, f_steps):
-    file = model_files[f];
+    file = model_files[f]
     action_file = 'output/int_poli_actions/actions_' + os.path.splitext(file)[0] + '.txt'
     state_file = 'output/int_poli_states/states_' + os.path.splitext(file)[0] + '.txt'
-    
+
     command = exe_path + ' ' + args
     command += ' ' + '-policy_model=' + ' ' + poli_files_dir + file
     command += ' ' + '-action_output_file=' + ' ' + action_file
     command += ' ' + '-action_id_state_output_file=' + ' ' + state_file
-    
+
     print(command + '\n')
     subprocess.call(command)

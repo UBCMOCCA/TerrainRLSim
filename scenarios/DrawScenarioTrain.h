@@ -4,30 +4,30 @@
 #include "DrawScenarioSimChar.h"
 #include "scenarios/ScenarioTrain.h"
 
-class cDrawScenarioTrain: public cDrawScenarioSimChar
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+class cDrawScenarioTrain : public cDrawScenarioSimChar {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	cDrawScenarioTrain(cCamera& cam);
-	virtual ~cDrawScenarioTrain();
+    cDrawScenarioTrain(cCamera &cam);
+    virtual ~cDrawScenarioTrain();
 
-	virtual void Init();
-	virtual void Reset();
-	virtual void Clear();
-	virtual void Update(double time_elapsed);
-	
-	virtual void Keyboard(unsigned char key, int x, int y);
-	virtual void Shutdown();
+    virtual void Init();
+    virtual void Reset();
+    virtual void Clear();
+    virtual void Update(double time_elapsed);
 
-	virtual std::string GetName() const;
+    virtual void Keyboard(unsigned char key, int x, int y);
+    virtual void Shutdown();
 
-protected:
-	std::shared_ptr<cScenarioTrain> mTrain;
+    virtual std::string GetName() const;
 
-	virtual void BuildTrainScene(std::shared_ptr<cScenarioTrain>& out_scene) const;
-	virtual void SetupTrainScene(std::shared_ptr<cScenarioTrain>& out_train_scene, std::shared_ptr<cScenarioSimChar>& out_scene);
-	virtual void ToggleTraining();
+  protected:
+    std::shared_ptr<cScenarioTrain> mTrain;
 
-	virtual void UpdateScene(double time_elapsed);
+    virtual void BuildTrainScene(std::shared_ptr<cScenarioTrain> &out_scene) const;
+    virtual void SetupTrainScene(std::shared_ptr<cScenarioTrain> &out_train_scene,
+                                 std::shared_ptr<cScenarioSimChar> &out_scene);
+    virtual void ToggleTraining();
+
+    virtual void UpdateScene(double time_elapsed);
 };

@@ -1,101 +1,91 @@
 #pragma once
 #include "sim/CtPDPhaseController.h"
 
-// hack hack hack 
+// hack hack hack
 // rip out all of this stuff ASAP
 //#define ENABLE_HACK_LLC_LERP
 
-class cBipedStepController3D : public virtual cCtPDPhaseController
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-	
-	enum eStance
-	{
-		eStanceRight,
-		eStanceLeft,
-		eStanceMax
-	};
+class cBipedStepController3D : public virtual cCtPDPhaseController {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	struct tStepPlan
-	{
-		EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    enum eStance { eStanceRight, eStanceLeft, eStanceMax };
 
-		eStance mStance;
-		tVector mStepPos0;
-		tVector mStepPos1;
-		double mRootHeading;
+    struct tStepPlan {
+        EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-		tStepPlan();
-	};
+        eStance mStance;
+        tVector mStepPos0;
+        tVector mStepPos1;
+        double mRootHeading;
 
-	enum eTaskParam
-	{
-		eTaskParamStepRightX0,
-		eTaskParamStepRightY0,
-		eTaskParamStepRightZ0,
-		eTaskParamStepLeftX0,
-		eTaskParamStepLeftY0,
-		eTaskParamStepLeftZ0,
-		eTaskParamStepRightX1,
-		eTaskParamStepRightY1,
-		eTaskParamStepRightZ1,
-		eTaskParamStepLeftX1,
-		eTaskParamStepLeftY1,
-		eTaskParamStepLeftZ1,
-		eTaskParamRootHeading,
-		eTaskParamMax
-	};
-	typedef Eigen::Matrix<double, eTaskParamMax, 1> tTaskParams;
+        tStepPlan();
+    };
 
-	cBipedStepController3D();
-	virtual ~cBipedStepController3D();
+    enum eTaskParam {
+        eTaskParamStepRightX0,
+        eTaskParamStepRightY0,
+        eTaskParamStepRightZ0,
+        eTaskParamStepLeftX0,
+        eTaskParamStepLeftY0,
+        eTaskParamStepLeftZ0,
+        eTaskParamStepRightX1,
+        eTaskParamStepRightY1,
+        eTaskParamStepRightZ1,
+        eTaskParamStepLeftX1,
+        eTaskParamStepLeftY1,
+        eTaskParamStepLeftZ1,
+        eTaskParamRootHeading,
+        eTaskParamMax
+    };
+    typedef Eigen::Matrix<double, eTaskParamMax, 1> tTaskParams;
 
-	virtual void Init(cSimCharacter* character, const tVector& gravity, const std::string& param_file);
-	virtual const tStepPlan& GetStepPlan() const;
-	virtual void SetStepPlan(const tStepPlan& plan);
+    cBipedStepController3D();
+    virtual ~cBipedStepController3D();
 
-	virtual eStance PredictNextStance(double time_step) const;
-	virtual eStance GetStance() const;
-	virtual eStance GetStance(double phase) const;
-	
-	virtual void BuildNNInputOffsetScaleTypes(std::vector<cNeuralNet::eOffsetScaleType>& out_types) const;
+    virtual void Init(cSimCharacter *character, const tVector &gravity, const std::string &param_file);
+    virtual const tStepPlan &GetStepPlan() const;
+    virtual void SetStepPlan(const tStepPlan &plan);
+
+    virtual eStance PredictNextStance(double time_step) const;
+    virtual eStance GetStance() const;
+    virtual eStance GetStance(double phase) const;
+
+    virtual void BuildNNInputOffsetScaleTypes(std::vector<cNeuralNet::eOffsetScaleType> &out_types) const;
 
     // Hack to get 3D terrain working, someone should fix the inheritance
-	virtual void GetViewBound(tVector& out_min, tVector& out_max) const;
-	virtual int GetNumGroundSamples() const;
-	virtual tVector CalcGroundSamplePos(int s) const;
+    virtual void GetViewBound(tVector &out_min, tVector &out_max) const;
+    virtual int GetNumGroundSamples() const;
+    virtual tVector CalcGroundSamplePos(int s) const;
 
-	virtual void BuildPoliState(Eigen::VectorXd& out_state) const;
-	virtual void BuildContactState(Eigen::VectorXd& out_state) const;
-	virtual void BuildTaskState(Eigen::VectorXd& out_state) const;
+    virtual void BuildPoliState(Eigen::VectorXd &out_state) const;
+    virtual void BuildContactState(Eigen::VectorXd &out_state) const;
+    virtual void BuildTaskState(Eigen::VectorXd &out_state) const;
 
-protected:
+  protected:
+    std::vector<int> mEndEffectors;
+    tStepPlan mStepPlan;
 
-	std::vector<int> mEndEffectors;
-	tStepPlan mStepPlan;
+    virtual void InitEndEffectors();
+    virtual int GetNumEndEffectors() const;
 
-	virtual void InitEndEffectors();
-	virtual int GetNumEndEffectors() const;
+    virtual int GetPoliStateSize() const;
+    virtual int GetContactStateOffset() const;
+    virtual int GetContactStateSize() const;
+    virtual int GetTaskStateOffset() const;
+    virtual int GetTaskStateSize() const;
 
-	virtual int GetPoliStateSize() const;
-	virtual int GetContactStateOffset() const;
-	virtual int GetContactStateSize() const;
-	virtual int GetTaskStateOffset() const;
-	virtual int GetTaskStateSize() const;
-
-	virtual void EvalNet(const Eigen::VectorXd& x, Eigen::VectorXd& out_y) const;
-
+    virtual void EvalNet(const Eigen::VectorXd &x, Eigen::VectorXd &out_y) const;
 
 #if defined(ENABLE_HACK_LLC_LERP)
-public:
-	virtual void SetHackLerp(double lerp);
-	virtual double GetHackLerp() const;
+  public:
+    virtual void SetHackLerp(double lerp);
+    virtual double GetHackLerp() const;
 
-protected:
-	std::unique_ptr<cNeuralNet> mHackNet;
-	double mHackLerp;
+  protected:
+    std::unique_ptr<cNeuralNet> mHackNet;
+    double mHackLerp;
 
-	virtual void HackLoadNet();
+    virtual void HackLoadNet();
 #endif
 };

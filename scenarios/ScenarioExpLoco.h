@@ -2,21 +2,19 @@
 
 #include "scenarios/ScenarioExpCacla.h"
 
-class cScenarioExpLoco : virtual public cScenarioExpCacla
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+class cScenarioExpLoco : virtual public cScenarioExpCacla {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	cScenarioExpLoco();
-	virtual ~cScenarioExpLoco();
+    cScenarioExpLoco();
+    virtual ~cScenarioExpLoco();
 
-	virtual void ParseArgs(const std::shared_ptr<cArgParser>& parser);
+    virtual void ParseArgs(const std::shared_ptr<cArgParser> &parser);
 
-	virtual std::string GetName() const;
+    virtual std::string GetName() const;
 
-protected:
-	
-	tVector mTargetVel;
+  protected:
+    tVector mTargetVel;
 
-	virtual double CalcReward() const;
+    virtual double CalcReward() const;
 };

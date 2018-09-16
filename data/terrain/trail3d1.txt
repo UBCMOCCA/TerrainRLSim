@@ -1,7 +1,7 @@
 {
 "Type": "trail3d",
 
-"Params": 
+"Params":
 [
 	{
 		"PathWidth0": 1,

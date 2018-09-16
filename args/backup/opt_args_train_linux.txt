@@ -34,4 +34,3 @@
 -trainer_iters_per_output= 20
 -trainer_curriculum_iters= 0
 -trainer_init_input_offset_scale= true
-

@@ -2,7 +2,7 @@
 
 uniform		sampler2D	gBufferTex;
 varying		vec2		tex_coord;
- 
+
  float FXAALuma( vec3 rgb )
  {
 	// luminance optimization, ignore blue channel since blue aliasing is rarely noticeable
@@ -38,7 +38,7 @@ void main(void) {
 	float luma_min = min( luma_M, min( min( luma_NW, luma_NE ), min( luma_SW, luma_SE )));
 	float luma_max = max( luma_M, max( min( luma_NW, luma_NE ), max( luma_SW, luma_SE )));
 
-	//early bailout 
+	//early bailout
 	float range = luma_max - luma_min;
 
 	if ( range < max( FXAA_EDGE_THRESHOLD_MIN, luma_max * FXAA_EDGE_THRESHOLD ))
@@ -61,11 +61,11 @@ void main(void) {
 				max( vec2( -FXAA_SPAN_MAX, - FXAA_SPAN_MAX ),
 					dir * rcp_dir_min )) * texel_size;
 
-	vec3 rgb_a = 0.5f * 
+	vec3 rgb_a = 0.5f *
 		( texture2D( gBufferTex, tex_coord.xy + dir * ( 1.f / 3.f - 0.5f )).xyz
 		+ texture2D( gBufferTex, tex_coord.xy + dir * ( 2.f / 3.f - 0.5f )).xyz );
 
-	vec3 rgb_b = rgb_a * 0.5f  + 0.25f * 
+	vec3 rgb_b = rgb_a * 0.5f  + 0.25f *
 		( texture2D( gBufferTex, tex_coord.xy + dir * ( -0.5f )).xyz
 		+ texture2D( gBufferTex, tex_coord.xy + dir * ( 1.f - 0.5f )).xyz );
 

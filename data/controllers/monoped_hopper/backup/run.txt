@@ -1,26 +1,26 @@
-{"MiscParams": 
+{"MiscParams":
 {
 "MagicGain": 0.15
 },
 
-"StateParams": 
+"StateParams":
 {
-"Descent": 
+"Descent":
 {
 "Hip": -0.25,
 "Knee": -0.18
 },
-"DownStance": 
+"DownStance":
 {
 "Hip": 0.12,
 "Knee": -0.08
 },
-"UpStance": 
+"UpStance":
 {
 "Hip": -0.12,
 "Knee": 0.18
 },
-"Ascent": 
+"Ascent":
 {
 "Hip": -0.25,
 "Knee": -0.18

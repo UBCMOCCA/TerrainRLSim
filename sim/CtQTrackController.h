@@ -3,15 +3,14 @@
 #include "sim/CtQController.h"
 #include "sim/CtTrackController.h"
 
-class cCtQTrackController : public virtual cCtQController, public virtual cCtTrackController
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-	
-	cCtQTrackController();
-	virtual ~cCtQTrackController();
+class cCtQTrackController : public virtual cCtQController, public virtual cCtTrackController {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	virtual void Init(cSimCharacter* character);
+    cCtQTrackController();
+    virtual ~cCtQTrackController();
 
-protected:
+    virtual void Init(cSimCharacter *character);
+
+  protected:
 };

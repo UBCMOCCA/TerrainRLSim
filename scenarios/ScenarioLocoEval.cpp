@@ -1,17 +1,8 @@
 #include "scenarios/ScenarioLocoEval.h"
 #include "scenarios/ScenarioExpLoco.h"
 
-cScenarioLocoEval::cScenarioLocoEval() :
-					cScenarioPoliEval(),
-					cScenarioExpLoco()
-{
-}
+cScenarioLocoEval::cScenarioLocoEval() : cScenarioPoliEval(), cScenarioExpLoco() {}
 
-cScenarioLocoEval::~cScenarioLocoEval()
-{
-}
+cScenarioLocoEval::~cScenarioLocoEval() {}
 
-std::string cScenarioLocoEval::GetName() const
-{
-	return "Locomotion Evaluation";
-}
+std::string cScenarioLocoEval::GetName() const { return "Locomotion Evaluation"; }

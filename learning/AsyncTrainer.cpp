@@ -22,12 +22,12 @@ void cAsyncTrainer::Clear()
 	mTrainers.clear();
 }
 
-void cAsyncTrainer::Init(const tParams& params)
+void cAsyncTrainer::Init(const tParams &params)
 {
 	mParams = params;
 	mDone = false;
 	cParamServer::Init();
-	
+
 	for (int i = 0; i < GetNumTrainers(); ++i)
 	{
 		mTrainers[i]->Init(mParams);
@@ -77,7 +77,7 @@ void cAsyncTrainer::EndTraining()
 #endif
 }
 
-void cAsyncTrainer::RequestLearner(std::shared_ptr<cNeuralNetLearner>& out_learner)
+void cAsyncTrainer::RequestLearner(std::shared_ptr<cNeuralNetLearner> &out_learner)
 {
 	std::shared_ptr<cNeuralNetTrainer> trainer;
 	BuildTrainer(trainer);
@@ -88,7 +88,7 @@ void cAsyncTrainer::RequestLearner(std::shared_ptr<cNeuralNetLearner>& out_learn
 	mTrainers.push_back(trainer);
 }
 
-void cAsyncTrainer::LoadModel(const std::string& model_file)
+void cAsyncTrainer::LoadModel(const std::string &model_file)
 {
 	LoadNetModels(model_file);
 	for (int i = 0; i < GetNumTrainers(); ++i)
@@ -97,7 +97,7 @@ void cAsyncTrainer::LoadModel(const std::string& model_file)
 	}
 }
 
-void cAsyncTrainer::LoadScale(const std::string& scale_file)
+void cAsyncTrainer::LoadScale(const std::string &scale_file)
 {
 	LoadNetScale(scale_file);
 	for (int i = 0; i < GetNumTrainers(); ++i)
@@ -105,7 +105,6 @@ void cAsyncTrainer::LoadScale(const std::string& scale_file)
 		mTrainers[i]->LoadScale(scale_file);
 	}
 }
-
 
 bool cAsyncTrainer::HasInitModel() const
 {
@@ -142,8 +141,8 @@ int cAsyncTrainer::GetInputSize() const
 	int input_size = 0;
 	if (mPool.size() > 0)
 	{
-		auto& entry = mPool[0];
-		auto& net = entry.mNet;
+		auto &entry = mPool[0];
+		auto &net = entry.mNet;
 		input_size = net->GetInputSize();
 	}
 	return input_size;
@@ -154,8 +153,8 @@ int cAsyncTrainer::GetOutputSize() const
 	int output_size = 0;
 	if (mPool.size() > 0)
 	{
-		auto& entry = mPool[0];
-		auto& net = entry.mNet;
+		auto &entry = mPool[0];
+		auto &net = entry.mNet;
 		output_size = net->GetOutputSize();
 	}
 	return output_size;
@@ -166,7 +165,7 @@ int cAsyncTrainer::GetNumTrainers() const
 	return static_cast<int>(mTrainers.size());
 }
 
-void cAsyncTrainer::SetInputOffsetScaleType(const std::vector<cNeuralNet::eOffsetScaleType>& scale_types)
+void cAsyncTrainer::SetInputOffsetScaleType(const std::vector<cNeuralNet::eOffsetScaleType> &scale_types)
 {
 	for (int i = 0; i < GetNumTrainers(); ++i)
 	{
@@ -174,7 +173,7 @@ void cAsyncTrainer::SetInputOffsetScaleType(const std::vector<cNeuralNet::eOffse
 	}
 }
 
-void cAsyncTrainer::SetInputOffsetScale(const Eigen::VectorXd& offset, const Eigen::VectorXd& scale)
+void cAsyncTrainer::SetInputOffsetScale(const Eigen::VectorXd &offset, const Eigen::VectorXd &scale)
 {
 	SetNetInputOffsetScale(offset, scale);
 	for (int i = 0; i < GetNumTrainers(); ++i)
@@ -183,7 +182,7 @@ void cAsyncTrainer::SetInputOffsetScale(const Eigen::VectorXd& offset, const Eig
 	}
 }
 
-void cAsyncTrainer::SetOutputOffsetScale(const Eigen::VectorXd& offset, const Eigen::VectorXd& scale)
+void cAsyncTrainer::SetOutputOffsetScale(const Eigen::VectorXd &offset, const Eigen::VectorXd &scale)
 {
 	SetNetOutputOffsetScale(offset, scale);
 	for (int i = 0; i < GetNumTrainers(); ++i)
@@ -192,7 +191,7 @@ void cAsyncTrainer::SetOutputOffsetScale(const Eigen::VectorXd& offset, const Ei
 	}
 }
 
-void cAsyncTrainer::OutputModel(const std::string& filename) const
+void cAsyncTrainer::OutputModel(const std::string &filename) const
 {
 	if (mTrainers.size() > 0)
 	{
@@ -221,7 +220,7 @@ void cAsyncTrainer::OutputIntermediate()
 	}
 }
 
-void cAsyncTrainer::OutputIntermediateModel(const std::string& filename) const
+void cAsyncTrainer::OutputIntermediateModel(const std::string &filename) const
 {
 	if (mTrainers.size() > 0)
 	{
@@ -246,22 +245,22 @@ void cAsyncTrainer::BuildNetPool()
 
 void cAsyncTrainer::SetupNet(int id)
 {
-	auto& net = mPool[id].mNet;
+	auto &net = mPool[id].mNet;
 	//net->LoadNet(mParams.mNetFile);
 	net->LoadSolver(mParams.mSolverFile, true);
 }
 
-void cAsyncTrainer::BuildTrainer(std::shared_ptr<cNeuralNetTrainer>& out_trainer) const
+void cAsyncTrainer::BuildTrainer(std::shared_ptr<cNeuralNetTrainer> &out_trainer) const
 {
 	out_trainer = std::shared_ptr<cNeuralNetTrainer>(new cNeuralNetTrainer());
 }
 
-void cAsyncTrainer::SetupTrainer(std::shared_ptr<cNeuralNetTrainer>& out_trainer)
+void cAsyncTrainer::SetupTrainer(std::shared_ptr<cNeuralNetTrainer> &out_trainer)
 {
 	out_trainer->SetParamServer(this);
 }
 
-void cAsyncTrainer::LoadNetModels(const std::string& model_file)
+void cAsyncTrainer::LoadNetModels(const std::string &model_file)
 {
 	for (int i = 0; i < mParams.mPoolSize; ++i)
 	{
@@ -269,7 +268,7 @@ void cAsyncTrainer::LoadNetModels(const std::string& model_file)
 	}
 }
 
-void cAsyncTrainer::LoadNetScale(const std::string& scale_file)
+void cAsyncTrainer::LoadNetScale(const std::string &scale_file)
 {
 	for (int i = 0; i < mParams.mPoolSize; ++i)
 	{
@@ -277,7 +276,7 @@ void cAsyncTrainer::LoadNetScale(const std::string& scale_file)
 	}
 }
 
-void cAsyncTrainer::SetNetInputOffsetScale(const Eigen::VectorXd& offset, const Eigen::VectorXd& scale)
+void cAsyncTrainer::SetNetInputOffsetScale(const Eigen::VectorXd &offset, const Eigen::VectorXd &scale)
 {
 	for (int i = 0; i < mParams.mPoolSize; ++i)
 	{
@@ -286,7 +285,7 @@ void cAsyncTrainer::SetNetInputOffsetScale(const Eigen::VectorXd& offset, const 
 	}
 }
 
-void cAsyncTrainer::SetNetOutputOffsetScale(const Eigen::VectorXd& offset, const Eigen::VectorXd& scale)
+void cAsyncTrainer::SetNetOutputOffsetScale(const Eigen::VectorXd &offset, const Eigen::VectorXd &scale)
 {
 	for (int i = 0; i < mParams.mPoolSize; ++i)
 	{
@@ -295,7 +294,7 @@ void cAsyncTrainer::SetNetOutputOffsetScale(const Eigen::VectorXd& offset, const
 }
 
 #if defined(OUTPUT_TRAINER_LOG)
-void cAsyncTrainer::WriteLog(const std::string& log_file) const
+void cAsyncTrainer::WriteLog(const std::string &log_file) const
 {
 	cNeuralNetTrainer::tLog comb_log = cNeuralNetTrainer::tLog();
 	int num_trainers = GetNumTrainers();
@@ -356,10 +355,10 @@ void cAsyncTrainer::WriteLog(const std::string& log_file) const
 	double async_wait_time = mLog.mLockWaitTime;
 	int async_wait_samples = mLog.mLockWaitSamples;
 
-	FILE* f = cFileUtil::OpenFile(log_file, "w");
+	FILE *f = cFileUtil::OpenFile(log_file, "w");
 
 	comb_log.Write(f);
-	
+
 	fprintf(f, "Async Max Total Time: %.10fs\n", max_time);
 	fprintf(f, "Async Wait Time: %.10fs\n", async_wait_time);
 	fprintf(f, "Async Wait Samples: %i\n", async_wait_samples);

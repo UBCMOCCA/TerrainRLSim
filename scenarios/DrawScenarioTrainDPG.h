@@ -3,15 +3,13 @@
 
 #include "DrawScenarioTrainCacla.h"
 
-class cDrawScenarioTrainDPG: public cDrawScenarioTrainCacla
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+class cDrawScenarioTrainDPG : public cDrawScenarioTrainCacla {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	cDrawScenarioTrainDPG(cCamera& cam);
-	virtual ~cDrawScenarioTrainDPG();
+    cDrawScenarioTrainDPG(cCamera &cam);
+    virtual ~cDrawScenarioTrainDPG();
 
-protected:
-
-	virtual void BuildTrainScene(std::shared_ptr<cScenarioTrain>& out_scene) const;
+  protected:
+    virtual void BuildTrainScene(std::shared_ptr<cScenarioTrain> &out_scene) const;
 };

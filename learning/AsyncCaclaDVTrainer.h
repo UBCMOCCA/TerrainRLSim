@@ -10,15 +10,13 @@
 
 #include "learning/AsyncCaclaTrainer.h"
 
-class cAsyncCaclaDVTrainer : public cAsyncCaclaTrainer 
-{
-public:
-	cAsyncCaclaDVTrainer();
-	virtual ~cAsyncCaclaDVTrainer();
+class cAsyncCaclaDVTrainer : public cAsyncCaclaTrainer {
+  public:
+    cAsyncCaclaDVTrainer();
+    virtual ~cAsyncCaclaDVTrainer();
 
-protected:
-	virtual void BuildTrainer(std::shared_ptr<cNeuralNetTrainer>& out_trainer) const;
-
+  protected:
+    virtual void BuildTrainer(std::shared_ptr<cNeuralNetTrainer> &out_trainer) const;
 };
 
 #endif /* LEARNING_ASYNCCACLADVTRAINER_H_ */

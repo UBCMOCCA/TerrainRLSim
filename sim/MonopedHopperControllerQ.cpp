@@ -1,11 +1,6 @@
 #include "MonopedHopperControllerQ.h"
 
-cMonopedHopperControllerQ::cMonopedHopperControllerQ() : cTerrainRLCharController(),
-									cMonopedHopperController(), 
-									cBaseControllerQ()
-{
-}
+cMonopedHopperControllerQ::cMonopedHopperControllerQ()
+    : cTerrainRLCharController(), cMonopedHopperController(), cBaseControllerQ() {}
 
-cMonopedHopperControllerQ::~cMonopedHopperControllerQ()
-{
-}
+cMonopedHopperControllerQ::~cMonopedHopperControllerQ() {}
