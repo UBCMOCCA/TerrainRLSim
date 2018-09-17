@@ -8,8 +8,6 @@
 #include "render/DrawSimCharacter.h"
 #include "render/DrawUtil.h"
 #include "render/DrawWorld.h"
-#include "sim/BaseControllerMACE.h"
-#include "sim/BaseControllerMACEDPG.h"
 #include "sim/CtMTUController.h"
 #include "sim/GroundDynamicObstacles3D.h"
 
@@ -72,16 +70,16 @@ void cDrawScenarioSimChar::Update(double time_elapsed) {
 void cDrawScenarioSimChar::UpdateTracer(double time_elapsed) {
     auto ctrl = mScene->GetCharacter()->GetController();
 
-    const std::shared_ptr<cBaseControllerMACE> mace_ctrl = std::dynamic_pointer_cast<cBaseControllerMACE>(ctrl);
-    const std::shared_ptr<cBaseControllerMACEDPG> mace_dpg_ctrl =
-        std::dynamic_pointer_cast<cBaseControllerMACEDPG>(ctrl);
+    // const std::shared_ptr<cBaseControllerMACE> mace_ctrl = std::dynamic_pointer_cast<cBaseControllerMACE>(ctrl);
+    // const std::shared_ptr<cBaseControllerMACEDPG> mace_dpg_ctrl =
+    //     std::dynamic_pointer_cast<cBaseControllerMACEDPG>(ctrl);
 
-    bool is_mace_ctrl = (mace_ctrl != nullptr) || (mace_dpg_ctrl != nullptr);
-    if (is_mace_ctrl) {
-        int action_id = ctrl->GetCurrActionID();
-        int trace_handle = mTraceHandles[0];
-        mTracer.SetTraceColIdx(trace_handle, action_id);
-    }
+    // bool is_mace_ctrl = (mace_ctrl != nullptr) || (mace_dpg_ctrl != nullptr);
+    // if (is_mace_ctrl) {
+    //     int action_id = ctrl->GetCurrActionID();
+    //     int trace_handle = mTraceHandles[0];
+    //     mTracer.SetTraceColIdx(trace_handle, action_id);
+    // }
 
     mTracer.Update(time_elapsed);
 }
@@ -355,9 +353,9 @@ void cDrawScenarioSimChar::DrawInfo() const {
         DrawPoliInfo();
     }
 
-    if (mEnableTrace) {
-        DrawTrace();
-    }
+    // if (mEnableTrace) {
+    //     DrawTrace();
+    // }
 
     if (mDrawFeatures) {
         DrawFeatures();
