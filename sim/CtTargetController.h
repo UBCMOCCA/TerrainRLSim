@@ -2,24 +2,23 @@
 
 #include "sim/CtController.h"
 
-class cCtTargetController : public virtual cCtController
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-	
-	cCtTargetController();
-	virtual ~cCtTargetController();
+class cCtTargetController : public virtual cCtController {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	virtual void Init(cSimCharacter* character);
-	virtual void SetTargetPos(const tVector& pos);
+    cCtTargetController();
+    virtual ~cCtTargetController();
 
-protected:
-	tVector mTargetPos;
+    virtual void Init(cSimCharacter *character);
+    virtual void SetTargetPos(const tVector &pos);
 
-	virtual void InitTargetPos();
-	virtual int GetPoliStateSize() const;
-	virtual int GetTargetPosStateOffset() const;
-	virtual int GetTargetPosStateSize() const;
-	virtual void BuildPoliState(Eigen::VectorXd& out_state) const;
-	virtual void BuildTargetPosState(Eigen::VectorXd& out_state) const;
+  protected:
+    tVector mTargetPos;
+
+    virtual void InitTargetPos();
+    virtual int GetPoliStateSize() const;
+    virtual int GetTargetPosStateOffset() const;
+    virtual int GetTargetPosStateSize() const;
+    virtual void BuildPoliState(Eigen::VectorXd &out_state) const;
+    virtual void BuildTargetPosState(Eigen::VectorXd &out_state) const;
 };

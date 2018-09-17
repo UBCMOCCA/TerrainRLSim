@@ -1,27 +1,27 @@
 name: "Dog2D_Actor"
 
-layer { 
-  name: 'input' 
-  type: 'Input' 
+layer {
+  name: 'input'
+  type: 'Input'
   top: "input"
   top: "label"
   top: "weights"
-  input_param { 
-	shape: { dim: 32 dim: 1 dim: 1 dim: 64 } 
-    shape: { dim: 32 dim: 1 dim: 1 dim: 6 } 
-	shape: { dim: 32 dim: 1 dim: 1 dim: 6 } 
-  } 
+  input_param {
+	shape: { dim: 32 dim: 1 dim: 1 dim: 64 }
+    shape: { dim: 32 dim: 1 dim: 1 dim: 6 }
+	shape: { dim: 32 dim: 1 dim: 1 dim: 6 }
+  }
 
   include: { phase: TRAIN }
 }
 
-layer { 
-  name: 'input' 
-  type: 'Input' 
-  top: 'input' 
-  input_param { 
-    shape: { dim: 1 dim: 1 dim: 1 dim: 64 } 
-  } 
+layer {
+  name: 'input'
+  type: 'Input'
+  top: 'input'
+  input_param {
+    shape: { dim: 1 dim: 1 dim: 1 dim: 64 }
+  }
 
   include: { phase: TEST }
 }
@@ -34,7 +34,7 @@ layer {
 	top: "data_rest"
 	slice_param {
 		axis: 3
-		slice_point: 30 
+		slice_point: 30
 	}
 }
 
@@ -50,7 +50,7 @@ layer {
     lr_mult: 2
   }
   convolution_param {
-    num_output: 8 
+    num_output: 8
     kernel_h: 1
 	kernel_w: 5
     stride: 1

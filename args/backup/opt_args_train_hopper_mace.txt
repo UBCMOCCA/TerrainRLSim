@@ -39,5 +39,3 @@
 -trainer_num_steps_per_iters= 1
 -trainer_iters_per_output= 20
 -trainer_init_input_offset_scale= true
-
-

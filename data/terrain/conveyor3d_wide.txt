@@ -1,7 +1,7 @@
 {
 "Type": "conveyor3d",
 
-"Params": 
+"Params":
 [
 	{
 		"ObstacleWidth0": 5,

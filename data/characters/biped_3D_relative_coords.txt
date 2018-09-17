@@ -1,7 +1,7 @@
 {
-	"Skeleton": 
+	"Skeleton":
 	{
-		"Joints": 
+		"Joints":
 		[
 			{
 				"Name": "root",
@@ -9,7 +9,7 @@
 				"Parent": -1,
 				"AttachX": 0,
 				"AttachY": 0,
-				"AttachZ": 0,	
+				"AttachZ": 0,
 				"AttachThetaX": 0,
 				"AttachThetaY": 0,
 				"AttachThetaZ": 0,
@@ -141,7 +141,7 @@
 		]
 	},
 
-	"BodyDefs": 
+	"BodyDefs":
 	[
 			{
 				"Name": "root",
@@ -279,7 +279,7 @@
 			}
 		],
 
-		"DrawShapeDefs": 
+		"DrawShapeDefs":
 		[
 			{
 				"Name": "root",
@@ -409,7 +409,7 @@
 			}
 		],
 
-		"PDControllers": 
+		"PDControllers":
 		[
 			{
 				"Name": "root",
@@ -461,7 +461,7 @@
 				"UseWorldCoord": 0
 			}
 		],
-		
+
 		"Controllers":
 		{
 			"Files":

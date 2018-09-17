@@ -1,20 +1,18 @@
 #pragma once
-#include "sim/CtTrackController.h"
 #include "sim/CtMTUController.h"
+#include "sim/CtTrackController.h"
 
-class cCtMTUTrackController : public virtual cCtTrackController, public virtual cCtMTUController
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-	
-	cCtMTUTrackController();
-	virtual ~cCtMTUTrackController();
+class cCtMTUTrackController : public virtual cCtTrackController, public virtual cCtMTUController {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	virtual void Init(cSimCharacter* character, const std::string& param_file);
-	virtual int GetPoliStateSize() const;
+    cCtMTUTrackController();
+    virtual ~cCtMTUTrackController();
 
-protected:
+    virtual void Init(cSimCharacter *character, const std::string &param_file);
+    virtual int GetPoliStateSize() const;
 
-	virtual int GetTargetStateOffset() const;
-	virtual void BuildPoliState(Eigen::VectorXd& out_state) const;
+  protected:
+    virtual int GetTargetStateOffset() const;
+    virtual void BuildPoliState(Eigen::VectorXd &out_state) const;
 };

@@ -10,9 +10,9 @@ num_steps = 10
 
 for i in range(0, num_steps):
     curr_blend = blend0 + (blend1 - blend0) * i / (num_steps - 1)
-    
+
     command = exe_path + ' ' + args
     command += ' ' + '-terrain_blend=' + ' ' + str(curr_blend)
-    
+
     print(command + '\n')
     subprocess.call(command)

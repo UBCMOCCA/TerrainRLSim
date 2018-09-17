@@ -2,23 +2,21 @@
 
 #include "sim/CtController.h"
 
-class cCtNPDController : public virtual cCtController
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-	
-	cCtNPDController();
-	virtual ~cCtNPDController();
+class cCtNPDController : public virtual cCtController {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	virtual int GetPoliStateSize() const;
-	virtual void BuildNNInputOffsetScale(Eigen::VectorXd& out_offset, Eigen::VectorXd& out_scale) const;
+    cCtNPDController();
+    virtual ~cCtNPDController();
 
-protected:
+    virtual int GetPoliStateSize() const;
+    // virtual void BuildNNInputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
 
-	virtual int GetPDStateOffset() const;
-	virtual int GetPDStateSize() const;
-	virtual void BuildPoliState(Eigen::VectorXd& out_state) const;
-	virtual void BuildPDState(Eigen::VectorXd& out_state) const;
+  protected:
+    virtual int GetPDStateOffset() const;
+    virtual int GetPDStateSize() const;
+    virtual void BuildPoliState(Eigen::VectorXd &out_state) const;
+    virtual void BuildPDState(Eigen::VectorXd &out_state) const;
 
-	virtual void BuildPDStateOffsetScale(Eigen::VectorXd& out_offset, Eigen::VectorXd& out_scale) const;
+    virtual void BuildPDStateOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
 };

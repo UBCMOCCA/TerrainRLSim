@@ -1,7 +1,7 @@
 {
 "Type": "obstacles3d",
 
-"Params": 
+"Params":
 [
 	{
 		"ObstacleDensity": 0.1,

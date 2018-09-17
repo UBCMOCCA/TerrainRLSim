@@ -6,12 +6,12 @@
  #define SWIG_FILE_WITH_INIT
  #include <vector>
 
- 
+
 #include "SimAdapter.h"
 // #include "../sim/TerrainRLCharController.h"
 // #include "../sim/SimCharacter.h"
 // #include "../util/MathUtil.h"
- 
+
 %}
 %include "std_string.i"
 %include "std_vector.i"
@@ -41,5 +41,3 @@ namespace std {
 // %include "../sim/TerrainRLCharController.h"
 // %include "../sim/SimCharacter.h"
 // %include "../util/MathUtil.h"
-
- 

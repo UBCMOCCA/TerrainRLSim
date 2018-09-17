@@ -5,7 +5,7 @@ uniform		sampler2D	gLumTex;
 uniform		sampler2D	gBloomTex;
 uniform		sampler2D	gCrepuscularTex;
 varying		vec2		tex_coord;
- 
+
 float CalcLuminance(vec3 color)
 {
     return max( dot(color, vec3(0.299f, 0.587f, 0.114f)), 0.0001f);
@@ -45,7 +45,7 @@ vec3 ToneMap( vec3 color, float avg_lum, float threshold, float exposure)
 }
 
 
-void main(void) 
+void main(void)
 {
 	vec3 buffer_sample = texture2D( gBufferTex, tex_coord.xy ).xyz;
 	vec3 bloom_sample = texture2D( gBloomTex, tex_coord.xy ).xyz;
@@ -57,7 +57,7 @@ void main(void)
 	vec3 composite_color = buffer_sample + bloom_sample + crepuscular_sample.xyz;
 
 	const float occlusion_dimming = 0.3f;
-	float crepuscular_occlusion = crepuscular_sample.w; 
+	float crepuscular_occlusion = crepuscular_sample.w;
 	float occlusion_mult = 1.f - occlusion_dimming * crepuscular_occlusion;
 	//composite_color *= occlusion_mult;
 
@@ -67,9 +67,9 @@ void main(void)
 
 	//bloom_sample = ToneMap( bloom_sample, avg_lum, 0.0, exposure);
 	color += bloom_sample * bloom_scale;
-	
-	//color.rgb += ( color.b > 0.5 ) ? vec3( 0,0.5,0) : vec3( 0,0,0);  
-	//color.rgb = ( avg_lum > 1.0 ) ? vec3( 0,1,0) : vec3( avg_lum,avg_lum,avg_lum);  
+
+	//color.rgb += ( color.b > 0.5 ) ? vec3( 0,0.5,0) : vec3( 0,0,0);
+	//color.rgb = ( avg_lum > 1.0 ) ? vec3( 0,1,0) : vec3( avg_lum,avg_lum,avg_lum);
 
 	gl_FragColor = vec4( color.rgb, 1.f );
 }

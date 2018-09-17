@@ -2,16 +2,14 @@
 
 #include "sim/SimCharSoftFall.h"
 
+class cSimCharGeneral : public cSimCharSoftFall {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-class cSimCharGeneral : public cSimCharSoftFall
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    cSimCharGeneral();
+    virtual ~cSimCharGeneral();
 
-	cSimCharGeneral();
-	virtual ~cSimCharGeneral();
+    virtual bool HasStumbled() const;
 
-	virtual bool HasStumbled() const;
-
-protected:
+  protected:
 };

@@ -87,5 +87,3 @@ bool cSimBiped3D::FailFallMisc() const
 
 	return fallen;
 }
-
-

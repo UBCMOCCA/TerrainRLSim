@@ -94,7 +94,7 @@ vec3 raytrace(vec3 start, vec3 dir, float start_depth)
 			}
 		}
 	}
- 
+
 	return color;
 }
 
@@ -107,7 +107,7 @@ void main(void)
 
 	vec3 view_dir = normalize(pos);
 	vec3 reflect_dir = reflect(view_dir, normal);
-	
+
 	vec4 noise_params = vec4(1, 1, 0.1, 0.2);
 	vec2 seed = pos.xy * noise_params.xy + noise_params.zw;
 	float jitter = 0.05;
@@ -122,13 +122,13 @@ void main(void)
 	if (depth < 1)
 	{
 		reflect_col = raytrace(pos, reflect_dir, depth);
-		
+
 		float fade = clamp(dot(reflect_dir, normal), 0, 1);
 		fade = pow(fade, 2);
 		fade = 1 - fade;
 		reflect_col *= fade;
 	}
-	
+
 	vec4 a = gl_ProjectionMatrix * vec4(pos, 1);
 	a.xyz /= a.w;
 	a.xyz = 0.5f * a.xyz + 0.5;

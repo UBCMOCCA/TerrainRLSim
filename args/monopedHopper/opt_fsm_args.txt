@@ -46,5 +46,3 @@ target_vel_x=3.0
 
 -opt_eval_samples= 9
 -num_threads= 24
-
-

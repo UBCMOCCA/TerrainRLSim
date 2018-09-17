@@ -1,21 +1,18 @@
 #pragma once
-#include "sim/CtTrackController.h"
 #include "sim/CtNPDController.h"
+#include "sim/CtTrackController.h"
 
-class cCtNPDTrackController : public virtual cCtTrackController, public virtual cCtNPDController
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-	
-	cCtNPDTrackController();
-	virtual ~cCtNPDTrackController();
+class cCtNPDTrackController : public virtual cCtTrackController, public virtual cCtNPDController {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	virtual void Init(cSimCharacter* character);
-	virtual int GetPoliStateSize() const;
+    cCtNPDTrackController();
+    virtual ~cCtNPDTrackController();
 
-protected:
+    virtual void Init(cSimCharacter *character);
+    virtual int GetPoliStateSize() const;
 
-	virtual int GetPDStateOffset() const;
-	virtual void BuildPoliState(Eigen::VectorXd& out_state) const;
-
+  protected:
+    virtual int GetPDStateOffset() const;
+    virtual void BuildPoliState(Eigen::VectorXd &out_state) const;
 };

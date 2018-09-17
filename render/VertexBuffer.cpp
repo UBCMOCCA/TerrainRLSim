@@ -6,30 +6,28 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and
  * to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+ * Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
- * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
- * OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#include "render/VertexBuffer.h"
 #include <stdio.h>
 #include <string.h>
-#include "render/VertexBuffer.h"
 
-
-void cVertexBuffer::ResizeBuffer(int size)
-{
+void cVertexBuffer::ResizeBuffer(int size) {
     if (size <= mSize)
         return;
 
-    float *tmp = (float*) new GLubyte[size];
+    float *tmp = (float *)new GLubyte[size];
 
-    if (mLocalData)
-    {
+    if (mLocalData) {
         memcpy(tmp, mLocalData, mSize);
-        delete [] mLocalData;
+        delete[] mLocalData;
     }
 
     mSize = size;
@@ -68,15 +66,13 @@ void cVertexBuffer::ResizeBuffer(int size)
  * buffer_type specifies whether you are binding an index buffer "GL_ELEMENT_ARRAY_BUFFER" or a
  * vertex buffer "GL_ARRAY_BUFFER"
  */
-void cVertexBuffer::LoadBuffer(int data_size, GLubyte *data, int data_offset, int num_attr, tAttribInfo *attr_info)
-{
+void cVertexBuffer::LoadBuffer(int data_size, GLubyte *data, int data_offset, int num_attr, tAttribInfo *attr_info) {
     // does nothing if data is already allocated
     ResizeBuffer(data_size + data_offset);
 
     // save parameters for future updates
-    if (mNumAttr < num_attr)
-    {
-        delete [] mAttrInfo;
+    if (mNumAttr < num_attr) {
+        delete[] mAttrInfo;
         mAttrInfo = NULL;
     }
     mNumAttr = num_attr;
@@ -91,9 +87,8 @@ void cVertexBuffer::LoadBuffer(int data_size, GLubyte *data, int data_offset, in
     memcpy(mLocalData + data_offset, data, data_size);
 
 #ifdef DEBUG
-    GLenum err =  glGetError();
-    if (err != GL_NO_ERROR)
-    {
+    GLenum err = glGetError();
+    if (err != GL_NO_ERROR) {
         fprintf(stderr, "Buffer Assignment Failed: %08x\n", err);
     }
 #endif
@@ -101,8 +96,7 @@ void cVertexBuffer::LoadBuffer(int data_size, GLubyte *data, int data_offset, in
 
 // copy all local data to the GPU
 // \param specify a buffer other than the stored buffer to allocate to
-void cVertexBuffer::SyncBuffer(GLuint buffer)
-{
+void cVertexBuffer::SyncBuffer(GLuint buffer) {
     mRenderState->SetBufferData(buffer, mSize, (unsigned char *)mLocalData);
 
     for (int i = 0; i < mNumAttr; ++i)
@@ -111,5 +105,4 @@ void cVertexBuffer::SyncBuffer(GLuint buffer)
 
 // copy all local data to the GPU using
 // stored buffer ID
-void cVertexBuffer::SyncBuffer()
-{ SyncBuffer(mRenderID); }
+void cVertexBuffer::SyncBuffer() { SyncBuffer(mRenderID); }

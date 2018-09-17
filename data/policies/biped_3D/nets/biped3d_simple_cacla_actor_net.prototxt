@@ -1,27 +1,27 @@
 name: "Biped3D_Actor"
 
-layer { 
-  name: 'input' 
-  type: 'Input' 
+layer {
+  name: 'input'
+  type: 'Input'
   top: "input"
   top: "label"
   top: "weights"
-  input_param { 
-	shape: { dim: 32 dim: 1 dim: 1 dim: 283 } 
-    shape: { dim: 32 dim: 1 dim: 1 dim: 74 } 
-	shape: { dim: 32 dim: 1 dim: 1 dim: 74 } 
-  } 
+  input_param {
+	shape: { dim: 32 dim: 1 dim: 1 dim: 283 }
+    shape: { dim: 32 dim: 1 dim: 1 dim: 74 }
+	shape: { dim: 32 dim: 1 dim: 1 dim: 74 }
+  }
 
   include: { phase: TRAIN }
 }
 
-layer { 
-  name: 'input' 
-  type: 'Input' 
-  top: 'input' 
-  input_param { 
-    shape: { dim: 1 dim: 1 dim: 1 dim: 283 } 
-  } 
+layer {
+  name: 'input'
+  type: 'Input'
+  top: 'input'
+  input_param {
+    shape: { dim: 1 dim: 1 dim: 1 dim: 283 }
+  }
 
   include: { phase: TEST }
 }
@@ -45,7 +45,7 @@ layer {
     top: "terr_reshape0"
     reshape_param {
       shape {
-        dim: 0 
+        dim: 0
         dim: 0
         dim: 16
         dim: 16

@@ -2,16 +2,14 @@
 #include "sim/CtPhaseController.h"
 #include "sim/CtVelController.h"
 
-class cCtVelPhaseController : public virtual cCtPhaseController, public virtual cCtVelController
-{
-public:
-	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-	
-	cCtVelPhaseController();
-	virtual ~cCtVelPhaseController();
+class cCtVelPhaseController : public virtual cCtPhaseController, public virtual cCtVelController {
+  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-	virtual void Init(cSimCharacter* character, const tVector& gravity, const std::string& param_file);
+    cCtVelPhaseController();
+    virtual ~cCtVelPhaseController();
 
-protected:
+    virtual void Init(cSimCharacter *character, const tVector &gravity, const std::string &param_file);
 
+  protected:
 };

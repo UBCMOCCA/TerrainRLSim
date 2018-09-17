@@ -141,7 +141,7 @@ float HorizonOcclusion(	vec2 deltaUV,
 			sinH = sinS;
 		}
 	}
-	
+
 	return ao;
 }
 
@@ -183,7 +183,7 @@ void main(void)
 	vec3 P, Pr, Pl, Pt, Pb;
 	P = GetViewPos(tex_coord);
 	vec2 seed = P.xy * noise_params.xy + noise_params.zw;
-	
+
 	// Sample neighboring pixels
     Pr 	= GetViewPos(tex_coord + vec2( 1 / TexRes.x, 0));
     Pl 	= GetViewPos(tex_coord + vec2(-1 / TexRes.x, 0));
@@ -198,7 +198,7 @@ void main(void)
 	random[0] = fract(sin(dot(seed, vec2(12.9898,78.233))) * 43.5453);
 	random[1] = fract(sin(dot(seed, vec2(49.12312,216.1))) * 93.1253);
 	//random[2] = fract(sin(dot(seed, vec2(23.9213,35.233))) * 13.321);
-	
+
 	// Calculate the projected size of the hemisphere
     vec2 rayRadiusUV = 0.5 * R * FocalLenLinMAD.xy / -P.z;
     float rayRadiusPix = rayRadiusUV.x * TexRes.x;

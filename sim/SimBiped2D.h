@@ -35,7 +35,7 @@ class cSimBiped2D : public cSimCharSoftFall
 	virtual bool HasStumbled() const;
 
 protected:
-	
+
 	virtual bool FailFallMisc() const;
 
 };

@@ -92,5 +92,3 @@ bool cSimBiped2D::FailFallMisc() const
 
 	return fallen;
 }
-
-

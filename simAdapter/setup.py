@@ -29,9 +29,10 @@ if not os.path.exists(blib):
     print("Please follow instructions in README to build local (not global for your system) Bullet installation.")
     sys.exit(1)
 
+
 def recompile():
     USE_PYTHON3 = ""
-    if sys.version_info[0]==2:
+    if sys.version_info[0] == 2:
         USE_PYTHON3 = "USE_PYTHON3=0"
     cmd = """
         #!/bin/bash
@@ -51,30 +52,33 @@ def recompile():
         sys.exit(1)
     """
 
+
 class MyInstall(DistutilsInstall):
     def run(self):
         recompile()
         DistutilsInstall.run(self)
+
 
 class MyEgg(EggInfo):
     def run(self):
         recompile()
         EggInfo.run(self)
 
+
 need_files_args = []
 file_types = 'txt png jpg urdf obj mtl dae off stl STL xml glsl so 87 dylib'.split()
 hh = setup_py_dir + "/../args"
-print ("hh: ", hh)
-print ("os.walk(hh): ", list(os.walk(hh)))
+print("hh: ", hh)
+print("os.walk(hh): ", list(os.walk(hh)))
 
 for root, dirs, files in os.walk(hh):
     for fn in files:
         ext = os.path.splitext(fn)[1][1:]
         if ext and ext in file_types:
             fn = root + "/" + fn
-            need_files_args.append(fn[1+len(hh):])
+            need_files_args.append(fn[1 + len(hh):])
 
-need_files_data = []            
+need_files_data = []
 hh = setup_py_dir + "/../data"
 
 for root, dirs, files in os.walk(hh):
@@ -82,15 +86,12 @@ for root, dirs, files in os.walk(hh):
         ext = os.path.splitext(fn)[1][1:]
         if ext and ext in file_types:
             fn = root + "/" + fn
-            need_files_data.append(fn[1+len(hh):])
+            need_files_data.append(fn[1 + len(hh):])
 
 print("found resource files: %i" % len(need_files_args))
 #for n in need_files: print("-- %s" % n)
 
-extension_mod = Extension("_terrainRLAdapter", 
-                          ["terrainRLAdapter.cpp", "SimAdapter.cpp"],
-                          include_dirs = ['./'])
-
+extension_mod = Extension("_terrainRLAdapter", ["terrainRLAdapter.cpp", "SimAdapter.cpp"], include_dirs=['./'])
 """
 setup(
       #ext_modules=[Extension('terrainRLAdapter',
@@ -117,25 +118,27 @@ setup(
     )
     """
 setup(
-    name = 'terrainRLAdapter',
-    version = '0.2',
-    description = 'Character simulation in Bullet Physics Engine',
-    maintainer = 'Glen Berseth',
-    maintainer_email = 'glen@fracturedplane.com',
-    url = 'https://github.com/UBCMOCCA/TerrainRL',
+    name='terrainRLAdapter',
+    version='0.2',
+    description='Character simulation in Bullet Physics Engine',
+    maintainer='Glen Berseth',
+    maintainer_email='glen@fracturedplane.com',
+    url='https://github.com/UBCMOCCA/TerrainRL',
     py_modules=['terrainRLAdapter'],
-    data_files = { 'args': need_files_args,
-                  'data' : need_files_data },
+    data_files={
+        'args': need_files_args,
+        'data': need_files_data
+    },
     packages=[x for x in find_packages()],
-    cmdclass = {
+    cmdclass={
         'install': MyInstall,
         'egg_info': MyEgg
-        },
-    package_data = { 'args': need_files_args },
-    install_requires = [
+    },
+    package_data={'args': need_files_args},
+    install_requires=[
         'numpy==1.14.2',
         'matplotlib==2.2.2',
         'dill==0.2.7.1',
     ],
     # ext_modules=[extension_mod]
-    )
+)

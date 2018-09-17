@@ -17,7 +17,7 @@ uniform		vec4		gMaterialData;
 uniform		vec4		gTexRes;
 
 
-float CalculateOrenNayarDiffuse( vec3 world_space_normal, vec3 light_direction, 
+float CalculateOrenNayarDiffuse( vec3 world_space_normal, vec3 light_direction,
 								vec3 view_direction, float roughness )	// Roughness value [0 ~ 1], 0 is same as Lambertian
 {
 	// Make sure the interpolated inputs and
@@ -46,7 +46,7 @@ float CalculateOrenNayarDiffuse( vec3 world_space_normal, vec3 light_direction,
 vec3 CalculateMicroFacetSpecular(
 	const vec3 world_normal,
 	const vec3 light_direction,
-	const vec3 view_direction, 
+	const vec3 view_direction,
 	const vec3 Cspec,	// material's parameter (important for metals)
 							// Water(0.02), Plastic(0.03~0.05), Glass(0.03~0.08)
 							// Iron(0.56,0.57,0.58), Copper(0.95,0.64,0.54), Gold(1.0,0.71,0.29)
@@ -58,10 +58,10 @@ vec3 CalculateMicroFacetSpecular(
 	vec3 v = view_direction;
 	vec3 l = light_direction;
 	vec3 h = normalize( view_direction + light_direction );
-	
+
 	// 1. Fresnel term
 	float schlick_x = ( 1.f - dot( l, h) );
-		
+
 	float s2 = schlick_x * schlick_x;
 	float s4 = s2 * s2;
 	float t11 = s4 * schlick_x;
@@ -69,7 +69,7 @@ vec3 CalculateMicroFacetSpecular(
 
 	// 2. Distribution term
 	float D_term = 1.f;
-	
+
 	// b) Beckmann : D(w) = ( 1 / m^2 cos(a)^4 ) exp ( - tan(a)^2 / m^2 )
 	//		; m is the root mean square slope of microfacets parameterizing the surface's roughness.
 	//		; a is angle between normal & half vector
@@ -92,13 +92,13 @@ vec3 CalculateMicroFacetSpecular(
 	// 3. Geometry term
 	float G_term = 1.f;
 	// a) Cook-Torrance : G = min{ 2(n'h)(n'v)/(v'h), 2(n'h)(n'l)/(l'h), 1 }
-	
+
 	float v_dot_h = dot( v, h);
 	v_dot_h = ( v_dot_h == 0.0 ) ? 0.00001 : v_dot_h;
-	
+
 	float t31 = 2.f * dot( n, h) * dot( n, v) / v_dot_h;
 	float t32 = 2.f * dot( n, h) * dot( n, l) / v_dot_h;
-	G_term = min( min( t31, t32), 1.f);		
+	G_term = min( min( t31, t32), 1.f);
 
 	// Final result
 
@@ -107,11 +107,11 @@ vec3 CalculateMicroFacetSpecular(
 	return final;
 }
 
-vec3 CalculateMicroFacetBRDF( vec3 normal, vec3 light_dir, 
+vec3 CalculateMicroFacetBRDF( vec3 normal, vec3 light_dir,
 						vec3 light_colour, vec3 view_dir, float roughness,
 						vec3 albedo )
 {
-	float diffuse_coef = CalculateOrenNayarDiffuse( normal, light_dir, 
+	float diffuse_coef = CalculateOrenNayarDiffuse( normal, light_dir,
 								view_dir, roughness );
 
 	vec3 c_spec = vec3(0.56,0.57,0.58);
@@ -183,10 +183,10 @@ float CalculateShadow(vec3 view_pos, vec3 normal)
 		dir = RotateDirections(dir, rand_theta);
 		vec2 tap_coord = shadow_coord.xy +  r * dir / shadow_map_size;
 		float tap = texture2D( gShadowTex, tap_coord ).r;
-		
+
 		//vec2 coord_test = abs(tap_coord.xy - 0.5f);
 		//sample_depth = (coord_test.x > 0.5f || coord_test.y > 0.5f) ? 1.f : 0.f;
-		
+
 		//float tap_weight = ( poissonDisk[i].x * poissonDisk[i].x + poissonDisk[i].y * poissonDisk[i].y );
 		sample_depth += ( depth <= tap ) ? 1.f : 0.f;
 		//total += 1.f - tap_weight;
@@ -203,10 +203,10 @@ vec3 CalcAmbient(vec3 normal, vec3 albedo)
 	float ambient_scale = 0.05;
 	vec2 frag_coord = gl_FragCoord.xy / gTexRes.xy;
 	//float ao = texture2D(gAOTex, frag_coord).r;
-	vec3 ambient = ( gAmbientColour[0] * max(0.f, normal.y ) 
+	vec3 ambient = ( gAmbientColour[0] * max(0.f, normal.y )
 					+ gAmbientColour[1] * abs( normal.x )
-					+ gAmbientColour[2] * abs(normal.z ) 
-					+ gAmbientColour[3] * max(0.f, -normal.y )) 
+					+ gAmbientColour[2] * abs(normal.z )
+					+ gAmbientColour[3] * max(0.f, -normal.y ))
 					* albedo;
 	ambient *= ambient_scale;
 	//ambient *= ao;
@@ -226,11 +226,11 @@ void main()
 		vec4 tex_col = texture2D(gTexture, TexCoord);
 		albedo.rgb = albedo.rgb * tex_col.rgb;
 	}
-	
+
 	float shadow_coef = CalculateShadow(ViewPos, norm);
 	//vec3 light_colour = 0.002 * vec3(1000, 900, 700) * shadow_coef;
 	vec3 light_colour = gLightColour * shadow_coef;
-	vec3 light_result = CalculateMicroFacetBRDF(norm, gLightDir, 
+	vec3 light_result = CalculateMicroFacetBRDF(norm, gLightDir,
 										light_colour, view_dir, roughness,
 										albedo);
 

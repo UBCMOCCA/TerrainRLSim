@@ -34,7 +34,7 @@
 -exp_rate= 0.2
 -exp_temp= 0.25
 -exp_base_rate= 0.001
--exp_noise= 0.2 
+-exp_noise= 0.2
 -init_exp_rate= 1
 -init_exp_temp= 20
 -init_exp_base_rate= 1
