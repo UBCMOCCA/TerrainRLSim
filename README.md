@@ -34,22 +34,9 @@ OpenGL should come as part of the drivers for your graphics hardware (whether pa
 
 1. Download the most recent compressed external file from the [newest release](https://github.com/xbpeng/DeepTerrainRL/releases).
 1. Extract it and move into the TerrainRL directory. The top directory of the TerrainRL repository should now contain a directory called `external`, in addition to all the other directories that were there before.
-1. _If you are using an OS other and Ubuntu 16.04 64-bit_ build the source code for caffe that came in the `external` directory.
+1. When build Bullet, manually add `-fPIC` to all the generated make files in `build3/gmake/`
     ```
-    cd external/caffe
-    make clean
-    make
-    cd ../../
-    ```
-1. Copy the compiled caffe lib directory from external/caffe/build/lib to the top directory of TerrainRL.
-    ```
-    cp -r external/caffe/build/lib .
-    ```
-1. Copy other prebuilt libraries from the external folder
-
-    ```
-    cp external/caffe/build/lib/libcaffe.* lib/
-    cp external/Bullet/bin/*.so lib/
+    CPPFLAGS  += -MMD -MP -fPIC $(DEFINES) $(INCLUDES)
     ```
 
 1. Generate the python code wrappers (optional, if you are not planning on simulating things from python)
