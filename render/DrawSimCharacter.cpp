@@ -3,17 +3,7 @@
 #include "render/DrawObj.h"
 #include "render/DrawPerturb.h"
 #include "render/GraphUtil.h"
-#include "sim/DogController.h"
-#include "sim/DogControllerCacla.h"
-#include "sim/DogControllerMACE.h"
-#include "sim/GoatControllerMACE.h"
-#include "sim/MonopedHopperControllerCacla.h"
-#include "sim/MonopedHopperControllerMACE.h"
-#include "sim/RaptorControllerCacla.h"
-#include "sim/RaptorControllerMACE.h"
 #include "sim/SimBox.h"
-#include "sim/WaypointController.h"
-#include "sim/WaypointVelController.h"
 
 void cDrawSimCharacter::Draw(const cSimCharacter &character, const tVector &fill_tint, const tVector &line_col,
                              bool enable_draw_shape) {
@@ -390,40 +380,8 @@ void cDrawSimCharacter::DrawCtrlInfoGroundSamples(const cCharController *ctrl, c
 
     cDrawUtil::PopMatrix();
 
-    auto waypoint_ctrl = dynamic_cast<const cWaypointController *>(ctrl);
-    if (waypoint_ctrl != nullptr) {
-        DrawCtrlInfoGroundSamples(waypoint_ctrl->GetLLC().get(), offset, draw_3d);
-    }
-
-    auto waypoint_vel_ctrl = dynamic_cast<const cWaypointVelController *>(ctrl);
-    if (waypoint_vel_ctrl != nullptr) {
-        DrawCtrlInfoGroundVelSamples(ctrl, offset, draw_3d);
-    }
 }
 
 void cDrawSimCharacter::DrawCtrlInfoGroundVelSamples(const cCharController *ctrl, const tVector &offset, bool draw_3d) {
-    const double vel_scale = 0.2;
 
-    auto waypoint_vel_ctrl = dynamic_cast<const cWaypointVelController *>(ctrl);
-    if (waypoint_vel_ctrl != nullptr) {
-        cDrawUtil::PushMatrix();
-        cDrawUtil::Translate(offset);
-
-        int num_ground_samples = waypoint_vel_ctrl->GetNumGroundSamples();
-        cDrawUtil::SetColor(tVector(0, 0, 1, 0.5));
-        cDrawUtil::SetLineWidth(2);
-
-        glBegin(GL_LINES);
-        for (int s = 0; s < num_ground_samples; ++s) {
-            tVector vel = waypoint_vel_ctrl->GetGroundVelSample(s);
-            tVector start = waypoint_vel_ctrl->GetGroundSample(s);
-            tVector end = start + vel_scale * vel;
-            // cDrawUtil::DrawLine(sample_pos, sample_pos + vel_scale * vel);
-            glVertex3d(start[0], start[1], start[2]);
-            glVertex3d(end[0], end[1], end[2]);
-        }
-        glEnd();
-
-        cDrawUtil::PopMatrix();
-    }
 }
