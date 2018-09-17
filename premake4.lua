@@ -14,7 +14,6 @@ function file_exists(name)
 end
 
 local linuxLibraryLoc = "./external/"
-local windowsLibraryLoc = "../library/"
 
 solution "TerrainRL"
 	configurations {
@@ -51,23 +50,6 @@ solution "TerrainRL"
 	configuration {"Release*"}
 		defines { "NDEBUG" }
 		flags { "Optimize" }
-		targetdir ( "./x64/Release" )
-
-	-- windows specific
-	configuration {"windows"}
-		defines { "WIN32", "_WINDOWS" }
-		--libdirs { "lib" }
-		targetdir ( "./x64/Debug" )
-if os.get() == "windows" then -- premake4 does not support MultiProcessCompile
-    	flags {"StaticRuntime",
-			"MultiProcessorCompile"
-		}
-end
-
-
-	configuration {"windows", "Debug*"}
-		targetdir ( "./x64/Debug" )
-	configuration {"windows", "Release*"}
 		targetdir ( "./x64/Release" )
 
 	configuration { "linux", "Debug*", "gmake"}
@@ -167,13 +149,13 @@ project "TerrainRL"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
+			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			linuxLibraryLoc .. "jsoncpp/include",
+			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -196,7 +178,7 @@ project "TerrainRL"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -219,7 +201,7 @@ project "TerrainRL"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -229,140 +211,6 @@ project "TerrainRL"
 				"glut",
 				"GLEW",
 				"GLU",
-			}
-
-	-- windows library cflags and libs
-	configuration { "windows" }
-		-- libdirs { "lib" }
-		linkoptions  {
-			"libopenblas.dll.a",
-			-- "`pkg-config --cflags glu`"
-		}
-		defines {
-			"_USE_MATH_DEFINES"
-		}
-		includedirs {
-			windowsLibraryLoc .. "Bullet/include",
-			windowsLibraryLoc,
-			windowsLibraryLoc .. "Json_cpp",
-			"C:/Program Files (x86)/boost/boost_1_58_0/",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/include/",
-			windowsLibraryLoc .. "OpenCV/include",
-		}
-
-		libdirs {
-			windowsLibraryLoc .. "lib",
-			windowsLibraryLoc .. "boost_lib",
-			windowsLibraryLoc .. "Bullet/Debug/x64",
-			windowsLibraryLoc .. "Json_cpp/x64",
-			"C:/Program Files (x86)/boost/boost_1_58_0/stage/lib",
-			"C:/Program Files (x86)/boost/boost_1_58_0/libs",
-			windowsLibraryLoc .. "OpenCV/x64/vc12/staticlib",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/lib/x64",
-		}
-
-		-- release configs
-		configuration { "windows", "Debug*"}
-			defines { "DEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics_Debug",
-				"BulletCollision_Debug",
-				"LinearMath_Debug",
-				"jsoncpp_Debug",
-				"opencv_core300d",
-				"opencv_calib3d300d",
-				"opencv_flann300d",
-				"opencv_highgui300d",
-				"opencv_imgproc300d",
-				"opencv_imgcodecs300d",
-				"opencv_ml300d",
-				"opencv_objdetect300d",
-				"opencv_photo300d",
-				"opencv_features2d300d",
-				"opencv_stitching300d",
-				"opencv_video300d",
-				"opencv_videostab300d",
-				"opencv_hal300d",
-				"libjpegd",
-				"libjasperd",
-				"libpngd",
-				"IlmImfd",
-				"libtiffd",
-				"libwebpd",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflagsd",
-				"libglogd",
-				"libprotobufd",
-				"libprotocd",
-				"leveldbd",
-				"lmdbd",
-				"libhdf5_D",
-				"libhdf5_hl_D",
-				"Shlwapi",
-				"zlibd",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
-			}
-
-		-- release configs
-		configuration { "windows", "Release*"}
-			defines { "NDEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics",
-				"BulletCollision",
-				"LinearMath",
-				"jsoncpp",
-				"opencv_core300",
-				"opencv_calib3d300",
-				"opencv_flann300",
-				"opencv_highgui300",
-				"opencv_imgproc300",
-				"opencv_imgcodecs300",
-				"opencv_ml300",
-				"opencv_objdetect300",
-				"opencv_photo300",
-				"opencv_features2d300",
-				"opencv_stitching300",
-				"opencv_video300",
-				"opencv_videostab300",
-				"opencv_hal300",
-				"libjpeg",
-				"libjasper",
-				"libpng",
-				"IlmImf",
-				"libtiff",
-				"libwebp",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflags",
-				"libglog",
-				"libprotobuf",
-				"libprotoc",
-				"leveldb",
-				"lmdb",
-				"libhdf5",
-				"libhdf5_hl",
-				"Shlwapi",
-				"zlib",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
 			}
 
 	-- mac includes and libs
@@ -425,13 +273,13 @@ project "terrainrlUtil"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
+			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			linuxLibraryLoc .. "jsoncpp/include",
+			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -454,7 +302,7 @@ project "terrainrlUtil"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -476,7 +324,7 @@ project "terrainrlUtil"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -485,140 +333,6 @@ project "terrainrlUtil"
 				"hdf5_serial",
 				"glut",
 				"GLEW",
-			}
-
-	-- windows library cflags and libs
-	configuration { "windows" }
-		-- libdirs { "lib" }
-		linkoptions  {
-			"libopenblas.dll.a",
-			-- "`pkg-config --cflags glu`"
-		}
-		defines {
-			"_USE_MATH_DEFINES"
-		}
-		includedirs {
-			windowsLibraryLoc .. "Bullet/include",
-			windowsLibraryLoc,
-			windowsLibraryLoc .. "Json_cpp",
-			"C:/Program Files (x86)/boost/boost_1_58_0/",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/include/",
-			windowsLibraryLoc .. "OpenCV/include",
-		}
-
-		libdirs {
-			windowsLibraryLoc .. "lib",
-			windowsLibraryLoc .. "boost_lib",
-			windowsLibraryLoc .. "Bullet/Debug/x64",
-			windowsLibraryLoc .. "Json_cpp/x64",
-			"C:/Program Files (x86)/boost/boost_1_58_0/stage/lib",
-			"C:/Program Files (x86)/boost/boost_1_58_0/libs",
-			windowsLibraryLoc .. "OpenCV/x64/vc12/staticlib",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/lib/x64",
-		}
-
-		-- release configs
-		configuration { "windows", "Debug*"}
-			defines { "DEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics_Debug",
-				"BulletCollision_Debug",
-				"LinearMath_Debug",
-				"jsoncpp_Debug",
-				"opencv_core300d",
-				"opencv_calib3d300d",
-				"opencv_flann300d",
-				"opencv_highgui300d",
-				"opencv_imgproc300d",
-				"opencv_imgcodecs300d",
-				"opencv_ml300d",
-				"opencv_objdetect300d",
-				"opencv_photo300d",
-				"opencv_features2d300d",
-				"opencv_stitching300d",
-				"opencv_video300d",
-				"opencv_videostab300d",
-				"opencv_hal300d",
-				"libjpegd",
-				"libjasperd",
-				"libpngd",
-				"IlmImfd",
-				"libtiffd",
-				"libwebpd",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflagsd",
-				"libglogd",
-				"libprotobufd",
-				"libprotocd",
-				"leveldbd",
-				"lmdbd",
-				"libhdf5_D",
-				"libhdf5_hl_D",
-				"Shlwapi",
-				"zlibd",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
-			}
-
-		-- release configs
-		configuration { "windows", "Release*"}
-			defines { "NDEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics",
-				"BulletCollision",
-				"LinearMath",
-				"jsoncpp",
-				"opencv_core300",
-				"opencv_calib3d300",
-				"opencv_flann300",
-				"opencv_highgui300",
-				"opencv_imgproc300",
-				"opencv_imgcodecs300",
-				"opencv_ml300",
-				"opencv_objdetect300",
-				"opencv_photo300",
-				"opencv_features2d300",
-				"opencv_stitching300",
-				"opencv_video300",
-				"opencv_videostab300",
-				"opencv_hal300",
-				"libjpeg",
-				"libjasper",
-				"libpng",
-				"IlmImf",
-				"libtiff",
-				"libwebp",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflags",
-				"libglog",
-				"libprotobuf",
-				"libprotoc",
-				"leveldb",
-				"lmdb",
-				"libhdf5",
-				"libhdf5_hl",
-				"Shlwapi",
-				"zlib",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
 			}
 
 	-- mac includes and libs
@@ -691,13 +405,13 @@ project "terrainrlLearning"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
+			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			linuxLibraryLoc .. "jsoncpp/include",
+			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -720,7 +434,7 @@ project "terrainrlLearning"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -742,7 +456,7 @@ project "terrainrlLearning"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -751,140 +465,6 @@ project "terrainrlLearning"
 				"hdf5_serial",
 				"glut",
 				"GLEW",
-			}
-
-	-- windows library cflags and libs
-	configuration { "windows" }
-		-- libdirs { "lib" }
-		linkoptions  {
-			"libopenblas.dll.a",
-			-- "`pkg-config --cflags glu`"
-		}
-		defines {
-			"_USE_MATH_DEFINES"
-		}
-		includedirs {
-			windowsLibraryLoc .. "Bullet/include",
-			windowsLibraryLoc,
-			windowsLibraryLoc .. "Json_cpp",
-			"C:/Program Files (x86)/boost/boost_1_58_0/",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/include/",
-			windowsLibraryLoc .. "OpenCV/include",
-		}
-
-		libdirs {
-			windowsLibraryLoc .. "lib",
-			windowsLibraryLoc .. "boost_lib",
-			windowsLibraryLoc .. "Bullet/Debug/x64",
-			windowsLibraryLoc .. "Json_cpp/x64",
-			"C:/Program Files (x86)/boost/boost_1_58_0/stage/lib",
-			"C:/Program Files (x86)/boost/boost_1_58_0/libs",
-			windowsLibraryLoc .. "OpenCV/x64/vc12/staticlib",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/lib/x64",
-		}
-
-		-- release configs
-		configuration { "windows", "Debug*"}
-			defines { "DEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics_Debug",
-				"BulletCollision_Debug",
-				"LinearMath_Debug",
-				"jsoncpp_Debug",
-				"opencv_core300d",
-				"opencv_calib3d300d",
-				"opencv_flann300d",
-				"opencv_highgui300d",
-				"opencv_imgproc300d",
-				"opencv_imgcodecs300d",
-				"opencv_ml300d",
-				"opencv_objdetect300d",
-				"opencv_photo300d",
-				"opencv_features2d300d",
-				"opencv_stitching300d",
-				"opencv_video300d",
-				"opencv_videostab300d",
-				"opencv_hal300d",
-				"libjpegd",
-				"libjasperd",
-				"libpngd",
-				"IlmImfd",
-				"libtiffd",
-				"libwebpd",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflagsd",
-				"libglogd",
-				"libprotobufd",
-				"libprotocd",
-				"leveldbd",
-				"lmdbd",
-				"libhdf5_D",
-				"libhdf5_hl_D",
-				"Shlwapi",
-				"zlibd",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
-			}
-
-		-- release configs
-		configuration { "windows", "Release*"}
-			defines { "NDEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics",
-				"BulletCollision",
-				"LinearMath",
-				"jsoncpp",
-				"opencv_core300",
-				"opencv_calib3d300",
-				"opencv_flann300",
-				"opencv_highgui300",
-				"opencv_imgproc300",
-				"opencv_imgcodecs300",
-				"opencv_ml300",
-				"opencv_objdetect300",
-				"opencv_photo300",
-				"opencv_features2d300",
-				"opencv_stitching300",
-				"opencv_video300",
-				"opencv_videostab300",
-				"opencv_hal300",
-				"libjpeg",
-				"libjasper",
-				"libpng",
-				"IlmImf",
-				"libtiff",
-				"libwebp",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflags",
-				"libglog",
-				"libprotobuf",
-				"libprotoc",
-				"leveldb",
-				"lmdb",
-				"libhdf5",
-				"libhdf5_hl",
-				"Shlwapi",
-				"zlib",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
 			}
 
 	-- mac includes and libs
@@ -955,13 +535,13 @@ project "terrainrlAnim"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
+			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			linuxLibraryLoc .. "jsoncpp/include",
+			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -984,7 +564,7 @@ project "terrainrlAnim"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -1006,7 +586,7 @@ project "terrainrlAnim"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -1015,140 +595,6 @@ project "terrainrlAnim"
 				"hdf5_serial",
 				"glut",
 				"GLEW",
-			}
-
-	-- windows library cflags and libs
-	configuration { "windows" }
-		-- libdirs { "lib" }
-		linkoptions  {
-			"libopenblas.dll.a",
-			-- "`pkg-config --cflags glu`"
-		}
-		defines {
-			"_USE_MATH_DEFINES"
-		}
-		includedirs {
-			windowsLibraryLoc .. "Bullet/include",
-			windowsLibraryLoc,
-			windowsLibraryLoc .. "Json_cpp",
-			"C:/Program Files (x86)/boost/boost_1_58_0/",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/include/",
-			windowsLibraryLoc .. "OpenCV/include",
-		}
-
-		libdirs {
-			windowsLibraryLoc .. "lib",
-			windowsLibraryLoc .. "boost_lib",
-			windowsLibraryLoc .. "Bullet/Debug/x64",
-			windowsLibraryLoc .. "Json_cpp/x64",
-			"C:/Program Files (x86)/boost/boost_1_58_0/stage/lib",
-			"C:/Program Files (x86)/boost/boost_1_58_0/libs",
-			windowsLibraryLoc .. "OpenCV/x64/vc12/staticlib",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/lib/x64",
-		}
-
-		-- release configs
-		configuration { "windows", "Debug*"}
-			defines { "DEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics_Debug",
-				"BulletCollision_Debug",
-				"LinearMath_Debug",
-				"jsoncpp_Debug",
-				"opencv_core300d",
-				"opencv_calib3d300d",
-				"opencv_flann300d",
-				"opencv_highgui300d",
-				"opencv_imgproc300d",
-				"opencv_imgcodecs300d",
-				"opencv_ml300d",
-				"opencv_objdetect300d",
-				"opencv_photo300d",
-				"opencv_features2d300d",
-				"opencv_stitching300d",
-				"opencv_video300d",
-				"opencv_videostab300d",
-				"opencv_hal300d",
-				"libjpegd",
-				"libjasperd",
-				"libpngd",
-				"IlmImfd",
-				"libtiffd",
-				"libwebpd",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflagsd",
-				"libglogd",
-				"libprotobufd",
-				"libprotocd",
-				"leveldbd",
-				"lmdbd",
-				"libhdf5_D",
-				"libhdf5_hl_D",
-				"Shlwapi",
-				"zlibd",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
-			}
-
-		-- release configs
-		configuration { "windows", "Release*"}
-			defines { "NDEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics",
-				"BulletCollision",
-				"LinearMath",
-				"jsoncpp",
-				"opencv_core300",
-				"opencv_calib3d300",
-				"opencv_flann300",
-				"opencv_highgui300",
-				"opencv_imgproc300",
-				"opencv_imgcodecs300",
-				"opencv_ml300",
-				"opencv_objdetect300",
-				"opencv_photo300",
-				"opencv_features2d300",
-				"opencv_stitching300",
-				"opencv_video300",
-				"opencv_videostab300",
-				"opencv_hal300",
-				"libjpeg",
-				"libjasper",
-				"libpng",
-				"IlmImf",
-				"libtiff",
-				"libwebp",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflags",
-				"libglog",
-				"libprotobuf",
-				"libprotoc",
-				"leveldb",
-				"lmdb",
-				"libhdf5",
-				"libhdf5_hl",
-				"Shlwapi",
-				"zlib",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
 			}
 
 	-- mac includes and libs
@@ -1222,13 +668,13 @@ project "terrainrlSim"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
+			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			linuxLibraryLoc .. "jsoncpp/include",
+			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -1251,7 +697,7 @@ project "terrainrlSim"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -1273,7 +719,7 @@ project "terrainrlSim"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -1282,140 +728,6 @@ project "terrainrlSim"
 				"hdf5_serial",
 				"glut",
 				"GLEW",
-			}
-
-	-- windows library cflags and libs
-	configuration { "windows" }
-		-- libdirs { "lib" }
-		linkoptions  {
-			"libopenblas.dll.a",
-			-- "`pkg-config --cflags glu`"
-		}
-		defines {
-			"_USE_MATH_DEFINES"
-		}
-		includedirs {
-			windowsLibraryLoc .. "Bullet/include",
-			windowsLibraryLoc,
-			windowsLibraryLoc .. "Json_cpp",
-			"C:/Program Files (x86)/boost/boost_1_58_0/",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/include/",
-			windowsLibraryLoc .. "OpenCV/include",
-		}
-
-		libdirs {
-			windowsLibraryLoc .. "lib",
-			windowsLibraryLoc .. "boost_lib",
-			windowsLibraryLoc .. "Bullet/Debug/x64",
-			windowsLibraryLoc .. "Json_cpp/x64",
-			"C:/Program Files (x86)/boost/boost_1_58_0/stage/lib",
-			"C:/Program Files (x86)/boost/boost_1_58_0/libs",
-			windowsLibraryLoc .. "OpenCV/x64/vc12/staticlib",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/lib/x64",
-		}
-
-		-- release configs
-		configuration { "windows", "Debug*"}
-			defines { "DEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics_Debug",
-				"BulletCollision_Debug",
-				"LinearMath_Debug",
-				"jsoncpp_Debug",
-				"opencv_core300d",
-				"opencv_calib3d300d",
-				"opencv_flann300d",
-				"opencv_highgui300d",
-				"opencv_imgproc300d",
-				"opencv_imgcodecs300d",
-				"opencv_ml300d",
-				"opencv_objdetect300d",
-				"opencv_photo300d",
-				"opencv_features2d300d",
-				"opencv_stitching300d",
-				"opencv_video300d",
-				"opencv_videostab300d",
-				"opencv_hal300d",
-				"libjpegd",
-				"libjasperd",
-				"libpngd",
-				"IlmImfd",
-				"libtiffd",
-				"libwebpd",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflagsd",
-				"libglogd",
-				"libprotobufd",
-				"libprotocd",
-				"leveldbd",
-				"lmdbd",
-				"libhdf5_D",
-				"libhdf5_hl_D",
-				"Shlwapi",
-				"zlibd",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
-			}
-
-		-- release configs
-		configuration { "windows", "Release*"}
-			defines { "NDEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics",
-				"BulletCollision",
-				"LinearMath",
-				"jsoncpp",
-				"opencv_core300",
-				"opencv_calib3d300",
-				"opencv_flann300",
-				"opencv_highgui300",
-				"opencv_imgproc300",
-				"opencv_imgcodecs300",
-				"opencv_ml300",
-				"opencv_objdetect300",
-				"opencv_photo300",
-				"opencv_features2d300",
-				"opencv_stitching300",
-				"opencv_video300",
-				"opencv_videostab300",
-				"opencv_hal300",
-				"libjpeg",
-				"libjasper",
-				"libpng",
-				"IlmImf",
-				"libtiff",
-				"libwebp",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflags",
-				"libglog",
-				"libprotobuf",
-				"libprotoc",
-				"leveldb",
-				"lmdb",
-				"libhdf5",
-				"libhdf5_hl",
-				"Shlwapi",
-				"zlib",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
 			}
 
 	-- mac includes and libs
@@ -1490,13 +802,13 @@ project "terrainrlRender"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
+			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			linuxLibraryLoc .. "jsoncpp/include",
+			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -1519,7 +831,7 @@ project "terrainrlRender"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -1542,7 +854,7 @@ project "terrainrlRender"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -1552,140 +864,6 @@ project "terrainrlRender"
 				"glut",
 				"GLEW",
 				"GLU",
-			}
-
-	-- windows library cflags and libs
-	configuration { "windows" }
-		-- libdirs { "lib" }
-		linkoptions  {
-			"libopenblas.dll.a",
-			-- "`pkg-config --cflags glu`"
-		}
-		defines {
-			"_USE_MATH_DEFINES"
-		}
-		includedirs {
-			windowsLibraryLoc .. "Bullet/include",
-			windowsLibraryLoc,
-			windowsLibraryLoc .. "Json_cpp",
-			"C:/Program Files (x86)/boost/boost_1_58_0/",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/include/",
-			windowsLibraryLoc .. "OpenCV/include",
-		}
-
-		libdirs {
-			windowsLibraryLoc .. "lib",
-			windowsLibraryLoc .. "boost_lib",
-			windowsLibraryLoc .. "Bullet/Debug/x64",
-			windowsLibraryLoc .. "Json_cpp/x64",
-			"C:/Program Files (x86)/boost/boost_1_58_0/stage/lib",
-			"C:/Program Files (x86)/boost/boost_1_58_0/libs",
-			windowsLibraryLoc .. "OpenCV/x64/vc12/staticlib",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/lib/x64",
-		}
-
-		-- release configs
-		configuration { "windows", "Debug*"}
-			defines { "DEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics_Debug",
-				"BulletCollision_Debug",
-				"LinearMath_Debug",
-				"jsoncpp_Debug",
-				"opencv_core300d",
-				"opencv_calib3d300d",
-				"opencv_flann300d",
-				"opencv_highgui300d",
-				"opencv_imgproc300d",
-				"opencv_imgcodecs300d",
-				"opencv_ml300d",
-				"opencv_objdetect300d",
-				"opencv_photo300d",
-				"opencv_features2d300d",
-				"opencv_stitching300d",
-				"opencv_video300d",
-				"opencv_videostab300d",
-				"opencv_hal300d",
-				"libjpegd",
-				"libjasperd",
-				"libpngd",
-				"IlmImfd",
-				"libtiffd",
-				"libwebpd",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflagsd",
-				"libglogd",
-				"libprotobufd",
-				"libprotocd",
-				"leveldbd",
-				"lmdbd",
-				"libhdf5_D",
-				"libhdf5_hl_D",
-				"Shlwapi",
-				"zlibd",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
-			}
-
-		-- release configs
-		configuration { "windows", "Release*"}
-			defines { "NDEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics",
-				"BulletCollision",
-				"LinearMath",
-				"jsoncpp",
-				"opencv_core300",
-				"opencv_calib3d300",
-				"opencv_flann300",
-				"opencv_highgui300",
-				"opencv_imgproc300",
-				"opencv_imgcodecs300",
-				"opencv_ml300",
-				"opencv_objdetect300",
-				"opencv_photo300",
-				"opencv_features2d300",
-				"opencv_stitching300",
-				"opencv_video300",
-				"opencv_videostab300",
-				"opencv_hal300",
-				"libjpeg",
-				"libjasper",
-				"libpng",
-				"IlmImf",
-				"libtiff",
-				"libwebp",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflags",
-				"libglog",
-				"libprotobuf",
-				"libprotoc",
-				"leveldb",
-				"lmdb",
-				"libhdf5",
-				"libhdf5_hl",
-				"Shlwapi",
-				"zlib",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
 			}
 
 	-- mac includes and libs
@@ -1757,13 +935,13 @@ project "terrainrlScenarios"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
+			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			linuxLibraryLoc .. "jsoncpp/include",
+			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -1786,7 +964,7 @@ project "terrainrlScenarios"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -1808,7 +986,7 @@ project "terrainrlScenarios"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -1817,140 +995,6 @@ project "terrainrlScenarios"
 				"hdf5_serial",
 				"glut",
 				"GLEW",
-			}
-
-	-- windows library cflags and libs
-	configuration { "windows" }
-		-- libdirs { "lib" }
-		linkoptions  {
-			"libopenblas.dll.a",
-			-- "`pkg-config --cflags glu`"
-		}
-		defines {
-			"_USE_MATH_DEFINES"
-		}
-		includedirs {
-			windowsLibraryLoc .. "Bullet/include",
-			windowsLibraryLoc,
-			windowsLibraryLoc .. "Json_cpp",
-			"C:/Program Files (x86)/boost/boost_1_58_0/",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/include/",
-			windowsLibraryLoc .. "OpenCV/include",
-		}
-
-		libdirs {
-			windowsLibraryLoc .. "lib",
-			windowsLibraryLoc .. "boost_lib",
-			windowsLibraryLoc .. "Bullet/Debug/x64",
-			windowsLibraryLoc .. "Json_cpp/x64",
-			"C:/Program Files (x86)/boost/boost_1_58_0/stage/lib",
-			"C:/Program Files (x86)/boost/boost_1_58_0/libs",
-			windowsLibraryLoc .. "OpenCV/x64/vc12/staticlib",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/lib/x64",
-		}
-
-		-- release configs
-		configuration { "windows", "Debug*"}
-			defines { "DEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics_Debug",
-				"BulletCollision_Debug",
-				"LinearMath_Debug",
-				"jsoncpp_Debug",
-				"opencv_core300d",
-				"opencv_calib3d300d",
-				"opencv_flann300d",
-				"opencv_highgui300d",
-				"opencv_imgproc300d",
-				"opencv_imgcodecs300d",
-				"opencv_ml300d",
-				"opencv_objdetect300d",
-				"opencv_photo300d",
-				"opencv_features2d300d",
-				"opencv_stitching300d",
-				"opencv_video300d",
-				"opencv_videostab300d",
-				"opencv_hal300d",
-				"libjpegd",
-				"libjasperd",
-				"libpngd",
-				"IlmImfd",
-				"libtiffd",
-				"libwebpd",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflagsd",
-				"libglogd",
-				"libprotobufd",
-				"libprotocd",
-				"leveldbd",
-				"lmdbd",
-				"libhdf5_D",
-				"libhdf5_hl_D",
-				"Shlwapi",
-				"zlibd",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
-			}
-
-		-- release configs
-		configuration { "windows", "Release*"}
-			defines { "NDEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics",
-				"BulletCollision",
-				"LinearMath",
-				"jsoncpp",
-				"opencv_core300",
-				"opencv_calib3d300",
-				"opencv_flann300",
-				"opencv_highgui300",
-				"opencv_imgproc300",
-				"opencv_imgcodecs300",
-				"opencv_ml300",
-				"opencv_objdetect300",
-				"opencv_photo300",
-				"opencv_features2d300",
-				"opencv_stitching300",
-				"opencv_video300",
-				"opencv_videostab300",
-				"opencv_hal300",
-				"libjpeg",
-				"libjasper",
-				"libpng",
-				"IlmImf",
-				"libtiff",
-				"libwebp",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflags",
-				"libglog",
-				"libprotobuf",
-				"libprotoc",
-				"leveldb",
-				"lmdb",
-				"libhdf5",
-				"libhdf5_hl",
-				"Shlwapi",
-				"zlib",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
 			}
 
 	-- mac includes and libs
@@ -1976,7 +1020,6 @@ project "terrainrlScenarios"
 --
 
 -- local linuxLibraryLoc = "../external/"
--- local windowsLibraryLoc = "../../library/"
 
 
 project "TerrainRL_Optimizer"
@@ -2050,13 +1093,13 @@ project "TerrainRL_Optimizer"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
+			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			linuxLibraryLoc .. "jsoncpp/include",
+			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -2080,7 +1123,7 @@ project "TerrainRL_Optimizer"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -2100,7 +1143,7 @@ project "TerrainRL_Optimizer"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				"jsoncpp",
+				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -2108,140 +1151,6 @@ project "TerrainRL_Optimizer"
 				"hdf5_serial_hl",
 				"hdf5_serial",
    				-- "f2c",
-			}
-
-	-- windows library cflags and libs
-	configuration { "windows" }
-		-- libdirs { "lib" }
-		linkoptions  {
-			"libopenblas.dll.a",
-			-- "`pkg-config --cflags glu`"
-		}
-		defines {
-			"_USE_MATH_DEFINES"
-		}
-		includedirs {
-			windowsLibraryLoc .. "Bullet/include",
-			windowsLibraryLoc,
-			windowsLibraryLoc .. "Json_cpp",
-			"C:/Program Files (x86)/boost/boost_1_58_0/",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/include/",
-			windowsLibraryLoc .. "OpenCV/include",
-		}
-
-		libdirs {
-			windowsLibraryLoc .. "lib",
-			windowsLibraryLoc .. "boost_lib",
-			windowsLibraryLoc .. "Bullet/Debug/x64",
-			windowsLibraryLoc .. "Json_cpp/x64",
-			"C:/Program Files (x86)/boost/boost_1_58_0/stage/lib",
-			"C:/Program Files (x86)/boost/boost_1_58_0/libs",
-			windowsLibraryLoc .. "OpenCV/x64/vc12/staticlib",
-			"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v7.5/lib/x64",
-		}
-
-		-- release configs
-		configuration { "windows", "Debug*"}
-			defines { "DEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics_Debug",
-				"BulletCollision_Debug",
-				"LinearMath_Debug",
-				"jsoncpp_Debug",
-				"opencv_core300d",
-				"opencv_calib3d300d",
-				"opencv_flann300d",
-				"opencv_highgui300d",
-				"opencv_imgproc300d",
-				"opencv_imgcodecs300d",
-				"opencv_ml300d",
-				"opencv_objdetect300d",
-				"opencv_photo300d",
-				"opencv_features2d300d",
-				"opencv_stitching300d",
-				"opencv_video300d",
-				"opencv_videostab300d",
-				"opencv_hal300d",
-				"libjpegd",
-				"libjasperd",
-				"libpngd",
-				"IlmImfd",
-				"libtiffd",
-				"libwebpd",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflagsd",
-				"libglogd",
-				"libprotobufd",
-				"libprotocd",
-				"leveldbd",
-				"lmdbd",
-				"libhdf5_D",
-				"libhdf5_hl_D",
-				"Shlwapi",
-				"zlibd",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
-			}
-
-		-- release configs
-		configuration { "windows", "Release*"}
-			defines { "NDEBUG" }
-			links {
-				"opengl32",
-				"glu32",
-				-- Just a few dependancies....
-				"BulletDynamics",
-				"BulletCollision",
-				"LinearMath",
-				"jsoncpp",
-				"opencv_core300",
-				"opencv_calib3d300",
-				"opencv_flann300",
-				"opencv_highgui300",
-				"opencv_imgproc300",
-				"opencv_imgcodecs300",
-				"opencv_ml300",
-				"opencv_objdetect300",
-				"opencv_photo300",
-				"opencv_features2d300",
-				"opencv_stitching300",
-				"opencv_video300",
-				"opencv_videostab300",
-				"opencv_hal300",
-				"libjpeg",
-				"libjasper",
-				"libpng",
-				"IlmImf",
-				"libtiff",
-				"libwebp",
-				-- "cudart",
-				-- "cuda",
-				-- "nppi",
-				-- "cufft",
-				-- "cublas",
-				-- "curand",
-				"gflags",
-				"libglog",
-				"libprotobuf",
-				"libprotoc",
-				"leveldb",
-				"lmdb",
-				"libhdf5",
-				"libhdf5_hl",
-				"Shlwapi",
-				"zlib",
-				-- "libopenblas"
-				-- "libopenblas.dll.a",
-				"glew32",
 			}
 
 	-- mac includes and libs
