@@ -268,25 +268,25 @@ bool cScenarioPoliEval::EnableRecordActionIDState() const {
     return mRecordActionIDState && mActionIDStateOutputFile != "";
 }
 
-void cScenarioPoliEval::RecordActionIDState(const std::string &out_file) {
-    const auto &ctrl = mChar->GetController();
-    auto nn_ctrl = GetRLCharController();
+// void cScenarioPoliEval::RecordActionIDState(const std::string &out_file) {
+//     const auto &ctrl = mChar->GetController();
+//     auto nn_ctrl = GetRLCharController();
 
-    Eigen::VectorXd state;
-    nn_ctrl->RecordPoliState(state);
+//     Eigen::VectorXd state;
+//     nn_ctrl->RecordPoliState(state);
 
-    std::string data_str = "";
-    int action_id = ctrl->GetCurrActionID();
-    data_str += std::to_string(action_id);
+//     std::string data_str = "";
+//     int action_id = ctrl->GetCurrActionID();
+//     data_str += std::to_string(action_id);
 
-    for (int i = 0; i < static_cast<int>(state.size()); ++i) {
-        data_str += ",\t";
-        data_str += std::to_string(state[i]);
-    }
-    data_str += "\n";
+//     for (int i = 0; i < static_cast<int>(state.size()); ++i) {
+//         data_str += ",\t";
+//         data_str += std::to_string(state[i]);
+//     }
+//     data_str += "\n";
 
-    cFileUtil::AppendText(data_str, out_file);
-}
+//     cFileUtil::AppendText(data_str, out_file);
+// }
 
 bool cScenarioPoliEval::EnableRecordReward() { return mRecordReward; }
 
@@ -305,7 +305,7 @@ void cScenarioPoliEval::ParseMiscArgs(const std::shared_ptr<cArgParser> &parser)
     parser->ParseBool("record_ctrl_force", mRecordCtrlForce);
     parser->ParseString("ctrl_force_output_file", mCtrlForceOutputFile);
 
-    parser->ParseBool("record_action_id_state", mRecordActionIDState);
+    // parser->ParseBool("record_action_id_state", mRecordActionIDState);
     parser->ParseString("action_id_state_output_file", mActionIDStateOutputFile);
 
     parser->ParseBool("record_reward", mRecordReward);
@@ -357,9 +357,9 @@ void cScenarioPoliEval::UpdateMiscRecord() {
             RecordAction(mActionOutputFile);
         }
 
-        if (EnableRecordActionIDState()) {
-            RecordActionIDState(mActionIDStateOutputFile);
-        }
+        // if (EnableRecordActionIDState()) {
+        //     RecordActionIDState(mActionIDStateOutputFile);
+        // }
         ++mTotalCycles;
     }
 }

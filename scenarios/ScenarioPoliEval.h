@@ -80,7 +80,7 @@ class cScenarioPoliEval : virtual public cScenarioExp {
 
     virtual void InitActionIDState(const std::string &out_file) const;
     virtual bool EnableRecordActionIDState() const;
-    virtual void RecordActionIDState(const std::string &out_file);
+    // virtual void RecordActionIDState(const std::string &out_file);
 
     virtual void UpdateTotalReward(double curr_reward);
     virtual void RecordTotalReward();
