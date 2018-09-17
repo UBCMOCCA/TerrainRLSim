@@ -9,44 +9,28 @@ cSoccerController::~cSoccerController() {}
 
 void cSoccerController::SetBall(const std::shared_ptr<cSimObj> &ball) { mBall = ball; }
 
-void cSoccerController::BuildNNInputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const {
-    cWaypointController::BuildNNInputOffsetScale(out_offset, out_scale);
+// void cSoccerController::BuildNNInputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const {
+//     cWaypointController::BuildNNInputOffsetScale(out_offset, out_scale);
 
-    // const double pos_scale = 1 / 5.0;
-    // const double vel_scale = 0.5 * pos_scale;
-    // const double ang_vel_scale = 1 / (10.0 * M_PI);
+//     // const double pos_scale = 1 / 5.0;
+//     // const double vel_scale = 0.5 * pos_scale;
+//     // const double ang_vel_scale = 1 / (10.0 * M_PI);
 
-    const double pos_scale = 1;
-    const double vel_scale = 1;
-    const double ang_vel_scale = 1;
+//     const double pos_scale = 1;
+//     const double vel_scale = 1;
+//     const double ang_vel_scale = 1;
 
-    int ball_offset = GetBallStateOffset();
-    out_scale[ball_offset + eBallStatePosX] = pos_scale;
-    out_scale[ball_offset + eBallStatePosY] = pos_scale;
-    out_scale[ball_offset + eBallStatePosZ] = pos_scale;
-    out_scale[ball_offset + eBallStateVelX] = vel_scale;
-    out_scale[ball_offset + eBallStateVelY] = vel_scale;
-    out_scale[ball_offset + eBallStateVelZ] = vel_scale;
-    out_scale[ball_offset + eBallStateAngVelX] = ang_vel_scale;
-    out_scale[ball_offset + eBallStateAngVelY] = ang_vel_scale;
-    out_scale[ball_offset + eBallStateAngVelZ] = ang_vel_scale;
-}
-
-void cSoccerController::BuildNNInputOffsetScaleTypes(std::vector<cNeuralNet::eOffsetScaleType> &out_types) const {
-    cWaypointController::BuildNNInputOffsetScaleTypes(out_types);
-
-    int tar_offset = GetTargetPosStateOffset();
-    int tar_size = GetTargetPosStateSize();
-    for (int i = 0; i < tar_size; ++i) {
-        out_types[tar_offset + i] = cNeuralNet::eOffsetScaleTypeFixed;
-    }
-
-    int ball_offset = GetBallStateOffset();
-    int ball_size = GetBallStateSize();
-    for (int i = 0; i < ball_size; ++i) {
-        out_types[ball_offset + i] = cNeuralNet::eOffsetScaleTypeFixed;
-    }
-}
+//     int ball_offset = GetBallStateOffset();
+//     out_scale[ball_offset + eBallStatePosX] = pos_scale;
+//     out_scale[ball_offset + eBallStatePosY] = pos_scale;
+//     out_scale[ball_offset + eBallStatePosZ] = pos_scale;
+//     out_scale[ball_offset + eBallStateVelX] = vel_scale;
+//     out_scale[ball_offset + eBallStateVelY] = vel_scale;
+//     out_scale[ball_offset + eBallStateVelZ] = vel_scale;
+//     out_scale[ball_offset + eBallStateAngVelX] = ang_vel_scale;
+//     out_scale[ball_offset + eBallStateAngVelY] = ang_vel_scale;
+//     out_scale[ball_offset + eBallStateAngVelZ] = ang_vel_scale;
+// }
 
 int cSoccerController::GetGroundSampleRes() const { return 0; }
 

@@ -10,8 +10,7 @@ class cSoccerController : public virtual cWaypointController {
     virtual ~cSoccerController();
 
     virtual void SetBall(const std::shared_ptr<cSimObj> &ball);
-    virtual void BuildNNInputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
-    virtual void BuildNNInputOffsetScaleTypes(std::vector<cNeuralNet::eOffsetScaleType> &out_types) const;
+    // virtual void BuildNNInputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
 
   protected:
     enum eBallState {

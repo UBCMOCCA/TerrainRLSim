@@ -85,12 +85,12 @@ void cTerrainRLCharController::BuildActionExpCovar(Eigen::VectorXd &out_covar) c
 
 const cTerrainRLCharController::tAction &cTerrainRLCharController::GetCurrAction() const { return mCurrAction; }
 
-void cTerrainRLCharController::SampleAction(tAction &out_action) {
-    // make copy of state to avoid side effects in ExploreAction that might change it
-    // (e.g. CtStochController)
-    Eigen::VectorXd state = mPoliState;
-    ExploreAction(state, out_action);
-}
+// void cTerrainRLCharController::SampleAction(tAction &out_action) {
+//     // make copy of state to avoid side effects in ExploreAction that might change it
+//     // (e.g. CtStochController)
+//     Eigen::VectorXd state = mPoliState;
+//     ExploreAction(state, out_action);
+// }
 
 void cTerrainRLCharController::SetGround(std::shared_ptr<cGround> ground) { mGround = ground; }
 

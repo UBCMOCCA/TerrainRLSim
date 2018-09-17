@@ -51,8 +51,6 @@ class cBipedStepController3D : public virtual cCtPDPhaseController {
     virtual eStance GetStance() const;
     virtual eStance GetStance(double phase) const;
 
-    virtual void BuildNNInputOffsetScaleTypes(std::vector<cNeuralNet::eOffsetScaleType> &out_types) const;
-
     // Hack to get 3D terrain working, someone should fix the inheritance
     virtual void GetViewBound(tVector &out_min, tVector &out_max) const;
     virtual int GetNumGroundSamples() const;

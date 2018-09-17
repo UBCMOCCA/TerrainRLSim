@@ -10,7 +10,7 @@ class cCtNPDController : public virtual cCtController {
     virtual ~cCtNPDController();
 
     virtual int GetPoliStateSize() const;
-    virtual void BuildNNInputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
+    // virtual void BuildNNInputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
 
   protected:
     virtual int GetPDStateOffset() const;

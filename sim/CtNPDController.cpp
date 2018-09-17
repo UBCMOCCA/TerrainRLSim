@@ -12,18 +12,18 @@ int cCtNPDController::GetPoliStateSize() const {
     return state_size;
 }
 
-void cCtNPDController::BuildNNInputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const {
-    cCtController::BuildNNInputOffsetScale(out_offset, out_scale);
+// void cCtNPDController::BuildNNInputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const {
+//     cCtController::BuildNNInputOffsetScale(out_offset, out_scale);
 
-    Eigen::VectorXd pd_offset;
-    Eigen::VectorXd pd_scale;
-    BuildPDStateOffsetScale(pd_offset, pd_scale);
+//     Eigen::VectorXd pd_offset;
+//     Eigen::VectorXd pd_scale;
+//     BuildPDStateOffsetScale(pd_offset, pd_scale);
 
-    int pd_state_offset = GetPDStateOffset();
-    int pd_state_size = GetPDStateSize();
-    out_offset.segment(pd_state_offset, pd_state_size) = pd_offset;
-    out_scale.segment(pd_state_offset, pd_state_size) = pd_scale;
-}
+//     int pd_state_offset = GetPDStateOffset();
+//     int pd_state_size = GetPDStateSize();
+//     out_offset.segment(pd_state_offset, pd_state_size) = pd_offset;
+//     out_scale.segment(pd_state_offset, pd_state_size) = pd_scale;
+// }
 
 int cCtNPDController::GetPDStateOffset() const { return cCtController::GetPoliStateSize(); }
 

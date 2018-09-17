@@ -15,16 +15,6 @@ int cCtStochController::GetPoliActionSize() const {
     return size;
 }
 
-void cCtStochController::BuildNNInputOffsetScaleTypes(std::vector<cNeuralNet::eOffsetScaleType> &out_types) const {
-    cCtController::BuildNNInputOffsetScaleTypes(out_types);
-
-    int offset = GetNoiseStateOffset();
-    int size = GetNoiseStateSize();
-    for (int i = 0; i < size; ++i) {
-        out_types[offset + i] = cNeuralNet::eOffsetScaleTypeFixed;
-    }
-}
-
 void cCtStochController::BuildActorOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const {
     cCtController::BuildActorOutputOffsetScale(out_offset, out_scale);
 
@@ -55,10 +45,10 @@ void cCtStochController::BuildPoliState(Eigen::VectorXd &out_state) const {
     out_state.segment(noise_offset, noise_size).setZero();
 }
 
-void cCtStochController::ExploreAction(Eigen::VectorXd &state, tAction &out_action) {
-    ApplyExpNoiseInternal(state);
-    cCtController::ExploreAction(state, out_action);
-}
+// void cCtStochController::ExploreAction(Eigen::VectorXd &state, tAction &out_action) {
+//     ApplyExpNoiseInternal(state);
+//     cCtController::ExploreAction(state, out_action);
+// }
 
 void cCtStochController::ApplyExpNoiseInternal(Eigen::VectorXd &out_state) const {
     const double noise_bound = 3 * mExpParams.mNoiseInternal;

@@ -20,8 +20,6 @@ class cCtPhaseController : public virtual cCtController {
     virtual void SetTime(double time);
     virtual double GetPhase() const;
 
-    // virtual void BuildNNInputOffsetScaleTypes(std::vector<cNeuralNet::eOffsetScaleType> &out_types) const;
-
   protected:
     double mCycleDur;
 

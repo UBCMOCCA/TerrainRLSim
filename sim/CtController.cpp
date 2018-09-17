@@ -239,17 +239,17 @@ void cCtController::UpdateAction() {
 #endif // ENABLE_DEBUG_VISUALIZATION
 }
 
-void cCtController::DecideAction(tAction &out_action) {
-    bool explore = ShouldExplore();
+// void cCtController::DecideAction(tAction &out_action) {
+//     bool explore = ShouldExplore();
 
-    if (explore) {
-        mIsOffPolicy = true;
-        ExploreAction(mPoliState, out_action);
-    } else {
-        mIsOffPolicy = false;
-        ExploitPolicy(mPoliState, out_action);
-    }
-}
+//     if (explore) {
+//         mIsOffPolicy = true;
+//         ExploreAction(mPoliState, out_action);
+//     } else {
+//         mIsOffPolicy = false;
+//         ExploitPolicy(mPoliState, out_action);
+//     }
+// }
 
 void cCtController::BuildActorOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const {
     int action_size = GetPoliActionSize();
@@ -300,22 +300,22 @@ void cCtController::ForceActionUpdate() { UpdateAction(); }
 //     out_action.mLogp = logp;
 // }
 
-void cCtController::ExploreAction(Eigen::VectorXd &state, tAction &out_action) {
-#if defined(ENABLE_DEBUG_PRINT)
-    // printf("Exploring action\n");
-#endif
+// void cCtController::ExploreAction(Eigen::VectorXd &state, tAction &out_action) {
+// #if defined(ENABLE_DEBUG_PRINT)
+//     // printf("Exploring action\n");
+// #endif
 
-    ExploitPolicy(state, out_action);
-    Eigen::VectorXd old_action = out_action.mParams;
-    ApplyExpNoise(out_action);
+//     ExploitPolicy(state, out_action);
+//     Eigen::VectorXd old_action = out_action.mParams;
+//     ApplyExpNoise(out_action);
 
-    PostProcessAction(out_action); // arg this is inefficient
+//     PostProcessAction(out_action); // arg this is inefficient
 
-    Eigen::VectorXd covar;
-    BuildActionExpCovar(covar);
-    double logp = cMathUtil::EvalGaussianLogp(old_action, covar, out_action.mParams);
-    out_action.mLogp = logp;
-}
+//     Eigen::VectorXd covar;
+//     BuildActionExpCovar(covar);
+//     double logp = cMathUtil::EvalGaussianLogp(old_action, covar, out_action.mParams);
+//     out_action.mLogp = logp;
+// }
 
 void cCtController::PostProcessAction(tAction &out_action) const {
     // out_action.mParams = out_action.mParams.cwiseMax(mActionBoundMin).cwiseMin(mActionBoundMax);

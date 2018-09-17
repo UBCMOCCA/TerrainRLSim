@@ -52,22 +52,6 @@ cBipedStepController3D::eStance cBipedStepController3D::PredictNextStance(double
     return GetStance(phase);
 }
 
-void cBipedStepController3D::BuildNNInputOffsetScaleTypes(std::vector<cNeuralNet::eOffsetScaleType> &out_types) const {
-    cCtPDPhaseController::BuildNNInputOffsetScaleTypes(out_types);
-
-    int contact_offset = GetContactStateOffset();
-    int contact_size = GetContactStateSize();
-    for (int i = 0; i < contact_size; ++i) {
-        out_types[contact_offset + i] = cNeuralNet::eOffsetScaleTypeFixed;
-    }
-
-    int task_offset = GetTaskStateOffset();
-    int task_size = GetTaskStateSize();
-    for (int i = 0; i < task_size; ++i) {
-        out_types[task_offset + i] = cNeuralNet::eOffsetScaleTypeFixed;
-    }
-}
-
 cBipedStepController3D::eStance cBipedStepController3D::GetStance() const { return GetStance(mPhase); }
 
 cBipedStepController3D::eStance cBipedStepController3D::GetStance(double phase) const {

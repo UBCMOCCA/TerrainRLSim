@@ -68,9 +68,9 @@ class cCtController : public virtual cTerrainRLCharController {
 
     virtual void UpdateBuildTau(double time_step, Eigen::VectorXd &out_tau);
     virtual void UpdateAction();
-    virtual void DecideAction(tAction &out_action);
+    // virtual void DecideAction(tAction &out_action);
     // virtual void ExploitPolicy(const Eigen::VectorXd &state, tAction &out_action);
-    virtual void ExploreAction(Eigen::VectorXd &state, tAction &out_action);
+    // virtual void ExploreAction(Eigen::VectorXd &state, tAction &out_action);
 
     virtual void PostProcessAction(tAction &out_action) const;
     // virtual void RecordVal();

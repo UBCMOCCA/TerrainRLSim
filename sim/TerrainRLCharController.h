@@ -55,7 +55,7 @@ class cTerrainRLCharController : public cCharController {
     virtual void BuildActionExpCovar(Eigen::VectorXd &out_covar) const;
 
     virtual const tAction &GetCurrAction() const;
-    virtual void SampleAction(tAction &out_action);
+    // virtual void SampleAction(tAction &out_action);
     virtual void BuildPoliState(Eigen::VectorXd &out_state) const;
 
     virtual tMatrix BuildGroundSampleTrans() const;
@@ -104,9 +104,9 @@ class cTerrainRLCharController : public cCharController {
     virtual void SetParams(const Eigen::VectorXd &params);
     virtual bool IsOptParam(int param_idx) const;
 
-    virtual void DecideAction(tAction &out_action) = 0;
-    virtual void ExploitPolicy(const Eigen::VectorXd &state, tAction &out_action) = 0;
-    virtual void ExploreAction(Eigen::VectorXd &state, tAction &out_action) = 0;
+    // virtual void DecideAction(tAction &out_action) = 0;
+    // virtual void ExploitPolicy(const Eigen::VectorXd &state, tAction &out_action) = 0;
+    // virtual void ExploreAction(Eigen::VectorXd &state, tAction &out_action) = 0;
 
     virtual void BuildDefaultAction(tAction &out_action) const;
     virtual void BuildBaseAction(int action_id, tAction &out_action) const = 0;
