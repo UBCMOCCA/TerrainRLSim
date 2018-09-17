@@ -251,38 +251,38 @@ void cCtController::UpdateAction() {
 //     }
 // }
 
-void cCtController::BuildActorOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const {
-    int action_size = GetPoliActionSize();
-    out_offset = Eigen::VectorXd::Zero(action_size);
-    out_scale = Eigen::VectorXd::Ones(action_size);
+// void cCtController::BuildActorOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const {
+//     int action_size = GetPoliActionSize();
+//     out_offset = Eigen::VectorXd::Zero(action_size);
+//     out_scale = Eigen::VectorXd::Ones(action_size);
 
-    int root_id = mChar->GetRootID();
-    int root_size = mChar->GetParamSize(mChar->GetRootID());
-    int num_joints = mChar->GetNumJoints();
+//     int root_id = mChar->GetRootID();
+//     int root_size = mChar->GetParamSize(mChar->GetRootID());
+//     int num_joints = mChar->GetNumJoints();
 
-    for (int j = root_id + 1; j < num_joints; ++j) {
-        const cJoint &joint = mChar->GetJoint(j);
-        if (joint.IsValid()) {
-            int param_offset = mChar->GetParamOffset(j);
-            int param_size = mChar->GetParamSize(j);
+//     for (int j = root_id + 1; j < num_joints; ++j) {
+//         const cJoint &joint = mChar->GetJoint(j);
+//         if (joint.IsValid()) {
+//             int param_offset = mChar->GetParamOffset(j);
+//             int param_size = mChar->GetParamSize(j);
 
-            Eigen::VectorXd curr_offset;
-            Eigen::VectorXd curr_scale;
-            BuildJointActionOffsetScale(j, curr_offset, curr_scale);
-            assert(curr_offset.size() == param_size);
-            assert(curr_scale.size() == param_size);
+//             Eigen::VectorXd curr_offset;
+//             Eigen::VectorXd curr_scale;
+//             BuildJointActionOffsetScale(j, curr_offset, curr_scale);
+//             assert(curr_offset.size() == param_size);
+//             assert(curr_scale.size() == param_size);
 
-            out_offset.segment(param_offset - root_size, param_size) = curr_offset;
-            out_scale.segment(param_offset - root_size, param_size) = curr_scale;
-        }
-    }
-}
+//             out_offset.segment(param_offset - root_size, param_size) = curr_offset;
+//             out_scale.segment(param_offset - root_size, param_size) = curr_scale;
+//         }
+//     }
+// }
 
-void cCtController::BuildActionExpCovar(Eigen::VectorXd &out_covar) const {
-    FetchExpNoiseScale(out_covar);
-    out_covar *= mExpParams.mNoise;
-    out_covar = out_covar.cwiseProduct(out_covar);
-}
+// void cCtController::BuildActionExpCovar(Eigen::VectorXd &out_covar) const {
+//     FetchExpNoiseScale(out_covar);
+//     out_covar *= mExpParams.mNoise;
+//     out_covar = out_covar.cwiseProduct(out_covar);
+// }
 
 void cCtController::ForceActionUpdate() { UpdateAction(); }
 
@@ -340,20 +340,20 @@ void cCtController::PostProcessAction(tAction &out_action) const {
 //     }
 // }
 
-void cCtController::ApplyExpNoise(tAction &out_action) {
-    int num_params = static_cast<int>(out_action.mParams.size());
-    Eigen::VectorXd noise_scale;
-    FetchExpNoiseScale(noise_scale);
+// void cCtController::ApplyExpNoise(tAction &out_action) {
+//     int num_params = static_cast<int>(out_action.mParams.size());
+//     Eigen::VectorXd noise_scale;
+//     FetchExpNoiseScale(noise_scale);
 
-    assert(noise_scale.size() == num_params);
+//     assert(noise_scale.size() == num_params);
 
-    for (int i = 0; i < num_params; ++i) {
-        double noise = cMathUtil::RandDoubleNorm(0, mExpParams.mNoise);
-        double scale = noise_scale[i];
-        noise *= scale;
-        out_action.mParams[i] += noise;
-    }
-}
+//     for (int i = 0; i < num_params; ++i) {
+//         double noise = cMathUtil::RandDoubleNorm(0, mExpParams.mNoise);
+//         double scale = noise_scale[i];
+//         noise *= scale;
+//         out_action.mParams[i] += noise;
+//     }
+// }
 
 void cCtController::ApplyAction(int action_id) {
     // do nothing

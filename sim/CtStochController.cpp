@@ -15,14 +15,14 @@ int cCtStochController::GetPoliActionSize() const {
     return size;
 }
 
-void cCtStochController::BuildActorOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const {
-    cCtController::BuildActorOutputOffsetScale(out_offset, out_scale);
+// void cCtStochController::BuildActorOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const {
+//     cCtController::BuildActorOutputOffsetScale(out_offset, out_scale);
 
-    int offset = GetNoiseActionOffset();
-    int size = GetNoiseActionSize();
-    out_offset.segment(offset, size) = Eigen::VectorXd::Zero(size);
-    out_scale.segment(offset, size) = Eigen::VectorXd::Ones(size);
-}
+//     int offset = GetNoiseActionOffset();
+//     int size = GetNoiseActionSize();
+//     out_offset.segment(offset, size) = Eigen::VectorXd::Zero(size);
+//     out_scale.segment(offset, size) = Eigen::VectorXd::Ones(size);
+// }
 
 void cCtStochController::GetPoliActionBounds(Eigen::VectorXd &out_min, Eigen::VectorXd &out_max) const {
     cCtController::GetPoliActionBounds(out_min, out_max);
@@ -50,21 +50,21 @@ void cCtStochController::BuildPoliState(Eigen::VectorXd &out_state) const {
 //     cCtController::ExploreAction(state, out_action);
 // }
 
-void cCtStochController::ApplyExpNoiseInternal(Eigen::VectorXd &out_state) const {
-    const double noise_bound = 3 * mExpParams.mNoiseInternal;
-    // const double noise_bound = std::numeric_limits<double>::infinity();
+// void cCtStochController::ApplyExpNoiseInternal(Eigen::VectorXd &out_state) const {
+//     const double noise_bound = 3 * mExpParams.mNoiseInternal;
+//     // const double noise_bound = std::numeric_limits<double>::infinity();
 
-    int noise_offset = GetNoiseStateOffset();
-    int noise_size = GetNoiseStateSize();
-    for (int i = 0; i < noise_size; ++i) {
-        double curr_noise = 0;
-        do {
-            curr_noise = cMathUtil::RandDoubleNorm(0, mExpParams.mNoiseInternal);
-        } while (std::abs(curr_noise) > noise_bound);
+//     int noise_offset = GetNoiseStateOffset();
+//     int noise_size = GetNoiseStateSize();
+//     for (int i = 0; i < noise_size; ++i) {
+//         double curr_noise = 0;
+//         do {
+//             curr_noise = cMathUtil::RandDoubleNorm(0, mExpParams.mNoiseInternal);
+//         } while (std::abs(curr_noise) > noise_bound);
 
-        out_state[noise_offset + i] = curr_noise;
-    }
-}
+//         out_state[noise_offset + i] = curr_noise;
+//     }
+// }
 
 int cCtStochController::GetNumNoiseUnits() const { return mNet->GetInputSize() - cCtController::GetPoliStateSize(); }
 

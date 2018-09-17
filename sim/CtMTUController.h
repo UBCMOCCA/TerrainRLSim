@@ -25,7 +25,7 @@ class cCtMTUController : public virtual cCtController {
 
     virtual int GetPoliStateSize() const;
     virtual int GetPoliActionSize() const;
-    virtual void BuildActorOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
+    // virtual void BuildActorOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
 
     virtual int GetNumOptParams() const;
     virtual int GetNumOptParams(int mtu_id) const;
@@ -52,5 +52,5 @@ class cCtMTUController : public virtual cCtController {
     virtual void BuildPoliState(Eigen::VectorXd &out_state) const;
     virtual void BuildMTUState(Eigen::VectorXd &out_state) const;
 
-    virtual void ApplyExpNoise(tAction &out_action);
+    // virtual void ApplyExpNoise(tAction &out_action);
 };

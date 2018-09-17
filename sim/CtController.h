@@ -32,8 +32,8 @@ class cCtController : public virtual cTerrainRLCharController {
     virtual int GetNumParams() const;
     virtual void GetViewBound(tVector &out_min, tVector &out_max) const;
 
-    virtual void BuildActorOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
-    virtual void BuildActionExpCovar(Eigen::VectorXd &out_covar) const;
+    // virtual void BuildActorOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
+    // virtual void BuildActionExpCovar(Eigen::VectorXd &out_covar) const;
     virtual void ForceActionUpdate();
 
     virtual int GetNumGroundSamples() const;
@@ -74,7 +74,7 @@ class cCtController : public virtual cTerrainRLCharController {
 
     virtual void PostProcessAction(tAction &out_action) const;
     // virtual void RecordVal();
-    virtual void ApplyExpNoise(tAction &out_action);
+    // virtual void ApplyExpNoise(tAction &out_action);
 
     virtual void ApplyAction(int action_id);
     virtual void ApplyAction(const tAction &action);

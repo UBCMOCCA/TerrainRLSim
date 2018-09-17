@@ -55,21 +55,21 @@ int cCtMTUController::GetPoliStateSize() const {
 
 int cCtMTUController::GetPoliActionSize() const { return GetNumMTUs(); }
 
-void cCtMTUController::BuildActorOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const {
-    double min_act = cMusculotendonUnit::gMinActivation;
-    double max_act = cMusculotendonUnit::gMaxActivation;
+// void cCtMTUController::BuildActorOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const {
+//     double min_act = cMusculotendonUnit::gMinActivation;
+//     double max_act = cMusculotendonUnit::gMaxActivation;
 
-    // const double activation_offset = 0;
-    // const double activation_scale = 1;
-    // const double activation_offset = -0.5;
-    // const double activation_scale = 2;
-    const double activation_offset = -0.5 * (max_act + min_act);
-    const double activation_scale = 1.5 / (max_act - min_act);
+//     // const double activation_offset = 0;
+//     // const double activation_scale = 1;
+//     // const double activation_offset = -0.5;
+//     // const double activation_scale = 2;
+//     const double activation_offset = -0.5 * (max_act + min_act);
+//     const double activation_scale = 1.5 / (max_act - min_act);
 
-    int output_size = GetPoliActionSize();
-    out_offset = activation_offset * Eigen::VectorXd::Ones(output_size);
-    out_scale = activation_scale * Eigen::VectorXd::Ones(output_size);
-}
+//     int output_size = GetPoliActionSize();
+//     out_offset = activation_offset * Eigen::VectorXd::Ones(output_size);
+//     out_scale = activation_scale * Eigen::VectorXd::Ones(output_size);
+// }
 
 int cCtMTUController::GetNumOptParams() const {
     int num_params = 0;
@@ -325,4 +325,4 @@ void cCtMTUController::BuildMTUState(Eigen::VectorXd &out_state) const {
     }
 }
 
-void cCtMTUController::ApplyExpNoise(tAction &out_action) { cCtController::ApplyExpNoise(out_action); }
+// void cCtMTUController::ApplyExpNoise(tAction &out_action) { cCtController::ApplyExpNoise(out_action); }
