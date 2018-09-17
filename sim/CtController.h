@@ -1,11 +1,11 @@
 #pragma once
 
-#include "sim/BaseControllerCacla.h"
+#include "sim/TerrainRLCharController.h"
 #include "sim/CtCtrlUtil.h"
 
 #define ENABLE_MAX_STATE
 
-class cCtController : public virtual cBaseControllerCacla {
+class cCtController : public virtual cTerrainRLCharController {
   public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
@@ -69,11 +69,11 @@ class cCtController : public virtual cBaseControllerCacla {
     virtual void UpdateBuildTau(double time_step, Eigen::VectorXd &out_tau);
     virtual void UpdateAction();
     virtual void DecideAction(tAction &out_action);
-    virtual void ExploitPolicy(const Eigen::VectorXd &state, tAction &out_action);
+    // virtual void ExploitPolicy(const Eigen::VectorXd &state, tAction &out_action);
     virtual void ExploreAction(Eigen::VectorXd &state, tAction &out_action);
 
     virtual void PostProcessAction(tAction &out_action) const;
-    virtual void RecordVal();
+    // virtual void RecordVal();
     virtual void ApplyExpNoise(tAction &out_action);
 
     virtual void ApplyAction(int action_id);

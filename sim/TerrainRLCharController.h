@@ -1,10 +1,10 @@
 #pragma once
 
 #include "sim/Ground.h"
-#include "sim/NNController.h"
+#include "sim/CharController.h"
 #include "util/CircularBuffer.h"
 
-class cTerrainRLCharController : public cNNController {
+class cTerrainRLCharController : public cCharController {
   public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
@@ -52,8 +52,6 @@ class cTerrainRLCharController : public cNNController {
     virtual void GetPoliActionBounds(Eigen::VectorXd &out_min, Eigen::VectorXd &out_max) const;
     virtual double CalcActionLogp() const;
 
-    virtual void BuildNNOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const = 0;
-    virtual void BuildNNInputOffsetScaleTypes(std::vector<cNeuralNet::eOffsetScaleType> &out_types) const;
     virtual void BuildActionExpCovar(Eigen::VectorXd &out_covar) const;
 
     virtual const tAction &GetCurrAction() const;

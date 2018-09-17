@@ -768,8 +768,6 @@ void cMonopedHopperController::UpdateAction() {
 
     if (HasCommands()) {
         ProcessCommand(mCurrAction);
-    } else if (HasNet()) {
-        DecideAction(mCurrAction);
     } else if (!IsCurrActionCyclic()) {
         BuildDefaultAction(mCurrAction);
     }

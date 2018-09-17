@@ -33,16 +33,6 @@ void cCtPhaseController::SetTime(double time) {
 
 double cCtPhaseController::GetPhase() const { return mPhase; }
 
-void cCtPhaseController::BuildNNInputOffsetScaleTypes(std::vector<cNeuralNet::eOffsetScaleType> &out_types) const {
-    cCtController::BuildNNInputOffsetScaleTypes(out_types);
-
-    int phase_offset = GetPhaseStateOffset();
-    int phase_size = GetPhaseStateSize();
-    for (int i = 0; i < phase_size; ++i) {
-        out_types[phase_offset + i] = cNeuralNet::eOffsetScaleTypeFixed;
-    }
-}
-
 int cCtPhaseController::GetPhaseStateOffset() const { return cCtController::GetPoliStateSize(); }
 
 int cCtPhaseController::GetPhaseStateSize() const {

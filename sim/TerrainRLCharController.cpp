@@ -19,7 +19,7 @@ cTerrainRLCharController::tAction::tAction() {
     mLogp = 0;
 }
 
-cTerrainRLCharController::cTerrainRLCharController() : cNNController() {
+cTerrainRLCharController::cTerrainRLCharController() : cCharController() {
     SetNumGroundSamples(gDefaultNumGroundSamples);
     SetViewDist(gDefaultViewDist);
     mSkipDecideAction = false;
@@ -30,7 +30,7 @@ cTerrainRLCharController::~cTerrainRLCharController() {}
 
 void cTerrainRLCharController::Init(cSimCharacter *character) {
     // param_file should contain parameters for the pd controllers
-    cNNController::Init(character);
+    cCharController::Init(character);
     ResetParams();
     InitPoliState();
     InitCurrAction();
@@ -47,7 +47,7 @@ void cTerrainRLCharController::Init(cSimCharacter *character) {
 
 void cTerrainRLCharController::Reset() {
     ApplyAction(GetDefaultAction());
-    cNNController::Reset();
+    cCharController::Reset();
     ResetParams();
 
     InitGroundSamples();
@@ -58,13 +58,13 @@ void cTerrainRLCharController::Reset() {
 }
 
 void cTerrainRLCharController::Clear() {
-    cNNController::Clear();
+    cCharController::Clear();
     ResetParams();
     mCurrAction.mID = gInvalidIdx;
 }
 
 void cTerrainRLCharController::Update(double time_step) {
-    cNNController::Update(time_step);
+    cCharController::Update(time_step);
     UpdateCalcTau(time_step, mTau);
     UpdateApplyTau(mTau);
 }
@@ -78,17 +78,6 @@ void cTerrainRLCharController::GetPoliActionBounds(Eigen::VectorXd &out_min, Eig
 }
 
 double cTerrainRLCharController::CalcActionLogp() const { return mCurrAction.mLogp; }
-
-void cTerrainRLCharController::BuildNNInputOffsetScaleTypes(
-    std::vector<cNeuralNet::eOffsetScaleType> &out_types) const {
-    cNNController::BuildNNInputOffsetScaleTypes(out_types);
-
-    int ground_offset = GetPoliStateFeatureOffset(ePoliStateGround);
-    int ground_size = GetPoliStateFeatureSize(ePoliStateGround);
-    for (int i = 0; i < ground_size; ++i) {
-        out_types[ground_offset + i] = cNeuralNet::eOffsetScaleTypeFixed;
-    }
-}
 
 void cTerrainRLCharController::BuildActionExpCovar(Eigen::VectorXd &out_covar) const {
     out_covar = Eigen::VectorXd::Ones(GetPoliActionSize());
@@ -417,9 +406,6 @@ void cTerrainRLCharController::GetVisCharacterFeatures(Eigen::VectorXd &out_feat
 
     Eigen::VectorXd norm_features;
     RecordPoliState(norm_features);
-    if (HasNet()) {
-        mNet->NormalizeInput(norm_features);
-    }
 
     out_features.resize(pose_size + vel_size);
     out_features.segment(0, pose_size) = norm_features.segment(pose_offset, pose_size);
@@ -432,19 +418,12 @@ void cTerrainRLCharController::GetVisTerrainFeatures(Eigen::VectorXd &out_featur
 
     Eigen::VectorXd norm_features;
     RecordPoliState(norm_features);
-    if (HasNet()) {
-        mNet->NormalizeInput(norm_features);
-    }
 
     out_features = norm_features.segment(ground_offset, ground_size);
 }
 
 void cTerrainRLCharController::GetVisActionFeatures(Eigen::VectorXd &out_features) const {
     RecordPoliAction(out_features);
-    if (HasNet()) {
-        mNet->NormalizeOutput(out_features);
-    }
-}
 
 void cTerrainRLCharController::GetVisActionValues(Eigen::VectorXd &out_features) const { out_features = mVisNNOutput; }
 #endif // ENABLE_DEBUG_VISUALIZATION

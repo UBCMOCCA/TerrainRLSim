@@ -245,8 +245,3 @@ tMatrix cMixController::GetGroundSampleTrans() const {
     const auto &ctrl = GetDefaultController();
     return ctrl->GetGroundSampleTrans();
 }
-
-void cMixController::BuildNNOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const {
-    const auto &ctrl = GetDefaultController();
-    return ctrl->BuildNNOutputOffsetScale(out_offset, out_scale);
-}

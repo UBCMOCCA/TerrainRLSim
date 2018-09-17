@@ -1,7 +1,7 @@
 #include "CtController.h"
 #include "sim/SimCharacter.h"
 
-cCtController::cCtController() : cBaseControllerCacla() {
+cCtController::cCtController() : cTerrainRLCharController() {
     mExpParams.mBaseActionRate = 0.2;
     mExpParams.mNoise = 0.2;
     mUpdatePeriod = 1 / 30.0;
@@ -15,13 +15,13 @@ cCtController::cCtController() : cBaseControllerCacla() {
 cCtController::~cCtController() {}
 
 void cCtController::Init(cSimCharacter *character) {
-    cBaseControllerCacla::Init(character);
+    cTerrainRLCharController::Init(character);
     SetupActionBounds();
 }
 
-void cCtController::Reset() { cBaseControllerCacla::Reset(); }
+void cCtController::Reset() { cTerrainRLCharController::Reset(); }
 
-void cCtController::Clear() { cBaseControllerCacla::Clear(); }
+void cCtController::Clear() { cTerrainRLCharController::Clear(); }
 
 bool cCtController::NewActionUpdate() const { return mUpdateCounter >= (0.9999 * mUpdatePeriod); }
 
@@ -65,7 +65,7 @@ int cCtController::GetPoliActionSize() const {
 void cCtController::RecordPoliAction(Eigen::VectorXd &out_action) const { out_action = mCurrAction.mParams; }
 
 void cCtController::GetPoliActionBounds(Eigen::VectorXd &out_min, Eigen::VectorXd &out_max) const {
-    cBaseControllerCacla::GetPoliActionBounds(out_min, out_max);
+    cTerrainRLCharController::GetPoliActionBounds(out_min, out_max);
     out_min.segment(0, mActionBoundMin.size()) = mActionBoundMin;
     out_max.segment(0, mActionBoundMax.size()) = mActionBoundMax;
 }
@@ -94,7 +94,7 @@ bool cCtController::IsCurrActionCyclic() const { return false; }
 bool cCtController::LoadControllers(const std::string &file) { return true; }
 
 void cCtController::ResetParams() {
-    cBaseControllerCacla::ResetParams();
+    cTerrainRLCharController::ResetParams();
     // mUpdateCounter = std::numeric_limits<double>::infinity();
     mUpdateCounter = 10000000;
 }
@@ -232,15 +232,6 @@ void cCtController::UpdateAction() {
 
     mIsOffPolicy = true;
 
-    if (HasNet()) {
-        if (!mSkipDecideAction) {
-            DecideAction(mCurrAction);
-        } else {
-            mIsOffPolicy = true;
-            mSkipDecideAction = false;
-        }
-    }
-
     ApplyAction(mCurrAction);
 
 #if defined(ENABLE_DEBUG_VISUALIZATION)
@@ -295,19 +286,19 @@ void cCtController::BuildActionExpCovar(Eigen::VectorXd &out_covar) const {
 
 void cCtController::ForceActionUpdate() { UpdateAction(); }
 
-void cCtController::ExploitPolicy(const Eigen::VectorXd &state, tAction &out_action) {
-    Eigen::VectorXd params;
-    EvalNet(state, params);
-    assert(params.size() == GetPoliActionSize());
+// void cCtController::ExploitPolicy(const Eigen::VectorXd &state, tAction &out_action) {
+//     Eigen::VectorXd params;
+//     EvalNet(state, params);
+//     assert(params.size() == GetPoliActionSize());
 
-    // Eigen::VectorXd covar;
-    // BuildActionExpCovar(covar);
-    double logp = 0;
+//     // Eigen::VectorXd covar;
+//     // BuildActionExpCovar(covar);
+//     double logp = 0;
 
-    out_action.mID = gInvalidIdx;
-    out_action.mParams = params;
-    out_action.mLogp = logp;
-}
+//     out_action.mID = gInvalidIdx;
+//     out_action.mParams = params;
+//     out_action.mLogp = logp;
+// }
 
 void cCtController::ExploreAction(Eigen::VectorXd &state, tAction &out_action) {
 #if defined(ENABLE_DEBUG_PRINT)
@@ -330,24 +321,24 @@ void cCtController::PostProcessAction(tAction &out_action) const {
     // out_action.mParams = out_action.mParams.cwiseMax(mActionBoundMin).cwiseMin(mActionBoundMax);
 }
 
-void cCtController::RecordVal() {
-    if (ValidCritic()) {
-#if defined(ENABLE_DEBUG_VISUALIZATION)
-        Eigen::VectorXd val;
-        Eigen::VectorXd critic_x;
-        BuildCriticInput(critic_x);
-        mCriticNet->Eval(critic_x, val);
+// void cCtController::RecordVal() {
+//     if (ValidCritic()) {
+// #if defined(ENABLE_DEBUG_VISUALIZATION)
+//         Eigen::VectorXd val;
+//         Eigen::VectorXd critic_x;
+//         BuildCriticInput(critic_x);
+//         mCriticNet->Eval(critic_x, val);
 
-        double v = val[0];
-        mPoliValLog.Add(v);
+//         double v = val[0];
+//         mPoliValLog.Add(v);
 
-#if defined(ENABLE_DEBUG_PRINT)
-        // printf("Value: %.3f\n", v);
-#endif
+// #if defined(ENABLE_DEBUG_PRINT)
+//         // printf("Value: %.3f\n", v);
+// #endif
 
-#endif
-    }
-}
+// #endif
+//     }
+// }
 
 void cCtController::ApplyExpNoise(tAction &out_action) {
     int num_params = static_cast<int>(out_action.mParams.size());

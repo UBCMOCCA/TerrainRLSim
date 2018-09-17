@@ -60,8 +60,6 @@ class cMixController : public cCharController {
     virtual tVector GetGroundSample(int s) const;
     virtual tMatrix GetGroundSampleTrans() const;
 
-    virtual void BuildNNOutputOffsetScale(Eigen::VectorXd &out_offset, Eigen::VectorXd &out_scale) const;
-
   protected:
     std::vector<Eigen::VectorXd> mTaus;
     Eigen::VectorXd mWeights;
