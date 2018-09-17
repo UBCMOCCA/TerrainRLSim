@@ -92,9 +92,6 @@ Examples:
 
     # To simulate a controller/character
     ./TerrainRL -arg_file= args/biped3D/test_biped_3d_args.txt
-    # To Train a controller
-    ./TerrainRL_Optimizer -arg_file= args/biped3D/opt_train_biped_3d_cacla.txt
-    ./TerrainRL_Optimizer -arg_file= args/genBiped2D/opt_args_imitate_biped_full_phase.txt
 
 ## Key Bindings
 

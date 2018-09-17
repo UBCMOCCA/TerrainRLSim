@@ -1,4 +1,3 @@
-
 -scenario= imitate_eval
 -output_path= output/biped2d_full_pd_phase_model1.h5
 
