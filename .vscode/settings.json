@@ -57,6 +57,8 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "utility": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "cassert": "cpp",
+        "*.ipp": "cpp"
     }
 }

@@ -11,7 +11,6 @@
 #include "scenarios/ScenarioExp.h"
 #include "scenarios/ScenarioImitateEval.h"
 #include "sim/TerrainRLCharController.h"
-#include "sim/WaypointController.h"
 
 cSimAdapter::cSimAdapter(std::vector<std::string> args) {
     // TODO Auto-generated constructor stub
