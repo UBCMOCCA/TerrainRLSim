@@ -238,25 +238,6 @@ double cSimAdapter::updateAction(std::vector<double> act) {
     return 0.0;
 }
 
-double cSimAdapter::updateLLCAction(std::vector<double> act) {
-    const std::shared_ptr<cSimCharacter> char_ = this->_scene->GetCharacter();
-    auto controller = std::dynamic_pointer_cast<cWaypointController>(char_->GetController());
-    if (controller != nullptr) {
-        std::shared_ptr<cBipedStepController3D> llc = controller->GetLLC();
-
-        cTerrainRLCharController::tAction action;
-        action.mID;
-        action.mParams = Eigen::VectorXd::Zero(act.size());
-        for (size_t i = 0; i < act.size(); i++) {
-            action.mParams(i) = act[i];
-        }
-
-        llc->ApplyAction(action);
-    }
-
-    return 0.0;
-}
-
 void cSimAdapter::act(std::vector<double> act) {
 
     const std::shared_ptr<cSimCharacter> char_ = this->_scene->GetCharacter();
@@ -280,20 +261,6 @@ std::vector<double> cSimAdapter::getState() const {
         std::static_pointer_cast<cTerrainRLCharController>(char_->GetController());
     controller->ParseGround();
     controller->BuildPoliState(state);
-
-    std::vector<double> out(state.data(), state.data() + state.rows() * state.cols());
-    return out;
-}
-
-std::vector<double> cSimAdapter::getLLCState() {
-
-    Eigen::VectorXd state;
-    const std::shared_ptr<cSimCharacter> char_ = this->_scene->GetCharacter();
-    auto controller = std::dynamic_pointer_cast<cWaypointController>(char_->GetController());
-    if (controller != nullptr) {
-        std::shared_ptr<cBipedStepController3D> llc = controller->GetLLC();
-        llc->BuildPoliState(state);
-    }
 
     std::vector<double> out(state.data(), state.data() + state.rows() * state.cols());
     return out;
