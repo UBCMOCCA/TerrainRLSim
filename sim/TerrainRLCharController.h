@@ -29,6 +29,8 @@ class cTerrainRLCharController : public cCharController {
     virtual void UpdateApplyTau(const Eigen::VectorXd &tau) = 0;
     virtual void ApplyAction(const tAction &action);
 
+    virtual double CalcReward() const;
+
     virtual void SetGround(std::shared_ptr<cGround> ground);
 
     virtual int GetNumActions() const = 0;

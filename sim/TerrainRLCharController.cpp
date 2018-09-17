@@ -161,6 +161,8 @@ void cTerrainRLCharController::ApplyAction(const tAction &action) {
     NewCycleUpdate();
 }
 
+double cTerrainRLCharController::CalcReward() const { return 0; }
+
 void cTerrainRLCharController::NewCycleUpdate() {}
 
 void cTerrainRLCharController::SetParams(const Eigen::VectorXd &params) {
