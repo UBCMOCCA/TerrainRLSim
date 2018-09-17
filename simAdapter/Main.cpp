@@ -1,6 +1,5 @@
 
 #include <SimAdapter.h>
-// #include "render/DrawUtil.h"
 
 int main(int argc, char **argv) {
 

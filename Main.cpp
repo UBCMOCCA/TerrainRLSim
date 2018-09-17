@@ -2,14 +2,6 @@
 #include "Main.h"
 
 int main(int argc, char **argv) {
-    // HackTest();
-    // HackTest1();
-    // HackTest2();
-    // HackDogMeasurements();
-    // HackRaptorMeasurements();
-    // HackBipedMeasurements();
-    // testBVHReader();
-    // srand((unsigned)0);
 
     gArgc = argc;
     gArgv = argv;
