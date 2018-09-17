@@ -9,3 +9,4 @@ output/
 terrainRLAdapter.egg-info
 *.pyc
 TerrainRL
+bin/
