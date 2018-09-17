@@ -1,6 +1,6 @@
 #include "DrawScenarioPoliEval.h"
 #include "scenarios/ScenarioPoliEval.h"
-#include "sim/DogControllerCaclaDQ.h"
+#include <iostream>
 
 cDrawScenarioPoliEval::cDrawScenarioPoliEval(cCamera &cam) : cDrawScenarioSimChar(cam) { mDrawPoliInfo = true; }
 
