@@ -3,7 +3,6 @@
 #include "sim/CtTrackController.h"
 #include "sim/RBDUtil.h"
 #include "sim/SimCharSoftFall.h"
-#include "sim/WaypointController.h"
 
 //#define ENABLE_MAX_POSE_ERR
 //#define ENABLE_HEADING_REWARD
@@ -293,12 +292,6 @@ void cScenarioExpImitate::SyncCharacters() {
     if (phase_ctrl != nullptr) {
         double kin_time = mKinChar->GetTime();
         phase_ctrl->SetTime(kin_time);
-    }
-
-    auto waypoint_ctrl = std::dynamic_pointer_cast<cWaypointController>(ctrl);
-    if (waypoint_ctrl != nullptr) {
-        double kin_time = mKinChar->GetTime();
-        waypoint_ctrl->SetTime(kin_time);
     }
 }
 

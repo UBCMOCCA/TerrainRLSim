@@ -163,7 +163,7 @@ bool cScenarioPoliEval::EnableRecordNNActivation() const {
 }
 
 void cScenarioPoliEval::RecordNNActivation(const std::string &layer_name, const std::string &out_file) {
-    const auto &nn_ctrl = GetNNController();
+    const auto &nn_ctrl = GetCharController();
     const auto &net = nn_ctrl->GetNet();
 
     Eigen::VectorXd data;
@@ -274,7 +274,7 @@ bool cScenarioPoliEval::EnableRecordActionIDState() const {
 
 void cScenarioPoliEval::RecordActionIDState(const std::string &out_file) {
     const auto &ctrl = mChar->GetController();
-    auto nn_ctrl = GetNNController();
+    auto nn_ctrl = GetCharController();
 
     Eigen::VectorXd state;
     nn_ctrl->RecordPoliState(state);

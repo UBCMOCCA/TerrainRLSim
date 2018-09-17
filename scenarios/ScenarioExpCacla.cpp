@@ -26,7 +26,7 @@ bool cScenarioExpCacla::IsOffPolicyTuple(const tExpTuple &tuple) const {
 void cScenarioExpCacla::RecordFlagsBeg(tExpTuple &out_tuple) const {
     cScenarioExp::RecordFlagsBeg(out_tuple);
 
-    const auto nn_ctrl = GetNNController();
+    const auto nn_ctrl = GetCharController();
     bool off_policy = nn_ctrl->IsOffPolicy();
     out_tuple.SetFlag(off_policy, tExpTuple::eFlagOffPolicy);
 }

@@ -1,10 +1,6 @@
 #include "scenarios/ScenarioExp.h"
 
 #include "sim/DogController.h"
-#include "sim/DogControllerCacla.h"
-#include "sim/DogControllerDPG.h"
-#include "sim/DogControllerMACE.h"
-#include "sim/DogControllerMACEDPG.h"
 #include "sim/GroundPlane.h"
 #include "sim/GroundVar2D.h"
 #include "sim/SimDog.h"
@@ -231,12 +227,12 @@ void cScenarioExp::UpdateRewardSubstep(double time_step, tExpTuple &out_tuple) c
 
 void cScenarioExp::UpdateRewardEnd(tExpTuple &out_tuple) const { out_tuple.mReward += CalcReward(); }
 
-std::shared_ptr<const cNNController> cScenarioExp::GetNNController() const {
-    return std::dynamic_pointer_cast<const cNNController>(mChar->GetController());
+std::shared_ptr<const cCharController> cScenarioExp::GetCharController() const {
+    return std::dynamic_pointer_cast<const cCharController>(mChar->GetController());
 }
 
-std::shared_ptr<cNNController> cScenarioExp::GetNNController() {
-    return std::dynamic_pointer_cast<cNNController>(mChar->GetController());
+std::shared_ptr<cCharController> cScenarioExp::GetCharController() {
+    return std::dynamic_pointer_cast<cCharController>(mChar->GetController());
 }
 
 void cScenarioExp::SetEpisodeTimeLimType(eTimeLimType lim_type) { mEpisodeTimeLimType = lim_type; }
@@ -268,17 +264,17 @@ std::vector<std::string> &cScenarioExp::GetNetFiles() { return mCtrlParams.mNetF
 bool cScenarioExp::EnableEvalRecord() const { return false; }
 
 void cScenarioExp::RecordState(Eigen::VectorXd &out_state) const {
-    auto ctrl = GetNNController();
+    auto ctrl = GetCharController();
     ctrl->RecordPoliState(out_state);
 }
 
 void cScenarioExp::RecordAction(Eigen::VectorXd &out_action) const {
-    auto ctrl = GetNNController();
+    auto ctrl = GetCharController();
     ctrl->RecordPoliAction(out_action);
 }
 
 double cScenarioExp::GetActionLogp() const {
-    auto ctrl = GetNNController();
+    auto ctrl = GetCharController();
     double logp = 0;
     if (ctrl != nullptr) {
         logp = ctrl->CalcActionLogp();
@@ -359,7 +355,7 @@ bool cScenarioExp::IsValidCycle() const {
 }
 
 double cScenarioExp::CalcReward() const {
-    auto ctrl = GetNNController();
+    auto ctrl = GetCharController();
     double reward = ctrl->CalcReward();
     return reward;
 }
