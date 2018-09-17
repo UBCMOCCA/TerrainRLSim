@@ -1,35 +1,6 @@
 #include <iostream>
 
-#include "scenarios/DrawScenarioClimb.h"
-#include "scenarios/DrawScenarioHackMultChar.h"
-#include "scenarios/DrawScenarioHikeEval.h"
-#include "scenarios/DrawScenarioImitate.h"
 #include "scenarios/DrawScenarioImitateEval.h"
-#include "scenarios/DrawScenarioImitateStep.h"
-#include "scenarios/DrawScenarioImitateStepEval.h"
-#include "scenarios/DrawScenarioImitateTarget.h"
-#include "scenarios/DrawScenarioImitateTargetEval.h"
-#include "scenarios/DrawScenarioJump.h"
-#include "scenarios/DrawScenarioKinMotion.h"
-#include "scenarios/DrawScenarioMimic.h"
-#include "scenarios/DrawScenarioMimicEval.h"
-#include "scenarios/DrawScenarioMimicRNN.h"
-#include "scenarios/DrawScenarioPoliEval.h"
-#include "scenarios/DrawScenarioSimChar.h"
-#include "scenarios/DrawScenarioSoccerEval.h"
-#include "scenarios/DrawScenarioTerrainViewer.h"
-#include "scenarios/DrawScenarioTrackMotion.h"
-#include "scenarios/DrawScenarioTrain.h"
-#include "scenarios/DrawScenarioTrainCacla.h"
-#include "scenarios/DrawScenarioTrainCaclaDV.h"
-#include "scenarios/DrawScenarioTrainDMACE.h"
-#include "scenarios/DrawScenarioTrainDPG.h"
-#include "scenarios/DrawScenarioTrainHike.h"
-#include "scenarios/DrawScenarioTrainMACE.h"
-#include "scenarios/DrawScenarioTrainMACEDPG.h"
-#include "scenarios/DrawScenarioTrainSoccer.h"
-#include "scenarios/DrawScenarioVelCtrl.h"
-#include "scenarios/ScenarioSimChar.h"
 #include "util/ArgParser.h"
 #include "util/FileUtil.h"
 
@@ -126,75 +97,8 @@ void SetupScenario() {
     std::string scenario_name = "";
     gArgParser->ParseString("scenario", scenario_name);
 
-    if (scenario_name == "kin_motion") {
-        gScenario = std::shared_ptr<cDrawScenarioKinMotion>(new cDrawScenarioKinMotion(gCamera));
-    } else if (scenario_name == "sim_char") {
-        gScenario = std::shared_ptr<cDrawScenarioSimChar>(new cDrawScenarioSimChar(gCamera));
-    } else if (scenario_name == "track_motion") {
-        gScenario = std::shared_ptr<cDrawScenarioTrackMotion>(new cDrawScenarioTrackMotion(gCamera));
-    } else if (scenario_name == "jump") {
-        gScenario = std::shared_ptr<cDrawScenarioJump>(new cDrawScenarioJump(gCamera));
-    } else if (scenario_name == "climb") {
-        gScenario = std::shared_ptr<cDrawScenarioClimb>(new cDrawScenarioClimb(gCamera));
-    } else if (scenario_name == "vel_ctrl") {
-        gScenario = std::shared_ptr<cDrawScenarioVelCtrl>(new cDrawScenarioVelCtrl(gCamera));
-    } else if (scenario_name == "train") {
-        gScenario = std::shared_ptr<cDrawScenarioTrain>(new cDrawScenarioTrain(gCamera));
-    } else if (scenario_name == "train_cacla") {
-        gScenario = std::shared_ptr<cDrawScenarioTrainCacla>(new cDrawScenarioTrainCacla(gCamera));
-    } else if (scenario_name == "train_cacla_dq") {
-        gScenario = std::shared_ptr<cDrawScenarioTrainCacla>(new cDrawScenarioTrainCacla(gCamera));
-    } else if (scenario_name == "train_cacla_dv") {
-        gScenario = std::shared_ptr<cDrawScenarioTrainCaclaDV>(new cDrawScenarioTrainCaclaDV(gCamera));
-    } else if (scenario_name == "train_mace") {
-        gScenario = std::shared_ptr<cDrawScenarioTrainMACE>(new cDrawScenarioTrainMACE(gCamera));
-    } else if (scenario_name == "train_dpg") {
-        gScenario = std::shared_ptr<cDrawScenarioTrainDPG>(new cDrawScenarioTrainDPG(gCamera));
-    } else if (scenario_name == "train_mace_dpg") {
-        gScenario = std::shared_ptr<cDrawScenarioTrainMACEDPG>(new cDrawScenarioTrainMACEDPG(gCamera));
-    } else if (scenario_name == "train_dmace") {
-        gScenario = std::shared_ptr<cDrawScenarioTrainDMACE>(new cDrawScenarioTrainDMACE(gCamera));
-    } else if (scenario_name == "mimic") {
-        gScenario = std::shared_ptr<cDrawScenarioMimic>(new cDrawScenarioMimic(gCamera));
-    } else if (scenario_name == "mimic_rnn") {
-        gScenario = std::shared_ptr<cDrawScenarioMimicRNN>(new cDrawScenarioMimicRNN(gCamera));
-    } else if (scenario_name == "imitate") {
-        gScenario = std::shared_ptr<cDrawScenarioImitate>(new cDrawScenarioImitate(gCamera));
-    } else if (scenario_name == "imitate_target") {
-        gScenario = std::shared_ptr<cDrawScenarioImitateTarget>(new cDrawScenarioImitateTarget(gCamera));
-    } else if (scenario_name == "imitate_step") {
-        gScenario = std::shared_ptr<cDrawScenarioImitateStep>(new cDrawScenarioImitateStep(gCamera));
-    } else if (scenario_name == "train_hike") {
-        gScenario = std::shared_ptr<cDrawScenarioTrainHike>(new cDrawScenarioTrainHike(gCamera));
-    } else if (scenario_name == "train_soccer") {
-        gScenario = std::shared_ptr<cDrawScenarioTrainSoccer>(new cDrawScenarioTrainSoccer(gCamera));
-    } else if (scenario_name == "poli_eval") {
-        gScenario = std::shared_ptr<cDrawScenarioPoliEval>(new cDrawScenarioPoliEval(gCamera));
-    } else if (scenario_name == "mimic_eval") {
-        gScenario = std::shared_ptr<cDrawScenarioMimicEval>(new cDrawScenarioMimicEval(gCamera));
-    } else if (scenario_name == "imitate_eval") {
+    if (scenario_name == "imitate_eval") {
         gScenario = std::shared_ptr<cDrawScenarioImitateEval>(new cDrawScenarioImitateEval(gCamera));
-    } else if (scenario_name == "imitate_target_eval") {
-        gScenario = std::shared_ptr<cDrawScenarioImitateTargetEval>(new cDrawScenarioImitateTargetEval(gCamera));
-    } else if (scenario_name == "imitate_step_eval") {
-        gScenario = std::shared_ptr<cDrawScenarioImitateStepEval>(new cDrawScenarioImitateStepEval(gCamera));
-    } else if (scenario_name == "hike_eval") {
-        gScenario = std::shared_ptr<cDrawScenarioHikeEval>(new cDrawScenarioHikeEval(gCamera));
-    } else if (scenario_name == "soccer_eval") {
-        gScenario = std::shared_ptr<cDrawScenarioSoccerEval>(new cDrawScenarioSoccerEval(gCamera));
-    } else if (scenario_name == "terrain_viewer") {
-        gScenario = std::shared_ptr<cDrawScenarioTerrainViewer>(new cDrawScenarioTerrainViewer(gCamera));
-    } else if (scenario_name == "hack_mult_char") {
-        gScenario = std::shared_ptr<cDrawScenarioHackMultChar>(new cDrawScenarioHackMultChar(gCamera));
-    } else if (scenario_name == "poli_eval") {
-        // gScenario = std::shared_ptr<cScenarioSimChar>(new cScenarioSimChar());
-        /*
-        auto scene = std::shared_ptr<cOptScenarioPoliEval>(new cOptScenarioPoliEval());
-        scene->SetTimeStep(cOptScenario::gTimeStep);
-        scene->SetPoolSize(gNumThreads);
-
-        gScenario = scene;
-        */
     }
 
     if (gScenario != NULL) {

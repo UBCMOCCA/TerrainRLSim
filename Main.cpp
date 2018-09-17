@@ -15,8 +15,6 @@ int main(int argc, char **argv) {
     gArgv = argv;
     ParseArgs(gArgc, gArgv);
 
-    InitCaffe();
-
     glutInit(&gArgc, gArgv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowSize(gWinWidth, gWinHeight);
