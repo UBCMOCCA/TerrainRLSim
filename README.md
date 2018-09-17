@@ -50,7 +50,6 @@ OpenGL should come as part of the drivers for your graphics hardware (whether pa
     ```
     cp external/caffe/build/lib/libcaffe.* lib/
     cp external/Bullet/bin/*.so lib/
-    cp external/jsoncpp/build/debug/src/lib_json/*.so* lib/
     ```
 
 1. Generate the python code wrappers (optional, if you are not planning on simulating things from python)
