@@ -149,13 +149,11 @@ project "TerrainRL"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -178,7 +176,6 @@ project "TerrainRL"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -201,7 +198,6 @@ project "TerrainRL"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -273,13 +269,11 @@ project "terrainrlUtil"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -302,7 +296,6 @@ project "terrainrlUtil"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -324,7 +317,6 @@ project "terrainrlUtil"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -405,13 +397,11 @@ project "terrainrlLearning"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -434,7 +424,6 @@ project "terrainrlLearning"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -456,7 +445,6 @@ project "terrainrlLearning"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -535,13 +523,11 @@ project "terrainrlAnim"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -564,7 +550,6 @@ project "terrainrlAnim"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -586,7 +571,6 @@ project "terrainrlAnim"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -668,13 +652,11 @@ project "terrainrlSim"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -697,7 +679,6 @@ project "terrainrlSim"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -719,7 +700,6 @@ project "terrainrlSim"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -802,13 +782,11 @@ project "terrainrlRender"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -831,7 +809,6 @@ project "terrainrlRender"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -854,7 +831,6 @@ project "terrainrlRender"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -935,13 +911,11 @@ project "terrainrlScenarios"
 		libdirs {
 			-- "lib",
 			linuxLibraryLoc .. "Bullet/bin",
-			-- linuxLibraryLoc .. "jsoncpp/build/debug/src/lib_json",
 		}
 
 		includedirs {
 			linuxLibraryLoc .. "Bullet/src",
 			linuxLibraryLoc,
-			-- linuxLibraryLoc .. "jsoncpp/include",
 			"C:/Program Files (x86)/boost/boost_1_58_0/",
 			linuxLibraryLoc .. "3rdparty/include/hdf5",
 			linuxLibraryLoc .. "3rdparty/include/",
@@ -964,7 +938,6 @@ project "terrainrlScenarios"
 				"BulletDynamics_gmake_x64_debug",
 				"BulletCollision_gmake_x64_debug",
 				"LinearMath_gmake_x64_debug",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
@@ -986,7 +959,6 @@ project "terrainrlScenarios"
 				"BulletDynamics_gmake_x64_release",
 				"BulletCollision_gmake_x64_release",
 				"LinearMath_gmake_x64_release",
-				-- "jsoncpp",
 				"boost_system",
 				"glog",
 				--"hdf5",
