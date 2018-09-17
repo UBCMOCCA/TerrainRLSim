@@ -33,7 +33,7 @@ class cSimAdapter {
     virtual void init();
     virtual void initEpoch();
     virtual double updateAction(std::vector<double> action);
-    virtual double updateLLCAction(std::vector<double> action);
+    // virtual double updateLLCAction(std::vector<double> action);
     /// Perform on simulation update
     virtual void update();
     virtual void finish();
@@ -62,7 +62,7 @@ class cSimAdapter {
     virtual void setRandomSeed(int seed);
 
     virtual std::vector<double> getState() const;
-    virtual std::vector<double> getLLCState();
+    // virtual std::vector<double> getLLCState();
 
     virtual size_t getActionSpaceSize() const;
     virtual size_t getObservationSpaceSize() const;

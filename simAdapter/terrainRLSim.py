@@ -58,15 +58,6 @@ class TerrainRLSimWrapper(object):
 
         self._sim.handleUpdatedAction()
 
-    def getLLCState(self):
-
-        ob = self._sim.getLLCState()
-        ob = np.reshape(np.array(ob), (-1, len(ob)))
-        return ob
-
-    def updateLLCAction(self, action):
-        self._sim.updateLLCAction(action[0])
-
     def update(self):
         self._sim.update()
         self._done = self._done or self._sim.agentHasFallen()
