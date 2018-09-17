@@ -13,6 +13,7 @@
 -char_ctrl_ct_query_rate= 0
 -char_ctrl_cycle_dur= 1
 -terrain_file= data/terrain/flat.txt
+
 -char_ctrl_num_ground_samples= 50
 -char_ctrl_ground_view_dist= 3
 
