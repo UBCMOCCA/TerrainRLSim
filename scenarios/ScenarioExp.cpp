@@ -137,9 +137,9 @@ void cScenarioExp::EnableExplore(bool enable) {
     ctrl->EnableExp(mEnableExplore);
 }
 
-const cCharController::tExpParams &cScenarioExp::GetExpParams() const { return mExpParams; }
+const cTerrainRLCharController::tExpParams &cScenarioExp::GetExpParams() const { return mExpParams; }
 
-void cScenarioExp::SetExpParams(const cCharController::tExpParams &params) {
+void cScenarioExp::SetExpParams(const cTerrainRLCharController::tExpParams &params) {
     mExpParams = params;
     auto ctrl = mChar->GetController();
     if (ctrl != nullptr) {
@@ -227,12 +227,12 @@ void cScenarioExp::UpdateRewardSubstep(double time_step, tExpTuple &out_tuple) c
 
 void cScenarioExp::UpdateRewardEnd(tExpTuple &out_tuple) const { out_tuple.mReward += CalcReward(); }
 
-std::shared_ptr<const cCharController> cScenarioExp::GetCharController() const {
-    return std::dynamic_pointer_cast<const cCharController>(mChar->GetController());
+std::shared_ptr<const cTerrainRLCharController> cScenarioExp::GetTerrainRLCharController() const {
+    return std::dynamic_pointer_cast<const cTerrainRLCharController>(mChar->GetController());
 }
 
-std::shared_ptr<cCharController> cScenarioExp::GetCharController() {
-    return std::dynamic_pointer_cast<cCharController>(mChar->GetController());
+std::shared_ptr<cTerrainRLCharController> cScenarioExp::GetTerrainRLCharController() {
+    return std::dynamic_pointer_cast<cTerrainRLCharController>(mChar->GetController());
 }
 
 void cScenarioExp::SetEpisodeTimeLimType(eTimeLimType lim_type) { mEpisodeTimeLimType = lim_type; }
@@ -264,17 +264,17 @@ std::vector<std::string> &cScenarioExp::GetNetFiles() { return mCtrlParams.mNetF
 bool cScenarioExp::EnableEvalRecord() const { return false; }
 
 void cScenarioExp::RecordState(Eigen::VectorXd &out_state) const {
-    auto ctrl = GetCharController();
+    auto ctrl = GetTerrainRLCharController();
     ctrl->RecordPoliState(out_state);
 }
 
 void cScenarioExp::RecordAction(Eigen::VectorXd &out_action) const {
-    auto ctrl = GetCharController();
+    auto ctrl = GetTerrainRLCharController();
     ctrl->RecordPoliAction(out_action);
 }
 
 double cScenarioExp::GetActionLogp() const {
-    auto ctrl = GetCharController();
+    auto ctrl = GetTerrainRLCharController();
     double logp = 0;
     if (ctrl != nullptr) {
         logp = ctrl->CalcActionLogp();
@@ -355,7 +355,7 @@ bool cScenarioExp::IsValidCycle() const {
 }
 
 double cScenarioExp::CalcReward() const {
-    auto ctrl = GetCharController();
+    auto ctrl = GetTerrainRLCharController();
     double reward = ctrl->CalcReward();
     return reward;
 }

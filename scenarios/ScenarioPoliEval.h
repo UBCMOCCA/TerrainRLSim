@@ -43,10 +43,10 @@ class cScenarioPoliEval : virtual public cScenarioExp {
     std::vector<double> mDistLog;
     std::vector<double> mRewardLog;
 
-    // analysis stuff
-    bool mRecordNNActivation;
-    std::string mNNActivationOutputFile;
-    std::string mNNActivationLayer;
+    // // analysis stuff
+    // bool mRecordNNActivation;
+    // std::string mNNActivationOutputFile;
+    // std::string mNNActivationLayer;
 
     bool mRecordActions;
     std::string mActionOutputFile;
@@ -68,9 +68,9 @@ class cScenarioPoliEval : virtual public cScenarioExp {
     virtual bool EnableRandInitAction() const;
     virtual bool IsValidCycle() const;
 
-    virtual void InitNNActivation(const std::string &out_file);
-    virtual bool EnableRecordNNActivation() const;
-    virtual void RecordNNActivation(const std::string &layer_name, const std::string &out_file);
+    // virtual void InitNNActivation(const std::string &out_file);
+    // virtual bool EnableRecordNNActivation() const;
+    // virtual void RecordNNActivation(const std::string &layer_name, const std::string &out_file);
 
     virtual void InitActionRecord(const std::string &out_file) const;
     virtual void RecordAction(const std::string &out_file);

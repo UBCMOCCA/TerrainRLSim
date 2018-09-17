@@ -1,12 +1,8 @@
 #include "ScenarioPoliEval.h"
 #include "ScenarioExp.h"
-#include "sim/DogControllerCacla.h"
-#include "sim/DogControllerDMACE.h"
-#include "sim/DogControllerDPG.h"
-#include "sim/DogControllerMACEDPG.h"
 #include "sim/GroundTrail3D.h"
 #include "sim/GroundVar2D.h"
-#include "sim/NNController.h"
+// #include "sim/TerrainRLCharController.h"
 #include "util/FileUtil.h"
 
 cScenarioPoliEval::cScenarioPoliEval() {
@@ -16,10 +12,10 @@ cScenarioPoliEval::cScenarioPoliEval() {
     mTotalCycles = 0;
     mEnableExplore = false;
 
-    // analysis stuff
-    mRecordNNActivation = false;
-    mNNActivationOutputFile = "";
-    mNNActivationLayer = "";
+    // // analysis stuff
+    // mRecordNNActivation = false;
+    // mNNActivationOutputFile = "";
+    // mNNActivationLayer = "";
 
     mRecordActions = false;
     ;
@@ -156,34 +152,34 @@ double cScenarioPoliEval::CalcAvgCumulativeReward() const {
     return avg_reward;
 }
 
-void cScenarioPoliEval::InitNNActivation(const std::string &out_file) { cFileUtil::ClearFile(out_file); }
+// void cScenarioPoliEval::InitNNActivation(const std::string &out_file) { cFileUtil::ClearFile(out_file); }
 
-bool cScenarioPoliEval::EnableRecordNNActivation() const {
-    return mRecordNNActivation && mNNActivationLayer != "" && mNNActivationOutputFile != "";
-}
+// bool cScenarioPoliEval::EnableRecordNNActivation() const {
+//     return mRecordNNActivation && mNNActivationLayer != "" && mNNActivationOutputFile != "";
+// }
 
-void cScenarioPoliEval::RecordNNActivation(const std::string &layer_name, const std::string &out_file) {
-    const auto &nn_ctrl = GetCharController();
-    const auto &net = nn_ctrl->GetNet();
+// void cScenarioPoliEval::RecordNNActivation(const std::string &layer_name, const std::string &out_file) {
+//     const auto &nn_ctrl = GetRLCharController();
+//     const auto &net = nn_ctrl->GetNet();
 
-    Eigen::VectorXd data;
-    net->GetLayerState(layer_name, data);
+//     Eigen::VectorXd data;
+//     net->GetLayerState(layer_name, data);
 
-    int data_size = static_cast<int>(data.size());
-    if (data_size > 0) {
-        std::string data_str = "";
-        int action_id = nn_ctrl->GetCurrActionID();
-        data_str += std::to_string(action_id);
+//     int data_size = static_cast<int>(data.size());
+//     if (data_size > 0) {
+//         std::string data_str = "";
+//         int action_id = nn_ctrl->GetCurrActionID();
+//         data_str += std::to_string(action_id);
 
-        for (int i = 0; i < data_size; ++i) {
-            data_str += ",\t";
-            data_str += std::to_string(data[i]);
-        }
-        data_str += "\n";
+//         for (int i = 0; i < data_size; ++i) {
+//             data_str += ",\t";
+//             data_str += std::to_string(data[i]);
+//         }
+//         data_str += "\n";
 
-        cFileUtil::AppendText(data_str, out_file);
-    }
-}
+//         cFileUtil::AppendText(data_str, out_file);
+//     }
+// }
 
 void cScenarioPoliEval::InitActionRecord(const std::string &out_file) const {
     FILE *file = cFileUtil::OpenFile(out_file, "w");
@@ -274,7 +270,7 @@ bool cScenarioPoliEval::EnableRecordActionIDState() const {
 
 void cScenarioPoliEval::RecordActionIDState(const std::string &out_file) {
     const auto &ctrl = mChar->GetController();
-    auto nn_ctrl = GetCharController();
+    auto nn_ctrl = GetRLCharController();
 
     Eigen::VectorXd state;
     nn_ctrl->RecordPoliState(state);
@@ -299,9 +295,9 @@ void cScenarioPoliEval::UpdateTotalReward(double curr_reward) { mTotalReward += 
 void cScenarioPoliEval::RecordTotalReward() { mRewardLog.push_back(mTotalReward); }
 
 void cScenarioPoliEval::ParseMiscArgs(const std::shared_ptr<cArgParser> &parser) {
-    parser->ParseBool("record_nn_activation", mRecordNNActivation);
-    parser->ParseString("nn_activation_output_file", mNNActivationOutputFile);
-    parser->ParseString("nn_activation_layer", mNNActivationLayer);
+    // parser->ParseBool("record_nn_activation", mRecordNNActivation);
+    // parser->ParseString("nn_activation_output_file", mNNActivationOutputFile);
+    // parser->ParseString("nn_activation_layer", mNNActivationLayer);
 
     parser->ParseBool("record_actions", mRecordActions);
     parser->ParseString("action_output_file", mActionOutputFile);
@@ -319,9 +315,9 @@ void cScenarioPoliEval::InitMisc() {
     ResetRecord();
     mPosStart = mChar->GetRootPos();
 
-    if (EnableRecordNNActivation()) {
-        InitNNActivation(mNNActivationOutputFile);
-    }
+    // if (EnableRecordNNActivation()) {
+    //     InitNNActivation(mNNActivationOutputFile);
+    // }
 
     if (EnableRecordActions()) {
         InitActionRecord(mActionOutputFile);
@@ -353,9 +349,9 @@ void cScenarioPoliEval::UpdateMiscRecord() {
     UpdateTotalReward(mCurrTuple.mReward);
 
     if (IsValidCycle()) {
-        if (EnableRecordNNActivation()) {
-            RecordNNActivation(mNNActivationLayer, mNNActivationOutputFile);
-        }
+        // if (EnableRecordNNActivation()) {
+        //     RecordNNActivation(mNNActivationLayer, mNNActivationOutputFile);
+        // }
 
         if (EnableRecordActions()) {
             RecordAction(mActionOutputFile);

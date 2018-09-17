@@ -1,10 +1,10 @@
 #pragma once
 
 #include "anim/KinCharacter.h"
-#include "scenarios/ScenarioExpCacla.h"
+#include "scenarios/ScenarioExp.h"
 #include "sim/Ground.h"
 
-class cScenarioExpImitate : virtual public cScenarioExpCacla {
+class cScenarioExpImitate : virtual public cScenarioExp {
   public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 

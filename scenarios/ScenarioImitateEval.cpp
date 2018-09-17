@@ -3,7 +3,6 @@
 #include "sim/CtPhaseController.h"
 #include "sim/CtTrackController.h"
 #include "sim/SimCharSoftFall.h"
-#include "sim/WaypointController.h"
 #include "util/FileUtil.h"
 
 cScenarioImitateEval::cScenarioImitateEval() : cScenarioExpImitate(), cScenarioPoliEval() {

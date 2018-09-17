@@ -1,9 +1,8 @@
 #pragma once
 
 #include "learning/ExpTuple.h"
-// #include "learning/QNetTrainer.h"
 #include "scenarios/ScenarioSimChar.h"
-#include "sim/CharController.h"
+#include "sim/TerrainRLCharController.h"
 #include "sim/SimCharacter.h"
 
 class cScenarioExp : virtual public cScenarioSimChar {
@@ -83,8 +82,8 @@ class cScenarioExp : virtual public cScenarioSimChar {
     virtual void UpdateRewardSubstep(double time_step, tExpTuple &out_tuple) const;
     virtual void UpdateRewardEnd(tExpTuple &out_tuple) const;
 
-    virtual std::shared_ptr<const cCharController> GetCharController() const;
-    virtual std::shared_ptr<cCharController> GetCharController();
+    virtual std::shared_ptr<const cTerrainRLCharController> GetTerrainRLCharController() const;
+    virtual std::shared_ptr<cTerrainRLCharController> GetTerrainRLCharController();
 
     virtual bool EnableEvalRecord() const;
     virtual void RecordState(Eigen::VectorXd &out_state) const;

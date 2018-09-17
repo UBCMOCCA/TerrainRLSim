@@ -163,7 +163,7 @@ cScenarioExpImitate::cScenarioExpImitate() {
 cScenarioExpImitate::~cScenarioExpImitate() {}
 
 void cScenarioExpImitate::ParseArgs(const std::shared_ptr<cArgParser> &parser) {
-    cScenarioExpCacla::ParseArgs(parser);
+    cScenarioExp::ParseArgs(parser);
     parser->ParseString("motion_file", mMotionFile);
     std::string fpath;
     bool succ = parser->ParseString("relative_file_path", fpath);
@@ -180,7 +180,7 @@ void cScenarioExpImitate::Init() {
         assert(false);
     }
 
-    cScenarioExpCacla::Init();
+    cScenarioExp::Init();
     InitJointWeights();
 
     if (EnableSyncChar()) {
@@ -217,7 +217,7 @@ void cScenarioExpImitate::CalcJointWeights(const std::shared_ptr<cSimCharacter> 
 }
 
 void cScenarioExpImitate::SetupControllerParams(cTerrainRLCtrlFactory::tCtrlParams &out_params) const {
-    cScenarioExpCacla::SetupControllerParams(out_params);
+    cScenarioExp::SetupControllerParams(out_params);
     out_params.mCycleDur = mKinChar->GetMotionDuration();
 }
 
@@ -234,7 +234,7 @@ bool cScenarioExpImitate::BuildKinCharacter(std::shared_ptr<cKinCharacter> &out_
 void cScenarioExpImitate::UpdateCharacter(double time_step) {
     UpdateKinChar(time_step);
     UpdateTrackController();
-    cScenarioExpCacla::UpdateCharacter(time_step);
+    cScenarioExp::UpdateCharacter(time_step);
 }
 
 void cScenarioExpImitate::UpdateKinChar(double time_step) {
@@ -260,10 +260,10 @@ void cScenarioExpImitate::UpdateTrackController() {
     }
 }
 
-void cScenarioExpImitate::ResetParams() { cScenarioExpCacla::ResetParams(); }
+void cScenarioExpImitate::ResetParams() { cScenarioExp::ResetParams(); }
 
 void cScenarioExpImitate::ResetCharacters() {
-    cScenarioExpCacla::ResetCharacters();
+    cScenarioExp::ResetCharacters();
 
     ResetKinChar();
     if (EnableSyncChar()) {
@@ -302,7 +302,7 @@ void cScenarioExpImitate::InitJointWeights() { CalcJointWeights(mChar, mJointWei
 int cScenarioExpImitate::GetNumWarmupCycles() const { return gNumWarmupCycles; }
 
 bool cScenarioExpImitate::EndEpisode() const {
-    bool is_end = cScenarioExpCacla::EndEpisode();
+    bool is_end = cScenarioExp::EndEpisode();
     is_end |= mKinChar->IsMotionOver();
     return is_end;
 }
