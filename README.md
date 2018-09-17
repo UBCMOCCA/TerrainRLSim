@@ -59,17 +59,6 @@ OpenGL should come as part of the drivers for your graphics hardware (whether pa
     ```
     Note: you can speed up the build by appending the `-j8` flag to this last `make` command, where `8` here is the number of concurrent build threads that `make` will launch. Choose a number that makes sense based on the hardware resources you have available to you.
 
-**Note:** There are some issues with the installation on Ubuntu 14.04. Some of the libraries have changed their location and name (see https://github.com/BVLC/caffe/issues/2347 for a solution).
-
-## Windows
-
-This setup has been tested on Windows 7 and 10 with visual studio 2013.
-
-1. Download the library.zip file that contains almost all of the relevant pre-compiled external libraries and source code.
-2. Unpack this library in the same directory the project is located in. For example, TerrainRL/../.
-3. You might need to install opengl/glu/GL headers. We have been using freeglut for this project. glew might already be included in library.zip.
-4. You will need to copy some dll files from dynamic_lib.zip to the directory the project is compiled to. For example, optimizer/x64/Debug/. These files are needed by the framework during runtime.
-5. Might need to create a folder in TerrainRL called "output", This is where temporary and current policies will be dumped.
 
 ## Running The System
 
@@ -118,18 +107,11 @@ These lists are provided for reference only. Normally, if you follow the instruc
 
 ### Linux
 
--   caffe source code (must still be built) - Specific version (https://github.com/niuzhiheng/caffe.git @ 7b3e6f2341fe7374243ee0126f5cad1fa1e44e14) - In the instruction to make and build Caffe we uncomment the CPU only line
-     `# CPU-only switch (uncomment to build without GPU support). CPU_ONLY := 1`
 -   BulletPhysics ([This specific threadsafe version](https://github.com/lunkhound/bullet3))
 -   [Json_cpp](https://github.com/open-source-parsers/jsoncpp)
 -   [Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page)
 -   [CMA-ES](https://github.com/AlexanderFabisch/CMA-ESpp)
 -   [LodePNG](https://github.com/lvandeve/lodepng)
-
-### Windows
-
--   Caffe: https://github.com/initialneil/caffe-vs2013
--   TODO: Finish documenting this
 
 # Installing Python Library Version
 

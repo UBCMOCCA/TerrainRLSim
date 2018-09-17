@@ -104,9 +104,9 @@ extension_mod = Extension(
     ["terrainRLAdapter.cpp", "SimAdapter.cpp"],
     extra_compile_args=['-std=c++0x', '-ggdb', '-fPIC', "-Wl,-rpath," + setup_py_dir + "/lib"],
     include_dirs=[
-        './', './external/Bullet/src', './external', './external/caffe/include', './external/caffe/build/src',
+        './', './external/Bullet/src', './external',
         './external/3rdparty/include/hdf5', './external/3rdparty/include/', './external/3rdparty/include/openblas',
-        './external/3rdparty/include/lmdb', './external/OpenCV/include', './external/caffe/src/',
+        './external/3rdparty/include/lmdb', './external/OpenCV/include',
         "/usr/local/cuda/include/", "./", "anim", "learning", "sim", "render", "scenarios", "util", "../"
     ])
 
