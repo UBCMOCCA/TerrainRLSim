@@ -133,7 +133,7 @@ setup(
         },
     package_data = { 'args': need_files_args },
     install_requires = [
-        'numpy==1.14.2',
+        'numpy==1.22.0',
         'matplotlib==2.2.2',
         'dill==0.2.7.1',
     ],
